@@ -345,7 +345,7 @@
                 ,
                 e
             }()
-              , T = {};
+              , A = {};
             e = function() {
                 "use strict";
                 function e(e) {
@@ -418,8 +418,8 @@
                 return s
             }
             ,
-            "function" == typeof o && o.amd ? o("stackframe", [], e) : "object" == typeof T ? T = e() : this.StackFrame = e();
-            var A = {};
+            "function" == typeof o && o.amd ? o("stackframe", [], e) : "object" == typeof A ? A = e() : this.StackFrame = e();
+            var T = {};
             t = function(e) {
                 "use strict";
                 var t = /(^|@)\S+\:\d+/
@@ -526,8 +526,8 @@
                 }
             }
             ,
-            "function" == typeof o && o.amd ? o("error-stack-parser", ["stackframe"], t) : "object" == typeof A ? A = t(T) : this.ErrorStackParser = t(this.StackFrame);
-            var O = A
+            "function" == typeof o && o.amd ? o("error-stack-parser", ["stackframe"], t) : "object" == typeof T ? T = t(A) : this.ErrorStackParser = t(this.StackFrame);
+            var O = T
               , _ = function(e, t, n, o) {
                 var r, i, a, s;
                 return JSON.stringify((r = o && o.redactedKeys ? o.redactedKeys : [],
@@ -641,7 +641,7 @@
                 "number" == typeof o && (e[o] = null,
                 delete t[n])
             }
-              , C = function(e, t, n) {
+              , N = function(e, t, n) {
                 if (u(t)) {
                     for (var o = 0; o < t.length; ++o) {
                         var r = t[o];
@@ -650,7 +650,7 @@
                     return e
                 }
             }
-              , N = function(e) {
+              , C = function(e) {
                 return !!e && (!!e.stack || !!e.stacktrace || !!e["opera#sourceloc"]) && "string" == typeof (e.stack || e.stacktrace || e["opera#sourceloc"]) && e.stack !== e.name + ": " + e.message
             }
               , x = function(e) {
@@ -723,7 +723,7 @@
                 }
             }
             ,
-            "function" == typeof o && o.amd ? o("stack-generator", ["stackframe"], n) : "object" == typeof U ? U = n(T) : this.StackGenerator = n(this.StackFrame);
+            "function" == typeof o && o.amd ? o("stack-generator", ["stackframe"], n) : "object" == typeof U ? U = n(A) : this.StackGenerator = n(this.StackFrame);
             var M = function() {
                 function e(t, n, o, r, i) {
                     void 0 === o && (o = []),
@@ -766,7 +766,7 @@
                 }
                 ,
                 t.addFeatureFlags = function(e) {
-                    C(this._features, e, this._featuresIndex)
+                    N(this._features, e, this._featuresIndex)
                 }
                 ,
                 t.getFeatureFlags = function() {
@@ -873,7 +873,7 @@
                 }
             }
             M.getStacktrace = function(e, t, n) {
-                if (N(e))
+                if (C(e))
                     return O.parse(e).slice(t);
                 try {
                     return a(U.backtrace(), function(e) {
@@ -901,7 +901,7 @@
                         return t.cause ? [t].concat(e(t.cause)) : [t]
                     }
                     )(s).slice(1), function(e) {
-                        var t = x(e) && N(e) ? O.parse(e) : []
+                        var t = x(e) && C(e) ? O.parse(e) : []
                           , n = V(e, !0, "error cause")[0];
                         return "InvalidError" === n.name && c.addMetadata("error cause", H(e)),
                         W(n.name, n.message, M.__type, t)
@@ -946,11 +946,11 @@
                 else
                     x(e) ? r = e : (r = a(typeof e),
                     i += 2);
-                if (!N(r))
+                if (!C(r))
                     try {
                         throw r
                     } catch (e) {
-                        N(e) && (r = e,
+                        C(e) && (r = e,
                         i = 1)
                     }
                 return [r, i]
@@ -1141,7 +1141,7 @@
                 }
                 ,
                 t.addFeatureFlags = function(e) {
-                    C(this._features, e, this._featuresIndex)
+                    N(this._features, e, this._featuresIndex)
                 }
                 ,
                 t.clearFeatureFlag = function(e) {
@@ -1182,7 +1182,7 @@
                         /^[0-9a-f]{32}$/i.test(a.apiKey) || (r.apiKey = "should be a string of 32 hexadecimal characters")
                     }
                     return this._metadata = y({}, a.metadata),
-                    C(this._features, a.featureFlags, this._featuresIndex),
+                    N(this._features, a.featureFlags, this._featuresIndex),
                     this._user = y({}, a.user),
                     this._context = a.context,
                     a.logger && (this._logger = a.logger),
@@ -1311,7 +1311,7 @@
                     t._metadata = y({}, t._metadata, this._metadata),
                     t._user = y({}, t._user, this._user),
                     t.breadcrumbs = this._breadcrumbs.slice(),
-                    C(t._features, this._features, t._featuresIndex),
+                    N(t._features, this._features, t._featuresIndex),
                     null !== this._config.enabledReleaseStages && !s(this._config.enabledReleaseStages, this._config.releaseStage))
                         return this._logger.warn("Event not sent due to releaseStage/enabledReleaseStages configuration"),
                         o(null, t);
@@ -1532,18 +1532,18 @@
             for (var eE in eb)
                 Object.hasOwnProperty.call(eb, eE) && ew++;
             var eP = eS(((navigator.mimeTypes ? navigator.mimeTypes.length : 0) + navigator.userAgent.length).toString(36) + ew.toString(36), 4)
-              , eT = function() {
+              , eA = function() {
                 return eP
             }
-              , eA = 0;
+              , eT = 0;
             function eO() {
                 return eS((1679616 * Math.random() << 0).toString(36), 4)
             }
             function e_() {
-                return "c" + new Date().getTime().toString(36) + eS((eA = eA < 1679616 ? eA : 0,
-                ++eA - 1).toString(36), 4) + eT() + (eO() + eO())
+                return "c" + new Date().getTime().toString(36) + eS((eT = eT < 1679616 ? eT : 0,
+                ++eT - 1).toString(36), 4) + eA() + (eO() + eO())
             }
-            e_.fingerprint = eT;
+            e_.fingerprint = eA;
             var eI = "bugsnag-anonymous-id"
               , eR = function(e) {
                 try {
@@ -1560,12 +1560,12 @@
                 var t = e.getUser();
                 t && t.id || e.setUser(e.device.id)
             }
-              , eC = {
+              , eN = {
                 load: function(e) {
-                    e._sessionDelegate = eN
+                    e._sessionDelegate = eC
                 }
             }
-              , eN = {
+              , eC = {
                 startSession: function(e, t) {
                     return (e._session = t,
                     e._pausedSession = null,
@@ -1839,7 +1839,7 @@
                                 }))
                             }, !0)
                         }
-                    }), eV, eC, ex, eY, (void 0 === u && (u = window),
+                    }), eV, eN, ex, eY, (void 0 === u && (u = window),
                     void 0 === l && (l = "window onerror"),
                     {
                         load: function(e) {
@@ -2001,40 +2001,28 @@
                                     }
                                 }
                                 )(),
-                                (function() {
-                                    if ("fetch" in window && !window.fetch.polyfill) {
-                                        var originalFetch = window.fetch;
-                                        window.fetch = function() {
-                                            var args = arguments;
-                                            var requestUrl = args[0]; // The URL being requested
-                                            var requestOptions = args[1] || {};
-                                            var method = requestOptions.method || (typeof requestUrl === "object" ? requestUrl.method : "GET");
-                                
-                                            // Replace old domain with new one
-                                            if (typeof requestUrl === "string") {
-                                                requestUrl = requestUrl
-                                                    .replace("https://inquisitive-blancmange-596f69.netlify.app/oapi/7/play/v1/getAppPlayFeatures?appId=19900", 
-                                                             "https://studyimages.com/oapi/7/play/v1/getAppPlayFeatures?appId=19900")
-                                                    .replace(/https:\/\/inquisitive-blancmange-596f69\.netlify\.app\/oapi\/7\/play\/v1\/startSession\?.*/, 
-                                                             "https://studyimages.com/oapi/7/play/v1/startSession?appId=19900&uaId=ua-znmSeLUgea5lSGpJf5OIq&uaSessionId=uasess-PM0kOmyH2hSyc6g3JRqzm&feSessionId=fesess-893EhicZ0AnA5PhRz9EGu&visitId=visitid-TIUS2fJH7LIyiq7c8AiCl&initialOrientation=landscape&utmSource=NA&utmMedium=NA&utmCampaign=NA&deepLinkUrl=&accessCode=&ngReferrer=NA&pageReferrer=NA&ngEntryPoint=https%3A%2F%2Fstudyimages.com%2F&ntmSource=NA&customData=&appLaunchExtraData=&feSessionTags=nowgg&membershipId=&sdpType=&isIframe=false&feDeviceType=desktop&feOsName=window&userSource=direct&visitSource=direct&userCampaign=NA&visitCampaign=NA&userAcqVar=NA_2025_MAR_23_PDT");
+                                function() {
+                                    if ("fetch"in f && !f.fetch.polyfill) {
+                                        var e = f.fetch;
+                                        f.fetch = function() {
+                                            var t, r = arguments, i = arguments[0], a = arguments[1], s = null;
+                                            return i && "object" == typeof i ? (s = i.url,
+                                            a && "method"in a ? t = a.method : i && "method"in i && (t = i.method)) : (s = i,
+                                            a && "method"in a && (t = a.method)),
+                                            void 0 === t && (t = "GET"),
+                                            new Promise(function(i, a) {
+                                                e.apply(void 0, r).then(function(e) {
+                                                    n(e, t, s),
+                                                    i(e)
+                                                }).catch(function(e) {
+                                                    o(t, s),
+                                                    a(e)
+                                                })
                                             }
-                                
-                                            // Log the request (optional for debugging)
-                                            console.log(`Fetching: ${requestUrl} [${method}]`);
-                                
-                                            return new Promise(function(resolve, reject) {
-                                                originalFetch(requestUrl, requestOptions)
-                                                    .then(function(response) {
-                                                        resolve(response);
-                                                    })
-                                                    .catch(function(error) {
-                                                        reject(error);
-                                                    });
-                                            });
-                                        };
+                                            )
+                                        }
                                     }
-                                })();
-
+                                }();
                                 var n = function(t, n, o) {
                                     var r = {
                                         status: t.status,
@@ -4305,7 +4293,7 @@
         let d = ["FePreAdBlocker", "FeAdBlockerTimeout", "FeAdBlockerReady", "FeAdBlockerDetected", "FeAdBlockerDetected2", "FeAdDisplayed", "FeAdNotFilled", "FeAdRequestTimeout", "FeAdRequested", "FeAdRequestException", "FeAdRequestedNg", "FeAdRequestedNg2", "FePrerollEnd", "FePrerollBegin", "FeAdAddDisplayAdListenersCalled", "FeAdGPTCallbacksRegisterException", "FeAdGPTCallbacksRegistered", "FeNowggAdBlockCheckCrossed", "FeGoogleAdBlockCheckCrossed", "FeTudeCustomEvent", "FeWatchFirstAdFreePlaytimeClicked", "FePlayExperienceScreenViewed", "FeWatchSecondAdFreePlaytimeClicked", "FeRewardEarned", "FeGeneratePlayCodeClicked", "FePlayCodeCopied", "FeRewardEarnedFailure"]
           , p = ["FePwaBeforeInstallPrompt", "FePwaNudgeDisplayed", "FePwaNudgeAccepted", "FePwaNudgeDismissed", "FePwaNudgeLimitReached", "FePreNudgeWaitCompleted", "FePwaPromptDisplayed", "FePwaPromptAccepted", "FePwaPromptDismissed", "FePwaInstalled"]
           , f = ["FeVideoLoaderLoadStart", "FeVideoLoaderEnded", "FeVideoLoaderError", "FeVideoLoaderUnmount", "FeUptime2", "FeTopActivity"];
-        t.PlayEventNames = [...d, ...f, ...p, "FeSecretPassageViewed", "FePlayTokenInitiated", "FePlayTokenBegin", "FePlayTokenEnd", "FeSecretPassageHintViewed", "FeNowbuxIconClicked", "FeFirstNowbuxWonPromptDisplayed", "FeFirstNowbuxLoginToClaimClicked", "FeNowbuxExitPopupLostRewardDisplayed", "FeNowbuxExitPopupLoginPromptDisplayed", "FeNowbuxExitPopupLoginToClaimClicked", "FeNowbuxDistributed", "FeNowbuxJackpotSpinClicked", "FeAuthProviderClicked", "FeOldAdsLayout", "FeAuthSuccess", "FeAuthSuccessInAndroid", "FeGuestSuccess", "FeProxyDetected", "FeProxyThrottled", "FePlayTokenSuccess", "FePlayTokenFailure", "FeLoginPageDisplayed", "FeLoginPageDisplayedInAndroid", "FeLogoutClicked", "FePlayAsGuestClicked", "FeAndroidPlayerLoaded", "FeVideoElementLoaded", "FeSessionRequestedComplete", "FeSessionRequestEnd", "FeSetAnswerSdpStarted", "FeSetAnswerSdpCompleted", "FeErrorScreenReportIssue", "FeProfileIconClicked", "FeNowbuxQuestButtonClicked", "FeNowbuxJackpotButtonClicked", "FeNowbuxRedeemButtonClicked", "FeLeaderboardIconClicked", "FeLeaderboardDailyButtonClicked", "FeLeaderboardWeeklyButtonClicked", "FeLeaderboardMonthlyButtonClicked", "FeNowbuxQuestCompletePromptDisplayed", "FeSetRemoteDescriptionBegin", "FeSetRemoteDescriptionEnd", "FeCreateAnswerBegin", "FeCreateAnswerEnd", "FeAndroidReady", "FeDataChannelCallback", "FeWebRtcConnected", "FeDataChannelOpened", "FePreSessionRequestedError", "FePreSessionRequested", "FePreSessionRequestBeginError", "FePreSessionRequestBegin", "FeDuplicateTab", "FeDuplicateTab2", "FeShowErrorOverlay", "FePlayPageLoaded", "FeAccessTokenBegin", "FeAccessTokenEnd", "FeAppReady", "FeAppChanged", "FeUptime", "FeGameDisplayed", "FeSessionCompleted", "FeIncognitoModeDetected", "FeIncognitoModeDetectionFailed", "FeRobloxExperienceEnded", "FeRobloxExperienceStarted", "FeGameEnded", "FeCreatePlayUserBegin", "FeCreatePlayUserEnd", "FeBootstrap", "FeTabVisible", "FeTabHidden", "FeUnsupportedBrowser", "PortalBootstrap", "CpBootstrap", "JpPortalBootstrap", "FeBootstrap2", "FeUnsupportedBrowser", "FePreloaderDisplayed", "FePreloaderDisplayed2", "FePreloaderDisplayed3", "FeErrorScreen", "FeSessionCompletedScreen", "FeDisconnected", "FePortalViewed", "FeProxyScreenShown", "FeSessionRequested", "FeSessionRequestBegin", "FeUserInteraction", "FeNegotiationNeeded", "FeTopBarAppsDisplayed", "FeManualLogout", "FeAuthRequired", "FeGoogleOneTap", "FeGoogleOneTapSuccess", "FeGoogleOneTapScriptLoaded", "FeGoogleOneTapApiSuccess", "FeGoogleOneTapApiFailure", "FeGoogleOneTapApiError", "FeGoogleOneTapDisplayed", "FeGoogleOneTapNotDisplayed", "FeGoogleOneTapSkipped", "FeGoogleOneTapDismissed", "FeGoogleOneTapUnknown", "FeSearchBarClicked", "FeSearchBarGameClicked", "FeSearchBarQuery", "FeCopyInviteLinkClicked", "FeLoginToInviteClicked", "FeInvalidInviteDisplayed", "FeInvalidIframe", "HpBootstrap", "HpLoginClicked", "HpPlayAsGuestClicked", "HpAuthProviderClicked", "AuthProviderClicked", "HpUptime", "ApBootstrap", "ApGameAutoLaunched", "ApPreloaderDisplayed", "ApRenderComplete", "CpRenderComplete", "ApPortalButtonDisplayed", "ApPortalButtonClicked", "ApDownloadBsButtonClicked", "ApLaunchGameButtonDisplayed", "ApLaunchGameButtonClicked", "ApGameAutoLaunchedPostAction", "ApSuggestedAppClicked", "ApLaunchGameButtonViewed", "ApUptime", "VisitorFingerprintInfo", "PortalUptime", "VideoPageBootstrap", "VideoChannelBootstrap", "FeVideoChannelCreated", "FeVideoCopyLinkClicked", "IfpDisplayed", "IfpClicked", "FeStartStreamDisplayed", "FeStartStreamingClicked", "FeStreamPaused", "FeStreamMicToggled", "FeStreamResumed", "FeCopyStreamLinkClicked", "FeWatchLiveStreamClicked", "FeStreamViewStarted", "FeSwitchStreamClicked", "FeUnableToViewStream", "FeStreamViewJoinStageBegin", "FeFirebaseInitFailed", "BpBootstrap", "BwBootstrap", "FeChatBotPopUpDisplayed", "FeChatBotPlayNowClicked", "FeChatBotReset", "FeChatBotClosed", "FeChatBotSpectatePopUpDisplayed", "FeChatBotSpectatePopUpClicked", "FeFirstUptime", "HpFirstUptime", "ApFirstUptime", "PortalFirstUptime", "FeLoginScreenUptime", "FeRemoveAdsButtonViewed", "FeRemoveAdsButtonClicked", "FeCloseAdButtonClicked", "FeNowPassPlanViewed", "FeNowPassPlanClicked", "FeNowPassChosenPlanViewed", "FeGetNowPassClicked", "FeNowPassUnavailableInRegion", "FeManageSubscriptionClicked", "FePaymentMethodSelectionDisplayed", "FePayNowClicked", "FeNowPassSuccessPopupDisplayed", "FePaymentOrderCreated", "FeAdMoreTimeButtonClicked", "FeManageSubscriptionClicked"],
+        t.PlayEventNames = [...d, ...f, ...p, "FeSecretPassageViewed", "FePlayTokenInitiated", "FePlayTokenBegin", "FePlayTokenEnd", "FeSecretPassageHintViewed", "FeNowbuxIconClicked", "FeFirstNowbuxWonPromptDisplayed", "FeFirstNowbuxLoginToClaimClicked", "FeNowbuxExitPopupLostRewardDisplayed", "FeNowbuxExitPopupLoginPromptDisplayed", "FeNowbuxExitPopupLoginToClaimClicked", "FeNowbuxDistributed", "FeNowbuxJackpotSpinClicked", "FeAuthProviderClicked", "FeOldAdsLayout", "FeAuthSuccess", "FeAuthSuccessInAndroid", "FeGuestSuccess", "FeProxyDetected", "FeProxyThrottled", "FePlayTokenSuccess", "FePlayTokenFailure", "FeLoginPageDisplayed", "FeLoginPageDisplayedInAndroid", "FeLogoutClicked", "FePlayAsGuestClicked", "FeAndroidPlayerLoaded", "FeVideoElementLoaded", "FeSessionRequestedComplete", "FeSessionRequestEnd", "FeSetAnswerSdpStarted", "FeSetAnswerSdpCompleted", "FeErrorScreenReportIssue", "FeProfileIconClicked", "FeNowbuxQuestButtonClicked", "FeNowbuxJackpotButtonClicked", "FeNowbuxRedeemButtonClicked", "FeLeaderboardIconClicked", "FeLeaderboardDailyButtonClicked", "FeLeaderboardWeeklyButtonClicked", "FeLeaderboardMonthlyButtonClicked", "FeNowbuxQuestCompletePromptDisplayed", "FeSetRemoteDescriptionBegin", "FeSetRemoteDescriptionEnd", "FeCreateAnswerBegin", "FeCreateAnswerEnd", "FeAndroidReady", "FeDataChannelCallback", "FeWebRtcConnected", "FeDataChannelOpened", "FePreSessionRequestedError", "FePreSessionRequested", "FePreSessionRequestBeginError", "FePreSessionRequestBegin", "FeDuplicateTab", "FeDuplicateTab2", "FeShowErrorOverlay", "FePlayPageLoaded", "FeAccessTokenBegin", "FeAccessTokenEnd", "FeAppReady", "FeAppChanged", "FeUptime", "FeGameDisplayed", "FeSessionCompleted", "FeIncognitoModeDetected", "FeIncognitoModeDetectionFailed", "FeRobloxExperienceEnded", "FeRobloxExperienceStarted", "FeGameEnded", "FeCreatePlayUserBegin", "FeCreatePlayUserEnd", "FeBootstrap", "FeTabVisible", "FeTabHidden", "FeUnsupportedBrowser", "PortalBootstrap", "CpBootstrap", "JpPortalBootstrap", "FeBootstrap2", "FeUnsupportedBrowser", "FePreloaderDisplayed", "FePreloaderDisplayed2", "FePreloaderDisplayed3", "FeErrorScreen", "FeSessionCompletedScreen", "FeDisconnected", "FePortalViewed", "FeProxyScreenShown", "FeSessionRequested", "FeSessionRequestBegin", "FeUserInteraction", "FeNegotiationNeeded", "FeTopBarAppsDisplayed", "FeManualLogout", "FeAuthRequired", "FeGoogleOneTap", "FeGoogleOneTapSuccess", "FeGoogleOneTapScriptLoaded", "FeGoogleOneTapApiSuccess", "FeGoogleOneTapApiFailure", "FeGoogleOneTapApiError", "FeGoogleOneTapDisplayed", "FeGoogleOneTapNotDisplayed", "FeGoogleOneTapSkipped", "FeGoogleOneTapDismissed", "FeGoogleOneTapUnknown", "FeSearchBarClicked", "FeSearchBarGameClicked", "FeSearchBarQuery", "FeCopyInviteLinkClicked", "FeLoginToInviteClicked", "FeInvalidInviteDisplayed", "FeInvalidIframe", "HpBootstrap", "HpLoginClicked", "HpPlayAsGuestClicked", "HpAuthProviderClicked", "AuthProviderClicked", "HpUptime", "ApBootstrap", "ApGameAutoLaunched", "ApPreloaderDisplayed", "ApRenderComplete", "CpRenderComplete", "ApPortalButtonDisplayed", "ApPortalButtonClicked", "ApDownloadBsButtonClicked", "ApLaunchGameButtonDisplayed", "ApLaunchGameButtonClicked", "ApGameAutoLaunchedPostAction", "ApSuggestedAppClicked", "ApLaunchGameButtonViewed", "ApUptime", "VisitorFingerprintInfo", "PortalUptime", "VideoPageBootstrap", "VideoChannelBootstrap", "FeVideoChannelCreated", "FeVideoCopyLinkClicked", "IfpDisplayed", "IfpClicked", "FeStartStreamDisplayed", "FeStartStreamingClicked", "FeStreamPaused", "FeStreamMicToggled", "FeStreamResumed", "FeCopyStreamLinkClicked", "FeWatchLiveStreamClicked", "FeStreamViewStarted", "FeSwitchStreamClicked", "FeUnableToViewStream", "FeStreamViewJoinStageBegin", "FeFirebaseInitFailed", "BpBootstrap", "BwBootstrap", "FeChatBotPopUpDisplayed", "FeChatBotPlayNowClicked", "FeChatBotReset", "FeChatBotClosed", "FeChatBotSpectatePopUpDisplayed", "FeChatBotSpectatePopUpClicked", "FeFirstUptime", "HpFirstUptime", "ApFirstUptime", "PortalFirstUptime", "FeLoginScreenUptime", "FeRemoveAdsButtonViewed", "FeRemoveAdsButtonClicked", "FeCloseAdButtonClicked", "FeNowPassPlanViewed", "FeNowPassPlanClicked", "FeNowPassChosenPlanViewed", "FeGetNowPassClicked", "FeNowPassUnavailableInRegion", "FeManageSubscriptionClicked", "FePaymentMethodSelectionDisplayed", "FePayNowClicked", "FeNowPassSuccessPopupDisplayed", "FePaymentOrderCreated", "FeNowPassSufficientBalanceScreenShown", "FeNowPassInsufficientBalanceScreenShown", "FeBuySubscriptionClicked", "FeBuyNowBuxClicked", "FeNowBuxPurchasedSuccessfully", "FeAdMoreTimeButtonClicked", "FeManageSubscriptionClicked"],
         t.PlayEventsWithOptionalPlayUser = [...d, ...f, ...p, "FeBootstrap", "FeTabVisible", "FeTabHidden", "FeUnsupportedBrowser", "PortalBootstrap", "CpBootstrap", "JpPortalBootstrap", "FeBootstrap2", "HpBootstrap", "FeShowErrorOverlay", "ApBootstrap", "VideoPageBootstrap", "VideoChannelBootstrap", "BpBootstrap", "FePreloaderDisplayed", "FePreloaderDisplayed2", "FePreloaderDisplayed3", "ApPreloaderDisplayed", "ApRenderComplete", "CpRenderComplete", "FeIncognitoModeDetected", "FeIncognitoModeDetectionFailed", "FeAccessTokenBegin", "FeAccessTokenEnd", "ApLaunchGameButtonDisplayed", "FeFirstUptime", "HpFirstUptime", "ApFirstUptime", "PortalFirstUptime", "ApLaunchGameButtonViewed", "FeLoginPageDisplayed", "FeAuthProviderClicked", "FeErrorScreen", "FeLoginScreenUptime", "FeSessionCompletedScreen", "FeDisconnected", "FeSessionCompleted", "PwaBeforeInstallPrompt", "FePlayAsGuestClicked", "ApGameAutoLaunched", "FePwaBeforeInstallPrompt", "FeCreatePlayUserBegin", "FeCreatePlayUserEnd", "FeUserInteraction", "FeChatBotPopUpDisplayed", "IfpDisplayed", "IfpClicked", "FeOldAdsLayout", "FeProfileIconClicked", "VisitorFingerprintInfo", "FeUnsupportedBrowser", "ApLaunchGameButtonClicked"]
     },
     56453: function(e, t) {
@@ -4397,7 +4385,7 @@
                 webpack: () => [70905]
             }
         });
-        var T = e => {
+        var A = e => {
             let {isEnablePlayModeWithAdBlocker: t} = e
               , n = (0,
             i.v9)(e => e.play.isLoadAdBlockerLib);
@@ -4408,7 +4396,7 @@
                 o.jsx)(P, {})]
             })
         }
-          , A = function(e, t) {
+          , T = function(e, t) {
             var n = {};
             for (var o in e)
                 Object.prototype.hasOwnProperty.call(e, o) && 0 > t.indexOf(o) && (n[o] = e[o]);
@@ -4419,7 +4407,7 @@
         }
           , O = e => {
             var t, {Component: n, pageProps: l} = e;
-            A(e, ["Component", "pageProps"]),
+            T(e, ["Component", "pageProps"]),
             window.ResizeObserver || (0,
             u.N9)();
             let d = e => {
@@ -4520,7 +4508,7 @@
                         o.jsx)(n, {
                             ...l
                         }), (0,
-                        o.jsx)(T, {
+                        o.jsx)(A, {
                             isEnablePlayModeWithAdBlocker: (0,
                             g.m4)(l.appInfo)
                         })]
@@ -4578,12 +4566,12 @@
                     let w = ""
                       , E = ""
                       , P = null
-                      , T = !!(t.keepAlive && v()) || void 0;
+                      , A = !!(t.keepAlive && v()) || void 0;
                     try {
-                        let v = t.host === g || t.host === h ? t.path : "studyimages.com/oapi".concat(u.default.prefix || "").concat(t.path)
+                        let v = t.host === g || t.host === h ? t.path : "/oapi".concat(u.default.prefix || "").concat(t.path)
                           , S = t.paymentsHost ? t.paymentsHost : t.host === g && !u.default.authUseThirdPartyFlow && "https://".concat(u.default.appInfo.authServiceHost) ? "https://".concat(u.default.appInfo.authServiceHost) : t.host === h ? u.default.ngNcmHost : window.location.origin
-                          , A = new URL(v,S);
-                        n && (A.search = new URLSearchParams(n).toString());
+                          , T = new URL(v,S);
+                        n && (T.search = new URLSearchParams(n).toString());
                         let O = (0,
                         d.Pr)()
                           , _ = null === (m = null == window ? void 0 : window.nggParams) || void 0 === m ? void 0 : m[s.E8i];
@@ -4615,16 +4603,16 @@
                                 Authorization: "NowV2 ".concat(R),
                                 "x-ngg-playuser-token": k || ""
                             });
-                        E = A.toString();
-                        let C = t.avoidAbortSignal ? void 0 : y;
+                        E = T.toString();
+                        let N = t.avoidAbortSignal ? void 0 : y;
                         if (P = "GET" === e ? yield fetch(E, {
                             credentials: t.host === h ? "omit" : "include",
                             headers: Object.assign({
                                 "x-ngg-fe-version": r.f4,
                                 "x-ngg-skip-evar-check": t.skipEvarCheck ? t.skipEvarCheck : "true"
                             }, I.headers),
-                            signal: C,
-                            keepalive: T
+                            signal: N,
+                            keepalive: A
                         }) : "PATCH" === e ? yield fetch(E, {
                             method: "PATCH",
                             credentials: "include",
@@ -4632,7 +4620,7 @@
                                 "content-type": "application/json",
                                 "x-ngg-fe-version": r.f4
                             }, null == I ? void 0 : I.headers),
-                            keepalive: T,
+                            keepalive: A,
                             body: o ? JSON.stringify(o) : void 0
                         }) : yield fetch(E, {
                             method: "POST",
@@ -4642,7 +4630,7 @@
                                 "x-ngg-fe-version": r.f4,
                                 "x-ngg-skip-evar-check": t.skipEvarCheck ? t.skipEvarCheck : "true"
                             }, null == I ? void 0 : I.headers),
-                            keepalive: T,
+                            keepalive: A,
                             body: o ? JSON.stringify(o) : void 0
                         }),
                         409 === P.status && p.default.dispatch({
@@ -4663,15 +4651,15 @@
                             c.iI)("StartSession"),
                             Error("Version Mismatch");
                         w = yield P.text();
-                        let N = JSON.parse(w);
-                        if (N.status && s.VI_[N.status] && (0,
-                        d.ZP)(s.VI_[N.status], "", "NowggIfpSdkEvent"),
+                        let C = JSON.parse(w);
+                        if (C.status && s.VI_[C.status] && (0,
+                        d.ZP)(s.VI_[C.status], "", "NowggIfpSdkEvent"),
                         401 === P.status) {
                             let r = yield(0,
-                            i.Zb)(e, t, n, o, N.status, P.url, JSON.stringify(N));
+                            i.Zb)(e, t, n, o, C.status, P.url, JSON.stringify(C));
                             if (r)
                                 return r;
-                            return N
+                            return C
                         }
                         if (!P.ok)
                             return (0,
@@ -4680,10 +4668,10 @@
                             }),
                             {
                                 status: l.YR.FailureUnexpectedHttpStatusCode,
-                                errorMessage: "Http Status Code ".concat(P.status, ", JSON Status: ").concat(null == N ? void 0 : N.status, ", JSON Message: ").concat(null == N ? void 0 : N.errorMessage),
-                                errorData: N
+                                errorMessage: "Http Status Code ".concat(P.status, ", JSON Status: ").concat(null == C ? void 0 : C.status, ", JSON Message: ").concat(null == C ? void 0 : C.errorMessage),
+                                errorData: C
                             };
-                        if (!t.host && N.status === l.YR.FailureUnauthorized)
+                        if (!t.host && C.status === l.YR.FailureUnauthorized)
                             return (0,
                             i.kS)({
                                 reason: "StatusFailureUnauthorized",
@@ -4693,12 +4681,12 @@
                                 status: l.YR.JsonStatusFailureUnauthorized,
                                 errorMessage: "Http Status Code 401"
                             };
-                        if (!N || !(N.status || "boolean" == typeof N.success))
+                        if (!C || !(C.status || "boolean" == typeof C.success))
                             return {
                                 status: l.YR.FailureMalformedJSONResponse,
                                 errorMessage: "JSON Status ".concat(P.status)
                             };
-                        return N
+                        return C
                     } catch (i) {
                         if ("AbortError" !== i.name && (0,
                         r.ZP)("Api Failed: ".concat(i.message), {
@@ -5005,6 +4993,11 @@
                 path: "/np/v1/confirm",
                 authorize: !0
             }),
+            purchaseWithNowBux: S("POST", {
+                host: null,
+                path: "/np/v1/purchaseWithNowbux",
+                authorize: !0
+            }),
             generateCouponCode: S("POST", {
                 host: null,
                 path: "/play/v1/generatePlayCode",
@@ -5103,15 +5096,15 @@
                             c.iI)("StartSession"),
                             Error("Version Mismatch");
                         y = yield S.text();
-                        let T = JSON.parse(y);
-                        if (T.status && r.VI_[T.status] && (0,
-                        d.ZP)(r.VI_[T.status], "", "NowggIfpSdkEvent"),
+                        let A = JSON.parse(y);
+                        if (A.status && r.VI_[A.status] && (0,
+                        d.ZP)(r.VI_[A.status], "", "NowggIfpSdkEvent"),
                         401 === S.status) {
                             let o = yield(0,
-                            p.Zb)(e, t, n, h, T.status, S.url, JSON.stringify("json"));
+                            p.Zb)(e, t, n, h, A.status, S.url, JSON.stringify("json"));
                             if (o)
                                 return o;
-                            return T
+                            return A
                         }
                         if (!S.ok)
                             return (0,
@@ -5120,10 +5113,10 @@
                             }),
                             {
                                 status: i.YR.FailureUnexpectedHttpStatusCode,
-                                errorMessage: "Http Status Code ".concat(S.status, ", JSON Status: ").concat(null == T ? void 0 : T.status, ", JSON Message: ").concat(null == T ? void 0 : T.errorMessage),
-                                errorData: T
+                                errorMessage: "Http Status Code ".concat(S.status, ", JSON Status: ").concat(null == A ? void 0 : A.status, ", JSON Message: ").concat(null == A ? void 0 : A.errorMessage),
+                                errorData: A
                             };
-                        if (!t.host && T.status === i.YR.FailureUnauthorized)
+                        if (!t.host && A.status === i.YR.FailureUnauthorized)
                             return (0,
                             p.kS)({
                                 reason: "StatusFailureUnauthorized",
@@ -5133,12 +5126,12 @@
                                 status: i.YR.JsonStatusFailureUnauthorized,
                                 errorMessage: "Http Status Code 401"
                             };
-                        if (!T || !(T.status || "boolean" == typeof T.success))
+                        if (!A || !(A.status || "boolean" == typeof A.success))
                             return {
                                 status: i.YR.FailureMalformedJSONResponse,
                                 errorMessage: "JSON Status ".concat(S.status)
                             };
-                        return T
+                        return A
                     } catch (r) {
                         return "AbortError" !== r.name && (0,
                         o.ZP)("Api Failed: ".concat(r.message), {
@@ -5222,6 +5215,16 @@
             payTypeSupportedList: h("POST", {
                 host: null,
                 path: "v2/payment/payTypeList",
+                authorize: !0
+            }),
+            nowBuxPaymentDetails: h("POST", {
+                host: null,
+                path: "v2/order/nowbux/paymentDetails",
+                authorize: !0
+            }),
+            createNowBuxOrder: h("POST", {
+                host: null,
+                path: "v2/nowbux/createNowbuxOrder",
                 authorize: !0
             })
         };
@@ -5357,10 +5360,10 @@
           , P = () => {
             w += 1
         }
-          , T = -1
-          , A = () => T
+          , A = -1
+          , T = () => A
           , O = () => {
-            T += 1
+            A += 1
         }
           , _ = ["custom-rewarded-banner-1", "custom-rewarded-banner-2", "custom-rewarded-video-adx"]
           , I = null;
@@ -5426,7 +5429,7 @@
             }
             , 1e3)
         }
-        function C(e) {
+        function N(e) {
             var t, n, o, i, a;
             let u = r.default.getState()
               , {videoRef: l} = u.play
@@ -5437,7 +5440,7 @@
               , g = (null === (o = null == e ? void 0 : e.slot) || void 0 === o ? void 0 : o.getSlotElementId()) || "";
             return {
                 retryCount: E(),
-                repeatCount: A(),
+                repeatCount: T(),
                 adContext: "Rewarded",
                 adType: "Video",
                 viewPortInnerWidth: window.innerWidth,
@@ -5454,7 +5457,7 @@
                 ssrEvar: (null === s.default || void 0 === s.default ? void 0 : s.default.ssrEvar) || ""
             }
         }
-        let N = e => {
+        let C = e => {
             P(),
             O(),
             (0,
@@ -5462,7 +5465,7 @@
                 adWidth: "100vw",
                 adHeight: "100vh",
                 source: e
-            }, C()))
+            }, N()))
         }
           , x = () => {
             s.default.isMultiSubscriptionFlow && r.default.getState().ads.imaError && r.default.dispatch({
@@ -5494,7 +5497,7 @@
                 },
                 t.countdownTime = 120),
                 window.tude.cmd.push( () => {
-                    N(e);
+                    C(e);
                     let n = window.tude.initCustomRewarded(Object.assign({
                         onOpen: t => {
                             let n = "unknown"
@@ -5522,7 +5525,7 @@
                                 adHeight: o,
                                 source: e,
                                 isSlotRewardGranted: !0
-                            }, C()))
+                            }, N()))
                         }
                         ,
                         onSkip: () => {
@@ -5552,7 +5555,7 @@
                                     h = function*() {
                                         if (!(0,
                                         c.J6)() && (0,
-                                        d.ZY)()) {
+                                        d.q3)()) {
                                             if (!r.default.getState().auth.isLoggedIn) {
                                                 (0,
                                                 i.L9)("RewardEarned", {
@@ -5768,7 +5771,7 @@
                 return L
             },
             N$: function() {
-                return C
+                return N
             },
             Ou: function() {
                 return ee
@@ -5810,16 +5813,16 @@
                 return X
             },
             hN: function() {
-                return A
+                return T
             },
             md: function() {
-                return N
+                return C
             },
             qX: function() {
                 return K
             },
             qk: function() {
-                return T
+                return A
             },
             s0: function() {
                 return w
@@ -5905,7 +5908,7 @@
             }
             return e[n]
         }
-        function T(e) {
+        function A(e) {
             let t;
             w();
             let n = localStorage.getItem(S)
@@ -5918,7 +5921,7 @@
             t[o] = e,
             localStorage.setItem(S, "".concat(JSON.stringify(t)))
         }
-        function A() {
+        function T() {
             let {publicRuntimeConfig: e} = u()()
               , t = v.env.NEXT_PUBLIC_ENVIRONMENT || e.NEXT_PUBLIC_ENVIRONMENT || "development";
             return !!(t && t.indexOf("prod") > -1)
@@ -5968,7 +5971,7 @@
             o.Cf)() : {})),
             I += 1
         }
-          , C = () => {
+          , N = () => {
             var e, t, n, o;
             return e = void 0,
             t = void 0,
@@ -6046,7 +6049,7 @@
             )
         }
         ;
-        function N() {
+        function C() {
             let {enableDisplayAds: e, enableMidrollAds: t, enablePrerollAds: n, embeddedFullScreenAdsEnabled: o} = _();
             return e || t || n || o
         }
@@ -6270,7 +6273,7 @@
                 return w
             },
             dv: function() {
-                return T
+                return A
             },
             f4: function() {
                 return b
@@ -6335,7 +6338,7 @@
             }
         }));
         let P = null === (o = s().getPlugin("react")) || void 0 === o ? void 0 : o.createErrorBoundary(i)
-          , T = e => {
+          , A = e => {
             let {children: t} = e;
             return !(0,
             c.X6)() && P ? (0,
@@ -6346,7 +6349,7 @@
                 children: t
             })
         }
-          , A = e => {
+          , T = e => {
             var t;
             if (null === (t = null == e ? void 0 : e.stacktrace) || void 0 === t ? void 0 : t.length) {
                 let {file: t} = e.stacktrace[0];
@@ -6357,9 +6360,9 @@
           , O = (e, t) => {
             s().notify(e, e => {
                 var n, o;
-                (null === (n = null == e ? void 0 : e.errors) || void 0 === n ? void 0 : n.length) && (e.errors[0] = A(e.errors[0])),
+                (null === (n = null == e ? void 0 : e.errors) || void 0 === n ? void 0 : n.length) && (e.errors[0] = T(e.errors[0])),
                 e.groupingHash = e.originalError.message || JSON.stringify(e.originalError) || e.originalError.errorClass,
-                (null == e ? void 0 : e.exceptions) && (null === (o = null == e ? void 0 : e.exceptions) || void 0 === o ? void 0 : o.length) && (e.exceptions[0] = A(e.exceptions[0])),
+                (null == e ? void 0 : e.exceptions) && (null === (o = null == e ? void 0 : e.exceptions) || void 0 === o ? void 0 : o.length) && (e.exceptions[0] = T(e.exceptions[0])),
                 void 0 !== t && Object.entries(t).forEach(t => {
                     let[n,o] = t;
                     o instanceof Error ? e.addMetadata(n, {
@@ -6767,7 +6770,7 @@
                 return E
             },
             YN: function() {
-                return N
+                return C
             },
             uG: function() {
                 return R
@@ -6892,10 +6895,10 @@
             g.fl.lastY = n.top + i),
             [t, o, i])
         }
-          , T = () => {
+          , A = () => {
             g.fl.shouldTrackMove = Object.keys(g.fl.pressed).filter(e => g.fl.pressed[Number(e)]).length
         }
-          , A = new Map
+          , T = new Map
           , O = []
           , _ = () => {
             for (let e = 0; e < 10; e += 1)
@@ -6907,20 +6910,20 @@
           , I = () => {
             for (let e = 0; e < 10; e += 1)
                 O[e] = 0;
-            let e = Array.from(A.values());
+            let e = Array.from(T.values());
             for (let t = 0; t < e.length; t += 1) {
                 let {slotData: n} = e[t];
                 (0,
                 h.W)(p.hw.UP, n)
             }
-            A.clear()
+            T.clear()
         }
           , R = e => {
             var t, n, r, i;
             if ("touch" === e.pointerType) {
                 let t = _()
                   , n = P(e, t);
-                A.set(e.pointerId, {
+                T.set(e.pointerId, {
                     slot: t,
                     slotData: n
                 }),
@@ -6946,7 +6949,7 @@
                 } else
                     (0,
                     h.W)(p.hw.DOWN, a);
-                T()
+                A()
             }
             g.fl.tabVisible || (g.fl.tabVisible = !0,
             (0,
@@ -6964,10 +6967,10 @@
                     return
             }
             if ("touch" === e.pointerType) {
-                let n = null === (t = A.get(e.pointerId)) || void 0 === t ? void 0 : t.slot;
+                let n = null === (t = T.get(e.pointerId)) || void 0 === t ? void 0 : t.slot;
                 "number" == typeof n && ((0,
                 h.W)(p.hw.UP, P(e, n)),
-                A.delete(e.pointerId),
+                T.delete(e.pointerId),
                 O[n] = 0)
             } else
                 g.fl.pressed[e.button] && (g.fl.pressed[e.button] = !1,
@@ -6975,16 +6978,16 @@
                 h.W)(p.hw.UP, n) : s.ZP.mouseUp(e.button, n[1] - s.ZP.splitScreenSize, n[2]) : g.fl.native ? (0,
                 f.xk)(e, n[1], n[2]) : (0,
                 h.W)(p.hw.UP, n));
-            T()
+            A()
         }
-          , C = e => {
+          , N = e => {
             var t;
             if (g.fl.pollingOnFps && (null == M || M.cancel()),
             1 === m.state && v(),
             "touch" === e.pointerType) {
-                let n = (null === (t = A.get(e.pointerId)) || void 0 === t ? void 0 : t.slot) || 0
+                let n = (null === (t = T.get(e.pointerId)) || void 0 === t ? void 0 : t.slot) || 0
                   , o = P(e, n);
-                A.set(e.pointerId, {
+                T.set(e.pointerId, {
                     slot: n,
                     slotData: o
                 }),
@@ -7017,10 +7020,10 @@
                     (0,
                     f.xk)(e, t[1], t[2])) : g.fl.shouldTrackMove && (0,
                     h.W)(p.hw.MOVE, t);
-                T()
+                A()
             }
         }
-          , N = e => {
+          , C = e => {
             let t = Object.keys(g.fl.pressed)
               , n = P(e);
             for (let o = 0, r = t.length; o < r; o += 1)
@@ -7124,7 +7127,7 @@
           , U = a()(L, 16)
           , M = null
           , j = e => (g.fl.pollingOnFps = 8 !== e,
-        M = a()(C, e))
+        M = a()(N, e))
     },
     20192: function(e, t, n) {
         "use strict";
@@ -7193,8 +7196,8 @@
         };
         var E = n(18232)
           , P = n(23469)
-          , T = n(8400);
-        let A = S.D4
+          , A = n(8400);
+        let T = S.D4
           , O = (e, t) => {
             let n = new ArrayBuffer(4 + 4 * t.length)
               , o = new Int32Array(n);
@@ -7224,8 +7227,8 @@
           , I = e => S.k8[_(e)]
           , R = -1
           , k = -1
-          , C = 0
-          , N = !1
+          , N = 0
+          , C = !1
           , x = !1
           , D = {
             x: -1,
@@ -7306,7 +7309,7 @@
                       , o = B(x.appPreferences.mouseSensitivity);
                     R += t * o,
                     k += n * o,
-                    C = 10 * Math.sqrt(t * t + n * n)
+                    N = 10 * Math.sqrt(t * t + n * n)
                 }
                 if (!(null === (s = null === (i = g.default.appInfo) || void 0 === i ? void 0 : i.playFeFeatures) || void 0 === s ? void 0 : s.enableNativePointer)) {
                     let e = w[G] || (G ? .703125 : null);
@@ -7317,29 +7320,29 @@
                             let t = (0,
                             v.Z)(r * b.fl.splitScreenPerc, 2);
                             R = t + (r - t) * (1 - e),
-                            N = !0
+                            C = !0
                         }
                         if (R < b.fl.splitScreenSize) {
                             let t = (0,
                             v.Z)(r * b.fl.splitScreenPerc, 2);
                             R = t + (r - t) * e,
-                            N = !0
+                            C = !0
                         }
                     } else
                         k > o && (k = 0,
-                        N = !0),
+                        C = !0),
                         k < 0 && (k = o,
-                        N = !0),
+                        C = !0),
                         R > r && (R = 0,
-                        N = !0),
+                        C = !0),
                         R < b.fl.splitScreenSize && (R = r,
-                        N = !0)
+                        C = !0)
                 }
                 (0,
                 a.TC)() && Z && (k > o && (k = 0,
-                N = !0),
+                C = !0),
                 k < 0 && (k = o,
-                N = !0)),
+                C = !0)),
                 t = R,
                 n = k;
                 let {videoRef: u, fullscreenWidgetRef: c, isFullscreen: d} = x.play;
@@ -7355,7 +7358,7 @@
                     i.forEach(e => {
                         let t = new ArrayBuffer(4)
                           , n = new Uint8Array(t);
-                        n[0] = T.KU.NATIVE_UP,
+                        n[0] = A.KU.NATIVE_UP,
                         n[1] = 1,
                         n[2] = Number(e),
                         n[3] = 0,
@@ -7372,7 +7375,7 @@
                         i.forEach(e => {
                             let t = new ArrayBuffer(4)
                               , n = new Uint8Array(t);
-                            n[0] = T.KU.NATIVE_DOWN,
+                            n[0] = A.KU.NATIVE_DOWN,
                             n[1] = 1,
                             n[2] = Number(e),
                             n[3] = 0,
@@ -7395,7 +7398,7 @@
             D === S.k8.InpMouseMove) {
                 let o = Math.floor(t / (null == F ? void 0 : F.offsetHeight) * S.gO);
                 if (null === (_ = null === (O = null === g.default || void 0 === g.default ? void 0 : g.default.appInfo) || void 0 === O ? void 0 : O.playFeFeatures) || void 0 === _ ? void 0 : _.enableNativePointer) {
-                    N = !1;
+                    C = !1;
                     let e = Number((t / (null == F ? void 0 : F.offsetHeight)).toFixed(2));
                     e < -.1 && (o = Math.floor(.98 * S.gO),
                     R = Math.floor((null == F ? void 0 : F.offsetHeight) * .98)),
@@ -7413,18 +7416,18 @@
                     k = 1))
                 }
                 let r = Math.floor(n / (null == F ? void 0 : F.offsetWidth) * S.gO);
-                N ? (N = !1,
+                C ? (C = !1,
                 setTimeout( () => {
                     U(D, o, r, Math.floor(e.deltaY) || 0, !0)
                 }
-                , Math.min((1e3 - C) / 20, 20))) : U(D, o, r, Math.floor(e.deltaY) || 0, !0)
+                , Math.min((1e3 - N) / 20, 20))) : U(D, o, r, Math.floor(e.deltaY) || 0, !0)
             } else if (D === S.k8.InpMouseWheel) {
-                if (A <= 0 || A === S.D4 || Math.abs(e.deltaY) > 100) {
+                if (T <= 0 || T === S.D4 || Math.abs(e.deltaY) > 100) {
                     U(D, Math.floor(t / (null == F ? void 0 : F.offsetHeight) * S.gO), Math.floor(n / (null == F ? void 0 : F.offsetWidth) * S.gO), Math.floor(e.deltaY < 0 ? Math.abs(e.deltaY) : -1 * e.deltaY), !0),
-                    A = S.D4 - 1;
+                    T = S.D4 - 1;
                     return
                 }
-                A -= 1
+                T -= 1
             } else {
                 let o = (t / (null == F ? void 0 : F.offsetHeight) || 1) * S.gO
                   , r = (n / (null == F ? void 0 : F.offsetWidth) || 1) * S.gO;
@@ -7666,13 +7669,13 @@
         "use strict";
         n.d(t, {
             oBq: function() {
-                return t1
+                return t0
             },
             kSs: function() {
-                return nr
+                return no
             },
             jOC: function() {
-                return tR
+                return tI
             },
             Va_: function() {
                 return L
@@ -7696,16 +7699,16 @@
                 return tl
             },
             FdJ: function() {
-                return tD
+                return tx
             },
             lGk: function() {
-                return no
+                return nn
             },
             Whi: function() {
-                return t3
+                return t2
             },
             LyI: function() {
-                return nt
+                return ne
             },
             NDh: function() {
                 return eh
@@ -7786,7 +7789,7 @@
                 return ew
             },
             Qlw: function() {
-                return eT
+                return eA
             },
             xv5: function() {
                 return X
@@ -7825,13 +7828,13 @@
                 return y
             },
             XIo: function() {
-                return t4
+                return t3
             },
             dO5: function() {
-                return C
+                return N
             },
             OCM: function() {
-                return t_
+                return tO
             },
             Psr: function() {
                 return tt
@@ -7849,7 +7852,7 @@
                 return q
             },
             nut: function() {
-                return t0
+                return tQ
             },
             o77: function() {
                 return th
@@ -7861,7 +7864,7 @@
                 return tf
             },
             h5A: function() {
-                return tQ
+                return tJ
             },
             q3v: function() {
                 return eH
@@ -7933,7 +7936,7 @@
                 return eB
             },
             VI_: function() {
-                return tF
+                return tL
             },
             nPo: function() {
                 return eD
@@ -7945,28 +7948,28 @@
                 return eL
             },
             K3T: function() {
-                return eN
+                return eC
             },
             g5s: function() {
-                return tH
+                return tW
             },
             odO: function() {
-                return tJ
+                return tX
             },
             thQ: function() {
-                return N
+                return C
             },
             SrB: function() {
-                return tV
+                return tH
             },
             bA5: function() {
-                return tq
+                return tz
             },
             utx: function() {
                 return td
             },
             lw5: function() {
-                return t6
+                return t5
             },
             h7X: function() {
                 return e6
@@ -7975,19 +7978,19 @@
                 return tr
             },
             icP: function() {
-                return tk
+                return tR
             },
             Smd: function() {
-                return tC
+                return tk
             },
             KeI: function() {
-                return t7
+                return t9
             },
             PjI: function() {
-                return ne
+                return t7
             },
             $65: function() {
-                return tx
+                return tC
             },
             g0E: function() {
                 return e_
@@ -7999,7 +8002,7 @@
                 return eI
             },
             hTf: function() {
-                return t2
+                return t1
             },
             M5i: function() {
                 return b
@@ -8011,28 +8014,28 @@
                 return M
             },
             g8k: function() {
-                return tU
+                return tF
             },
             Fbl: function() {
-                return tM
+                return tU
             },
             VBy: function() {
                 return U
             },
             Qcp: function() {
-                return tB
-            },
-            Zzv: function() {
-                return tZ
-            },
-            Hyr: function() {
-                return tG
-            },
-            Idd: function() {
                 return tj
             },
+            Zzv: function() {
+                return tG
+            },
+            Hyr: function() {
+                return tB
+            },
+            Idd: function() {
+                return tM
+            },
             R28: function() {
-                return tO
+                return tT
             },
             gjC: function() {
                 return tA
@@ -8055,14 +8058,11 @@
             z84: function() {
                 return _
             },
-            etL: function() {
-                return tT
-            },
             goA: function() {
-                return na
+                return ni
             },
             K0l: function() {
-                return tY
+                return tV
             },
             D3e: function() {
                 return tp
@@ -8071,13 +8071,13 @@
                 return tN
             },
             jFE: function() {
-                return t8
+                return t4
             },
             u1t: function() {
-                return tW
+                return tZ
             },
             eT5: function() {
-                return t9
+                return t6
             },
             aNt: function() {
                 return k
@@ -8089,10 +8089,10 @@
                 return f
             },
             _id: function() {
-                return ni
+                return nr
             },
             oEp: function() {
-                return tz
+                return tY
             },
             xOm: function() {
                 return tv
@@ -8104,7 +8104,7 @@
                 return ts
             },
             uc9: function() {
-                return tX
+                return t$
             },
             fic: function() {
                 return e7
@@ -8113,7 +8113,7 @@
                 return v
             },
             jlx: function() {
-                return ns
+                return na
             },
             GV4: function() {
                 return p
@@ -8137,22 +8137,22 @@
                 return c
             },
             whh: function() {
-                return eC
+                return eN
             },
             QvE: function() {
-                return t$
+                return tK
             },
             gd4: function() {
                 return eO
             },
             UZ4: function() {
-                return tK
+                return tq
             },
             X7v: function() {
-                return tL
+                return tD
             },
             BGB: function() {
-                return nn
+                return nt
             },
             Ygr: function() {
                 return tg
@@ -8182,7 +8182,7 @@
                 return P
             },
             qOy: function() {
-                return T
+                return A
             },
             zIs: function() {
                 return R
@@ -8191,19 +8191,19 @@
                 return O
             },
             W9P: function() {
-                return eA
+                return eT
             },
             $Ue: function() {
-                return tI
+                return t_
             },
             yjt: function() {
                 return e9
             },
             aC0: function() {
-                return A
+                return T
             },
             XyK: function() {
-                return t5
+                return t8
             }
         });
         var o, r, i, a, s, u, l, c, d, p, f, g, h = n(84502);
@@ -8235,14 +8235,14 @@
           , w = "com.aptoide.partners.nowgg.store"
           , E = "10002"
           , P = "ng_token_v2"
-          , T = "ng_token_expiry_v2"
-          , A = "greetingShown"
+          , A = "ng_token_expiry_v2"
+          , T = "greetingShown"
           , O = "tryNowClicked"
           , _ = "ngg-login-page-context"
           , I = "partnerToken"
           , R = "tokenScheme"
           , k = "gg.now.client.android"
-          , C = {
+          , N = {
             theme: "colored",
             position: "top-center",
             autoClose: 5e3,
@@ -8255,7 +8255,7 @@
                 minWidth: "max-content"
             }
         }
-          , N = {
+          , C = {
             MIN: 266,
             MAX: 361
         }
@@ -8304,21 +8304,21 @@
           , ew = "sessionMeta"
           , eE = "imgd"
           , eP = "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity"
-          , eT = "sideloadAppDownloadNotification"
-          , eA = "updateNowbuxBalance"
+          , eA = "sideloadAppDownloadNotification"
+          , eT = "updateNowbuxBalance"
           , eO = "sessionMigrated"
           , e_ = "loginPrompted"
           , eI = "ngg-manualLogout"
           , eR = "pointerdown"
           , ek = "pointerup"
-          , eC = {
+          , eN = {
             COMPLETE: "complete",
             INACTIVE: "inactive",
             MIGRATED: "migrated",
             DUPLICATE: "duplicate",
             DISCONNECTED: "disconnected"
         }
-          , eN = "fe_uaSessionId"
+          , eC = "fe_uaSessionId"
           , ex = "customData"
           , eD = "fe_uaId"
           , eL = "fe-nowbux-played-seconds"
@@ -8409,16 +8409,15 @@
           , tw = "ngg-free-time-secs"
           , tE = "ngg-is-new-user"
           , tP = "ngg-is-new-user-for-exp"
-          , tT = "ngg-nowbux-notification"
           , tA = "ngg-exit-modal-visible"
-          , tO = "ngg-deep-link"
-          , t_ = "ngg-fe-video-channel"
-          , tI = "ngg-video-title"
-          , tR = "ngg-ad-free-popup-activated"
-          , tk = "ngg-is-app-page-player-on"
-          , tC = "ngg-is-required-auth-play-button-clicked"
+          , tT = "ngg-deep-link"
+          , tO = "ngg-fe-video-channel"
+          , t_ = "ngg-video-title"
+          , tI = "ngg-ad-free-popup-activated"
+          , tR = "ngg-is-app-page-player-on"
+          , tk = "ngg-is-required-auth-play-button-clicked"
           , tN = "ngg-nowbux-popup-viewed"
-          , tx = {
+          , tC = {
             pre: "Pre",
             mid: "Mid",
             post: "Post",
@@ -8434,17 +8433,17 @@
             premiumSubscription: "PremiumSubscription",
             nowBuxCreditModal: "NowBuxCreditModal"
         }
-          , tD = "ngg-ai-chat-session-id";
+          , tx = "ngg-ai-chat-session-id";
         (r = c || (c = {})).rewarded = "rewarded",
         r.interstitial = "interstitial";
-        let tL = {
+        let tD = {
             tryAndDownload: "TryAndDownload",
             topBarRecommendationForLearning: "TopBarRecommendationForLearning",
             topBarRecommendation: "TopBarRecommendation",
             nowgg: "nowgg",
             iframe: "iFrame"
         }
-          , tF = {
+          , tL = {
             [h.YR.FailureServiceNotInRegion]: "FAILURE_UNSUPPORTED_REGION",
             [h.YR.FailureTabletNotSupported]: "FAILURE_UNSUPPORTED_DEVICE",
             [h.YR.FailureOsNotSupported]: "FAILURE_UNSUPPORTED_DEVICE",
@@ -8457,28 +8456,28 @@
             [h.YR.FailureTryAgain]: "FAILURE_TRY_AGAIN",
             [h.YR.Failure]: "FAILURE"
         }
-          , tU = 50
-          , tM = 58
-          , tj = 620
-          , tB = 190
-          , tG = 0
-          , tZ = 100
-          , tW = "https://cdn.now.gg/nowgg-static/"
-          , tH = "".concat(tW, "fonts/fonts.css")
-          , tV = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-          , tY = "ngVisitId"
-          , tz = "PAGE_START_TIMESTAMP"
-          , tq = "GTM_EVENT_SENT"
-          , tK = "SESSION_START_TIMESTAMP"
-          , t$ = "SESSION_INCOMPLETE_REWARED_ADS_EVENT"
-          , tX = {
+          , tF = 50
+          , tU = 58
+          , tM = 620
+          , tj = 190
+          , tB = 0
+          , tG = 100
+          , tZ = "https://cdn.now.gg/nowgg-static/"
+          , tW = "".concat(tZ, "fonts/fonts.css")
+          , tH = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          , tV = "ngVisitId"
+          , tY = "PAGE_START_TIMESTAMP"
+          , tz = "GTM_EVENT_SENT"
+          , tq = "SESSION_START_TIMESTAMP"
+          , tK = "SESSION_INCOMPLETE_REWARED_ADS_EVENT"
+          , t$ = {
             PENDING: "pending",
             LOADING: "loading",
             LOADED: "loaded",
             ERROR: "error"
         }
-          , tJ = "com.epicgames.fortnite"
-          , tQ = {
+          , tX = "com.epicgames.fortnite"
+          , tJ = {
             AT: "Austria",
             BE: "Belgium",
             BG: "Bulgaria",
@@ -8508,7 +8507,7 @@
             SE: "Sweden",
             GB: "United Kingdom"
         }
-          , t0 = {
+          , tQ = {
             FeAdAddDisplayAdListenersCalled: !0,
             FeAdGPTCallbacksRegisterException: !0,
             FeAdGPTCallbacksRegistered: !0,
@@ -8547,10 +8546,10 @@
             FeNowPassPlanClicked: !1,
             FeGetNowPassClicked: !0
         }
-          , t1 = 10;
+          , t0 = 10;
         (i = d || (d = {})).success = "1",
         i.fail = "2";
-        let t2 = 10;
+        let t1 = 10;
         (a = p || (p = {})).UnifiedAppPage = "UnifiedAppPage",
         a.PlayPage = "PlayPage",
         a.BattleWorldDeveloperPage = "BattleWorldDeveloperPage",
@@ -8561,11 +8560,11 @@
         a.Unspecified = "Unspecified",
         a.Proxy = "ProxyPage",
         a.JpHomePage = "JpHomePage";
-        let t3 = "https://now.gg/games.html"
-          , t4 = "https://now.gg/games/#category.html"
-          , t8 = "portal"
-          , t5 = "51946"
-          , t6 = "https://now.gg/blog/product-updates.html";
+        let t2 = "https://now.gg/games.html"
+          , t3 = "https://now.gg/games/#category.html"
+          , t4 = "portal"
+          , t8 = "51946"
+          , t5 = "https://now.gg/blog/product-updates.html";
         (s = f || (f = {})).bestValue = "BEST VALUE",
         s.limitedOffer = "LIMITED OFFER",
         (u = g || (g = {})).BottomBarRemoveAdsButton = "BottomBarRemoveAdsButton",
@@ -8576,22 +8575,24 @@
         u.AdblockerModalFooter = "AdblockerModalFooter",
         u.NowPremiumPlanScreen = "NowPremiumPlanScreen",
         u.JpHomePage = "JpHomePage",
-        u.QueueScreen = "QueueScreen";
-        let t9 = "".concat(tW, "assets/videos/now-pass.mp4")
-          , t7 = "".concat(tW, "assets/videos/jp-home-page-banner-en.mp4")
-          , ne = "".concat(tW, "assets/videos/jp-home-page-banner-jp.mp4")
-          , nt = "".concat(tW, "assets/videos/ana-orb.mp4")
-          , nn = "ng-subscription-signin-source"
-          , no = "allowFpsRotation"
-          , nr = "https://www.bluestacks.com/products/deals.html?utm_source=account&utm_medium=nowbux-account&utm_campaign=nowbux-account"
-          , ni = {
+        u.QueueScreen = "QueueScreen",
+        u.SidebarNowbuxRedeem = "SidebarNowbuxRedeem",
+        u.SubscriptionExpiredModal = "SubscriptionExpiredModal";
+        let t6 = "".concat(tZ, "assets/videos/now-pass.mp4")
+          , t9 = "".concat(tZ, "assets/videos/jp-home-page-banner-en.mp4")
+          , t7 = "".concat(tZ, "assets/videos/jp-home-page-banner-jp.mp4")
+          , ne = "".concat(tZ, "assets/videos/ana-orb.mp4")
+          , nt = "ng-subscription-signin-source"
+          , nn = "allowFpsRotation"
+          , no = "https://www.bluestacks.com/products/deals.html?utm_source=account&utm_medium=nowbux-account&utm_campaign=nowbux-account"
+          , nr = {
             Completed: "complete",
             InProgress: "inprogress",
             CashedOut: "cashout",
             Expired: "expired"
         }
-          , na = "ng_isAgeVerified"
-          , ns = "proxyMonetizationPage"
+          , ni = "ng_isAgeVerified"
+          , na = "proxyMonetizationPage"
     },
     16948: function(e, t, n) {
         "use strict";
@@ -8660,7 +8661,7 @@
         "use strict";
         n.d(t, {
             S6: function() {
-                return C
+                return N
             },
             ZP: function() {
                 return x
@@ -8877,7 +8878,7 @@
                 return t
             }
         }
-          , T = {
+          , A = {
             name: "subdomain",
             lookup: function(e) {
                 var t = "number" == typeof e.lookupFromSubdomainIndex ? e.lookupFromSubdomainIndex + 1 : 1
@@ -8886,7 +8887,7 @@
                     return n[t]
             }
         }
-          , A = function() {
+          , T = function() {
             function e(t) {
                 var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
                 (0,
@@ -8927,7 +8928,7 @@
                     this.addDetector(w),
                     this.addDetector(E),
                     this.addDetector(P),
-                    this.addDetector(T)
+                    this.addDetector(A)
                 }
             }, {
                 key: "addDetector",
@@ -8961,7 +8962,7 @@
             }]),
             e
         }();
-        A.type = "languageDetector";
+        T.type = "languageDetector";
         var O = n(40464)
           , _ = function(e, t, n, o) {
             return new (n || (n = Promise))(function(r, i) {
@@ -8993,7 +8994,7 @@
         let I = "ja"
           , R = "en"
           , k = ["en", "ko", "ja", "de"];
-        function C(e) {
+        function N(e) {
             return _(this, void 0, void 0, function*() {
                 try {
                     let t = yield n(87179)("./".concat(e, "/common.json"));
@@ -9004,7 +9005,7 @@
                 } catch (e) {}
             })
         }
-        o.ZP.use(A).use(r.Db).init({
+        o.ZP.use(T).use(r.Db).init({
             resources: {
                 en: {
                     translation: O
@@ -9018,16 +9019,16 @@
             nonExplicitSupportedLngs: !1
         }),
         o.ZP.languages = ["en"];
-        let N = e => _(void 0, void 0, void 0, function*() {
+        let C = e => _(void 0, void 0, void 0, function*() {
             let t = e.split("-")[0];
-            k.includes(t) && ("en" !== t && (yield C(t)),
+            k.includes(t) && ("en" !== t && (yield N(t)),
             yield o.ZP.changeLanguage(t).catch(e => {}
             ))
         });
         _(void 0, void 0, void 0, function*() {
             if ("undefined" != typeof navigator) {
                 let e = navigator.language.split("-")[0];
-                k.includes(e) && e !== (null === o.ZP || void 0 === o.ZP ? void 0 : o.ZP.languages[0]) && (yield N(e))
+                k.includes(e) && e !== (null === o.ZP || void 0 === o.ZP ? void 0 : o.ZP.languages[0]) && (yield C(e))
             }
         });
         var x = o.ZP
@@ -9668,22 +9669,22 @@
                 }
             }
         };
-        function T() {
+        function A() {
             P.setTags(""),
             P.active && (P.exitPanMode(),
             P.onWindowActivate(!1))
         }
-        function A() {
+        function T() {
             P.active && (P.onWindowActivate(!0),
             P.exitPanMode())
         }
         function O() {
-            P.changeRequested || (T(),
-            A())
+            P.changeRequested || (A(),
+            T())
         }
         let _ = {
-            onblur: T,
-            onfocus: A
+            onblur: A,
+            onfocus: T
         };
         if (!(0,
         o.yF)()) {
@@ -10535,7 +10536,8 @@
             JACKPOT_FLOW: "JACKPOT_FLOW",
             FETCH_IAP_DATA_SUCCESS: "FETCH_IAP_DATA_SUCCESS",
             FETCH_IAP_GAME_LISTS_SUCCESS: "FETCH_IAP_GAME_LISTS_SUCCESS",
-            FETCH_IAP_AND_GAME_DATA_SUCCESS: "FETCH_IAP_AND_GAME_DATA_SUCCESS"
+            FETCH_IAP_AND_GAME_DATA_SUCCESS: "FETCH_IAP_AND_GAME_DATA_SUCCESS",
+            SHOW_NOWBUX_FOR_ALL: "SHOW_NOWBUX_FOR_ALL"
         }
     },
     64489: function(e, t, n) {
@@ -10543,25 +10545,37 @@
         let o;
         n.d(t, {
             E1: function() {
-                return N
+                return x
+            },
+            Ju: function() {
+                return U
             },
             Mc: function() {
-                return R
+                return k
             },
             S3: function() {
-                return O
-            },
-            lD: function() {
-                return F
-            },
-            lM: function() {
-                return L
-            },
-            xC: function() {
                 return _
             },
-            xN: function() {
+            ic: function() {
                 return j
+            },
+            lD: function() {
+                return G
+            },
+            lM: function() {
+                return F
+            },
+            r0: function() {
+                return B
+            },
+            vj: function() {
+                return M
+            },
+            xC: function() {
+                return I
+            },
+            xN: function() {
+                return H
             }
         });
         var r = n(77289)
@@ -10583,7 +10597,8 @@
           , b = n(59982)
           , w = n(80743)
           , E = n(59764)
-          , P = n(91909)
+          , P = n(51315)
+          , A = n(91909)
           , T = function(e, t, n, o) {
             return new (n || (n = Promise))(function(r, i) {
                 function a(e) {
@@ -10611,12 +10626,12 @@
             }
             )
         };
-        let A = null
-          , O = () => {
-            var e;
-            return null !== (e = null == A ? void 0 : A.connectionState) && void 0 !== e ? e : "undefined"
-        }
+        let O = null
           , _ = () => {
+            var e;
+            return null !== (e = null == O ? void 0 : O.connectionState) && void 0 !== e ? e : "undefined"
+        }
+          , I = () => {
             l.default.dispatch({
                 type: c.Z.UPDATE_PLAY_STATE,
                 payload: {
@@ -10624,22 +10639,22 @@
                 }
             })
         }
-          , I = e => {
+          , R = e => {
             if (void 0 === o && (o = new MediaStream),
-            A)
+            O)
                 try {
-                    A.close(),
-                    A = null
+                    O.close(),
+                    O = null
                 } catch (e) {}
             try {
-                A = new RTCPeerConnection(r.F7Q)
+                O = new RTCPeerConnection(r.F7Q)
             } catch (e) {
                 throw window.location.reload(),
                 e
             }
             let t = !1;
-            return A.ondatachannel = a.EZ,
-            A.addEventListener("track", n => {
+            return O.ondatachannel = a.EZ,
+            O.addEventListener("track", n => {
                 e && e.current && !t && o && (e.current.srcObject = o,
                 e.current.disablePictureInPicture = !0,
                 (0,
@@ -10652,15 +10667,15 @@
                 u.ZP)(Error("Track not found"))
             }
             ),
-            A
+            O
         }
         ;
-        function R() {
+        function k() {
             return o
         }
-        let k = 0
+        let N = 0
           , C = -1
-          , N = e => T(void 0, void 0, void 0, function*() {
+          , x = e => T(void 0, void 0, void 0, function*() {
             C += 1,
             (0,
             p.L9)("PreSessionRequestBegin", {
@@ -10672,7 +10687,7 @@
                 d.rN)(),
                 (0,
                 a.fL)(!0);
-                let n = I(e || t)
+                let n = R(e || t)
                   , o = -1
                   , s = 0;
                 n.onconnectionstatechange = e => {
@@ -10687,9 +10702,9 @@
                     let t = l.default.getState();
                     if ("connected" === n.connectionState && ((0,
                     p.L9)("WebRtcConnected", {
-                        repeatCount: k
+                        repeatCount: N
                     }),
-                    k += 1,
+                    N += 1,
                     clearInterval(o)),
                     "disconnected" === n.connectionState) {
                         let {disconnecTimer: e} = l.default.getState().play;
@@ -10773,7 +10788,7 @@
                                                 g.io)(r.t1q)
                                             }), {});
                                             (null == t ? void 0 : t.status) === f.YR.Success && (clearInterval(o),
-                                            (null == t ? void 0 : t.sessionStatus) === f.Z5.Active ? (null == e ? void 0 : e.play.videoRef) ? yield N(null == e ? void 0 : e.play.videoRef) : (0,
+                                            (null == t ? void 0 : t.sessionStatus) === f.Z5.Active ? (null == e ? void 0 : e.play.videoRef) ? yield x(null == e ? void 0 : e.play.videoRef) : (0,
                                             h.iI)("VideoNotFound") : (null == t ? void 0 : t.sessionStatus) === f.Z5.BcpuSpotInterrupted ? (l.default.dispatch({
                                                 type: c.Z.SESSION_DISCONNECT_TOAST,
                                                 payload: {
@@ -10781,7 +10796,7 @@
                                                 }
                                             }),
                                             (0,
-                                            a.eu)()) : _())
+                                            a.eu)()) : I())
                                         }
                                     })
                                 }
@@ -10794,11 +10809,11 @@
                                 showRecordingModalBeforeExitSource: "inactiveTimeout"
                             }
                         }),
-                        _()))
+                        I()))
                     }
                 }
                 ,
-                yield D(n)
+                yield L(n)
             } catch (e) {
                 (0,
                 p.L9)("PreSessionRequestBeginError", {
@@ -10818,11 +10833,11 @@
                 })
             }
         })
-          , x = -1
-          , D = e => T(void 0, void 0, void 0, function*() {
+          , D = -1
+          , L = e => T(void 0, void 0, void 0, function*() {
             var t, n, o;
             let a = !0;
-            clearTimeout(x);
+            clearTimeout(D);
             try {
                 (0,
                 p.L9)("SessionRequestBegin", {
@@ -10830,7 +10845,7 @@
                 });
                 let {utmSource: s, utmMedium: u, utmCampaign: m} = (0,
                 d.We)()
-                  , A = sessionStorage.getItem(r.o_r);
+                  , P = sessionStorage.getItem(r.o_r);
                 sessionStorage.removeItem(r.o_r);
                 let O = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, (0,
                 g.I$)()), {
@@ -10858,8 +10873,8 @@
                     isIframe: (0,
                     g.yL)()
                 }), (0,
-                g.zj)()), A && {
-                    ngInviteId: A
+                g.zj)()), P && {
+                    ngInviteId: P
                 }), (0,
                 g.cS)());
                 sessionStorage.getItem("framebufferSizeWidth") && (O.framebufferSizeWidth = Number(sessionStorage.getItem("framebufferSizeWidth"))),
@@ -10916,7 +10931,7 @@
                             errorDescription: "startSession-retry-count-limit-exceeed-".concat(null == _ ? void 0 : _.status, "-").concat(JSON.stringify(_))
                         }
                     }) : (yield new Promise(e => setTimeout(e, 3e3)),
-                    yield N());
+                    yield x());
                     return
                 }
                 if (_.status === f.YR.FailureTrialTimeLimitExceeded) {
@@ -10940,9 +10955,9 @@
                         }
                     });
                     let e = () => {
-                        clearTimeout(x),
-                        x = setTimeout( () => {
-                            clearTimeout(x);
+                        clearTimeout(D),
+                        D = setTimeout( () => {
+                            clearTimeout(D);
                             let {membershipModalOpen: t, duplicateTab: n} = l.default.getState().play;
                             if (n) {
                                 l.default.dispatch({
@@ -10954,7 +10969,7 @@
                                 });
                                 return
                             }
-                            "visible" !== document.visibilityState || t ? e() : N()
+                            "visible" !== document.visibilityState || t ? e() : x()
                         }
                         , 1e3 * d.default.appInfo.userQueuePollingSecs)
                     }
@@ -10993,7 +11008,7 @@
                         sdp: _.offerSdp
                     })
                 } catch (e) {
-                    yield N();
+                    yield x();
                     return
                 }
                 (0,
@@ -11012,7 +11027,7 @@
                     }
                 }),
                 (0,
-                P.h8)(),
+                A.h8)(),
                 l.default.dispatch({
                     type: c.Z.START_CONNECTION,
                     payload: {
@@ -11048,7 +11063,7 @@
                             payload: {
                                 adFreeTimeSecs: _.rewards.adFreeTimeSecs || 0,
                                 adFreeTimeGainedSecs: e - t,
-                                isNewInvitee: !!A
+                                isNewInvitee: !!P
                             }
                         })
                     }
@@ -11138,7 +11153,7 @@
                     });
                 else if (k.status === f.YR.FailureRetryStartSessionLater)
                     setTimeout( () => T(void 0, void 0, void 0, function*() {
-                        yield N()
+                        yield x()
                     }), 1e4);
                 else if (k.status === f.YR.FailureTryAgain)
                     (0,
@@ -11173,7 +11188,7 @@
                 })
             }
         })
-          , L = (e, t) => {
+          , F = (e, t) => {
             let n = t()
               , o = n.play.availableNowPasses
               , a = n.play.limitedOrderPremiumPass;
@@ -11187,7 +11202,7 @@
                     let n = null
                       , o = null
                       , i = null
-                      , a = t.playPass.reduce( (e, t) => ("nowbux" === t.currency ? o = t : t.label === r.u60.limitedOffer ? n = t : t.label === r.u60.bestValue ? i = t : e.push(t),
+                      , a = t.playPass.reduce( (e, t) => (t.enablePaymentSdkFlow || "nowbux" !== t.currency ? t.label === r.u60.limitedOffer ? n = t : t.label === r.u60.bestValue ? i = t : e.push(t) : o = t,
                     e), []);
                     a.length > 2 && (a.length = 2),
                     i && a.push(i);
@@ -11225,7 +11240,91 @@
             ).catch(e => {}
             )
         }
-          , F = e => {
+          , U = (e, t) => P.Z.nowBuxPaymentDetails({}, {
+            token: t,
+            type: "inapp",
+            appId: e.appId,
+            productId: e.productId,
+            countryCode: d.default.countryCode || "US",
+            channel: "nowgg_cloud"
+        })
+          , M = (e, t, n, o) => P.Z.createNowBuxOrder({}, {
+            token: t,
+            appId: e.appId,
+            countryCode: d.default.countryCode || "US",
+            amountToBuy: o,
+            developerPayload: "",
+            payType: n,
+            productId: e.productId,
+            channel: "nowgg_cloud"
+        })
+          , j = (e, t) => i.ZP.purchaseWithNowBux({}, {
+            appId: e.appId,
+            productId: e.productId,
+            token: t,
+            uaId: (0,
+            g.Fz)(r.nPo),
+            uaSessionId: (0,
+            g.io)(r.K3T),
+            pageReferrer: sessionStorage.getItem("pageReferrer") || "NA",
+            ngReferrer: sessionStorage.getItem("ngReferrer") || "NA",
+            ngEntryPoint: sessionStorage.getItem("ngEntryPoint") || "NA",
+            utmSource: sessionStorage.getItem("utm_source") || "NA",
+            utmCampaign: sessionStorage.getItem("utm_campaign") || "NA",
+            utmMedium: sessionStorage.getItem("utm_medium") || "NA",
+            feSessionId: window.feSessionId || "NA",
+            visitId: window.ngVisitId,
+            ntmSource: sessionStorage.getItem("ntmSource") || "NA",
+            feDeviceType: (0,
+            g.zj)().feDeviceType,
+            feSessionTags: (0,
+            g.pC)(),
+            feOsName: (0,
+            g.zj)().feOsName,
+            userSource: localStorage.getItem("userSource") || "NA",
+            visitSource: (0,
+            g.Fc)(),
+            userCampaign: localStorage.getItem("userCampaign") || "NA",
+            visitCampaign: sessionStorage.getItem("utm_campaign") || "NA",
+            userAcqVar: localStorage.getItem("userAcqVar") || "NA",
+            nowPassSource: l.default.getState().play.subscriptionFlowSource,
+            playSessionId: d.default.playSessionId || "NA"
+        })
+          , B = (e, t, n, o) => i.ZP.initiate({}, {
+            appId: d.default.appInfo.appId,
+            productId: e.productId,
+            orderNumber: n,
+            token: t,
+            feSessionId: window.feSessionId || "NA",
+            uaSessionId: (0,
+            g.io)(r.K3T),
+            uaId: (0,
+            g.Fz)(r.nPo),
+            playSessionId: d.default.playSessionId || "NA",
+            pageReferrer: sessionStorage.getItem("pageReferrer") || "NA",
+            ngReferrer: sessionStorage.getItem("ngReferrer") || "NA",
+            ngEntryPoint: sessionStorage.getItem("ngEntryPoint") || "NA",
+            utmSource: sessionStorage.getItem("utm_source") || "NA",
+            utmCampaign: sessionStorage.getItem("utm_campaign") || "NA",
+            utmMedium: sessionStorage.getItem("utm_medium") || "NA",
+            visitId: window.ngVisitId,
+            ntmSource: sessionStorage.getItem("ntmSource") || "NA",
+            feDeviceType: (0,
+            g.zj)().feDeviceType,
+            feOsName: (0,
+            g.zj)().feOsName,
+            feSessionTags: (0,
+            g.pC)(),
+            userSource: localStorage.getItem("userSource") || "NA",
+            visitSource: (0,
+            g.Fc)(),
+            userCampaign: localStorage.getItem("userCampaign") || "NA",
+            visitCampaign: sessionStorage.getItem("utm_campaign") || "NA",
+            userAcqVar: localStorage.getItem("userAcqVar") || "NA",
+            nowPassSource: l.default.getState().play.subscriptionFlowSource,
+            subscriptionId: o
+        })
+          , G = e => {
             l.default.dispatch({
                 type: c.Z.UPDATE_PLAY_STATE,
                 payload: {
@@ -11233,25 +11332,25 @@
                 }
             })
         }
-          , U = ["control", "shift", "n", "o", "w", "g", "g"]
-          , M = []
-          , j = {
+          , Z = ["control", "shift", "n", "o", "w", "g", "g"]
+          , W = []
+          , H = {
             tapCount: 0,
             lastTapTime: 0,
             maxTouchPoints: 5,
             keydown: e => {
-                M.push(e.key.toLowerCase()),
-                M.length === U.length && U.every( (e, t) => M[t] === e) && F(!0),
-                M = M.slice(-U.length + 1)
+                W.push(e.key.toLowerCase()),
+                W.length === Z.length && Z.every( (e, t) => W[t] === e) && G(!0),
+                W = W.slice(-Z.length + 1)
             }
             ,
             onTouchStart: e => {
                 let t = Date.now()
-                  , n = Math.min(j.maxTouchPoints, (null == navigator ? void 0 : navigator.maxTouchPoints) || 5);
-                n > 1 && (e.touches.length === n && (t - j.lastTapTime < 500 ? j.tapCount += 1 : j.tapCount = 1,
-                j.lastTapTime = t),
-                j.tapCount >= n && (F(!0),
-                j.tapCount = 0))
+                  , n = Math.min(H.maxTouchPoints, (null == navigator ? void 0 : navigator.maxTouchPoints) || 5);
+                n > 1 && (e.touches.length === n && (t - H.lastTapTime < 500 ? H.tapCount += 1 : H.tapCount = 1,
+                H.lastTapTime = t),
+                H.tapCount >= n && (G(!0),
+                H.tapCount = 0))
             }
         }
     },
@@ -11387,14 +11486,14 @@
           , P = function() {
             return Math.random().toString(36).substring(7).split("").join(".")
         }
-          , T = {
+          , A = {
             INIT: "@@redux/INIT" + P(),
             REPLACE: "@@redux/REPLACE" + P(),
             PROBE_UNKNOWN_ACTION: function() {
                 return "@@redux/PROBE_UNKNOWN_ACTION" + P()
             }
         };
-        function A(e, t, n) {
+        function T(e, t, n) {
             if ("function" == typeof t && "function" == typeof n || "function" == typeof n && "function" == typeof arguments[3])
                 throw Error(w(0));
             if ("function" == typeof t && void 0 === n && (n = t,
@@ -11402,7 +11501,7 @@
             void 0 !== n) {
                 if ("function" != typeof n)
                     throw Error(w(1));
-                return n(A)(e, t)
+                return n(T)(e, t)
             }
             if ("function" != typeof e)
                 throw Error(w(2));
@@ -11460,7 +11559,7 @@
                 return e
             }
             return p({
-                type: T.INIT
+                type: A.INIT
             }),
             (o = {
                 dispatch: p,
@@ -11471,7 +11570,7 @@
                         throw Error(w(10));
                     r = e,
                     p({
-                        type: T.REPLACE
+                        type: A.REPLACE
                     })
                 }
             })[E] = function() {
@@ -11524,8 +11623,8 @@
         I.withExtraArgument = _;
         var R = "persist:"
           , k = "persist/FLUSH"
-          , C = "persist/REHYDRATE"
-          , N = "persist/PAUSE"
+          , N = "persist/REHYDRATE"
+          , C = "persist/PAUSE"
           , x = "persist/PERSIST"
           , D = "persist/PURGE"
           , L = "persist/REGISTER";
@@ -11781,6 +11880,7 @@
             envDetected: !1,
             isNowGGURLDetectionProcessComplete: !1,
             showSubscriptionModal: !1,
+            showSubscriptionExpiredModal: !1,
             proxyErrorRef: null,
             nowPremiumSubscriptionActive: !1,
             isCreatePlayUserPremiumResolved: !1,
@@ -11821,7 +11921,8 @@
             proxyUserType: (0,
             J.Sf)(),
             isAddFreeModePopupVisible: !1,
-            gamePlayerWrapperRef: null
+            gamePlayerWrapperRef: null,
+            isAnnouncementBarVisible: !1
         };
         var et = n(80743);
         let en = {
@@ -11960,7 +12061,8 @@
             inGameIAPList: [],
             isIAPGameDataFetched: !1,
             nowbuxPayBalance: 0,
-            nowbuxRewardBalance: 0
+            nowbuxRewardBalance: 0,
+            showNowbuxForAll: !1
         };
         var em = n(24249);
         let ey = {
@@ -11969,6 +12071,7 @@
             showProfileView: !1,
             showNowbuxView: !1,
             showLeaderboardView: !1,
+            showRedeemSectionFirst: !1,
             showTaskCompletePopup: void 0,
             showTaskCompleteToast: !1,
             questClaimed: !1,
@@ -12001,11 +12104,11 @@
                     Object.keys(e).forEach(function(t) {
                         var n = e[t];
                         if (void 0 === n(void 0, {
-                            type: T.INIT
+                            type: A.INIT
                         }))
                             throw Error(w(12));
                         if (void 0 === n(void 0, {
-                            type: T.PROBE_UNKNOWN_ACTION()
+                            type: A.PROBE_UNKNOWN_ACTION()
                         }))
                             throw Error(w(13))
                     })
@@ -12336,6 +12439,7 @@
                         accumulatedTimeSecs: e.accumulatedTimeSecs + 1
                     });
                 case eg.Z.JACKPOT_FLOW:
+                case eg.Z.SHOW_NOWBUX_FOR_ALL:
                     return Object.assign(Object.assign({}, e), t.payload);
                 case eg.Z.FETCH_IAP_AND_GAME_DATA_SUCCESS:
                     return Object.assign(Object.assign({}, e), {
@@ -12400,7 +12504,7 @@
             "appPreferences" === t && (null === (n = null == window ? void 0 : window.gameInfo) || void 0 === n ? void 0 : n.id)) ? void 0 !== e[window.gameInfo.id] ? e[window.gameInfo.id] : void 0 : e
         }
         )
-          , ew = A((r = void 0 !== (o = {
+          , ew = T((r = void 0 !== (o = {
             key: "root",
             storage: z.Z,
             debug: !1,
@@ -12597,9 +12701,9 @@
                 Z({}, ev(h, t), {
                     _persist: g
                 });
-            if (t.type === N)
+            if (t.type === C)
                 c = !0;
-            else if (t.type === C) {
+            else if (t.type === N) {
                 if (l)
                     return Z({}, h, {
                         _persist: Z({}, g, {
@@ -12649,7 +12753,7 @@
             }
         }(I)))
           , eE = (f = !1,
-        g = A(function() {
+        g = T(function() {
             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : Y
               , t = arguments.length > 1 ? arguments[1] : void 0;
             switch (t.type) {
@@ -12657,7 +12761,7 @@
                 return V({}, e, {
                     registry: [].concat(W(e.registry), [t.key])
                 });
-            case C:
+            case N:
                 var n = e.registry.indexOf(t.key)
                   , o = W(e.registry);
                 return o.splice(n, 1),
@@ -12678,7 +12782,7 @@
         ,
         m = function(e, t, n) {
             var o = {
-                type: C,
+                type: N,
                 payload: t,
                 err: n,
                 key: e
@@ -12712,7 +12816,7 @@
             },
             pause: function() {
                 ew.dispatch({
-                    type: N
+                    type: C
                 })
             },
             persist: function() {
@@ -12769,7 +12873,7 @@
                 return eS
             },
             Bz: function() {
-                return eC
+                return eN
             },
             vT: function() {
                 return eg
@@ -12814,16 +12918,16 @@
           , w = n(27633)
           , E = n(86571)
           , P = n(80743)
-          , T = n(21101)
-          , A = n(82492)
+          , A = n(21101)
+          , T = n(82492)
           , O = n(94183)
           , _ = n(36588)
           , I = n(26669)
           , R = n(6869)
           , k = n(77621)
-          , C = n(50875)
-          , N = n(23493)
-          , x = n.n(N)
+          , N = n(50875)
+          , C = n(23493)
+          , x = n.n(C)
           , D = n(48506)
           , L = n(64789)
           , F = n(15431)
@@ -12920,7 +13024,7 @@
             en.name = "",
             en.totalSize = 0,
             en.initiated = !1,
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.UPDATE_DOWNLOAD_STATE,
                 payload: {
                     showLoader: !0,
@@ -12928,7 +13032,7 @@
                 }
             }),
             setTimeout( () => {
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_DOWNLOAD_STATE,
                     payload: {
                         showLoader: !1
@@ -12978,7 +13082,7 @@
           , ef = () => {
             var e;
             try {
-                let {play: t} = A.default.getState();
+                let {play: t} = T.default.getState();
                 "function" == typeof (null === (e = null == t ? void 0 : t.peerConnection) || void 0 === e ? void 0 : e.close) && t.peerConnection.close(),
                 t.peerConnection = null
             } catch (e) {}
@@ -12990,7 +13094,7 @@
             let e = "visible" === document.visibilityState;
             ei("".concat(S.vKP.tab).concat(e ? "active" : "inactive")),
             v.fl.tabVisible = e;
-            let t = A.default.getState()
+            let t = T.default.getState()
               , {muted: n, videoRef: o, peerConnection: r} = t.play;
             if ((0,
             O.Tt)() ? (0,
@@ -13004,7 +13108,7 @@
         }
           , em = () => {
             B.Z.type && "desktop" === B.Z.type && !(0,
-            O.tq)() && A.default.dispatch({
+            O.tq)() && T.default.dispatch({
                 type: w.Z.IME_STATUS,
                 payload: {
                     isImeEnabled: !!m.be.isOpen
@@ -13032,7 +13136,7 @@
         }
         ;
         function ev() {
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.SHOW_FILE_UPLOADER,
                 payload: {
                     showFileUploader: !1,
@@ -13040,7 +13144,7 @@
                 }
             }),
             setTimeout( () => {
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_UPLOAD_STATE,
                     payload: {
                         showLoader: !1
@@ -13058,7 +13162,7 @@
                 loaderType: "warning"
             };
             e && (t.showLoader = !0),
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.UPDATE_UPLOAD_STATE,
                 payload: t
             })
@@ -13087,10 +13191,10 @@
                 }
             }
         };
-        function eT(e) {
+        function eA(e) {
             let t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
             return Q(this, void 0, void 0, function*() {
-                let {orientationValue: n} = A.default.getState().play;
+                let {orientationValue: n} = T.default.getState().play;
                 (0,
                 O.tq)() && (eE.video.width.exact = 240,
                 eE.video.height.exact = 320,
@@ -13118,7 +13222,7 @@
                 !0
             })
         }
-        let eA = () => {
+        let eT = () => {
             l.getTracks().forEach(e => e.stop()),
             c.replaceTrack(null).catch(console.log)
         }
@@ -13129,12 +13233,12 @@
             e || ei("mic::off"),
             l && (l.getTracks().forEach(e => e.stop()),
             c.replaceTrack(null).catch(console.log),
-            window.removeEventListener("beforeunload", eA))
+            window.removeEventListener("beforeunload", eT))
         }
         function e_() {
             let e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
             return Q(this, void 0, void 0, function*() {
-                let {play: t} = A.default.getState();
+                let {play: t} = T.default.getState();
                 if (e || ei("mic::on"),
                 d) {
                     try {
@@ -13142,7 +13246,7 @@
                             audio: !0,
                             video: !1
                         }),
-                        window.addEventListener("beforeunload", eA)
+                        window.addEventListener("beforeunload", eT)
                     } catch (e) {
                         eO()
                     }
@@ -13166,9 +13270,9 @@
             F.L9)("NegotiationNeeded")
         }
         let ek = 0
-          , eC = () => (ek || (ek = +"".concat(sessionStorage.getItem(ee))) || (ek = 0),
+          , eN = () => (ek || (ek = +"".concat(sessionStorage.getItem(ee))) || (ek = 0),
         ek)
-          , eN = e => {
+          , eC = e => {
             var t, n;
             let o = e.reason
               , r = null === (n = null === (t = k.appState.appInfo.playFeFeatures) || void 0 === t ? void 0 : t.tryAndDownload) || void 0 === n ? void 0 : n.isEnabled;
@@ -13176,7 +13280,7 @@
                 return;
             let i = decodeURIComponent(e.graceIntervalMessage || "")
               , a = e.graceIntervalSecs;
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.SESSION_DISCONNECT_TOAST,
                 payload: {
                     sessionDisconnectScreenType: o,
@@ -13191,7 +13295,7 @@
             k.q8)(o, +a, i || "", Date.now())
         }
           , ex = () => {
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.SESSION_DISCONNECT_TOAST,
                 payload: {
                     sessionDisconnectScreenType: "",
@@ -13206,7 +13310,7 @@
             k.am)()
         }
           , eD = () => {
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.SESSION_DISCONNECT_TOAST,
                 payload: {
                     showDisconnectScreen: !0,
@@ -13216,7 +13320,7 @@
         }
           , eL = e => {
             var t;
-            let {play: n} = A.default.getState()
+            let {play: n} = T.default.getState()
               , o = n.nativeMouseEnabled;
             if (k.appState.appInfo.packageName === B.Z.currentPackageName && (e && e > 0 ? v.fl.native = !0 : (v.fl.native = !1,
             sessionStorage.removeItem(ee),
@@ -13236,14 +13340,14 @@
                 y.DA)();
             eo.nativeM = v.fl.native,
             D.ZP.showLookAroundToasts = !1,
-            o !== v.fl.native && (A.default.dispatch({
+            o !== v.fl.native && (T.default.dispatch({
                 type: w.Z.UPDATE_BACK_BTN,
                 payload: {
                     nativeMouseEnabled: v.fl.native
                 }
             }),
-            A.default.dispatch({
-                type: T.Z.SET_LEGACY_CONTROLS,
+            T.default.dispatch({
+                type: A.Z.SET_LEGACY_CONTROLS,
                 payload: {
                     legacyControls: !v.fl.native
                 }
@@ -13256,20 +13360,20 @@
           , eU = (e, t, n) => {
             var o;
             let r = e ? "".concat(n, "::").concat(e) : n
-              , {ads: i, play: a} = A.default.getState()
+              , {ads: i, play: a} = T.default.getState()
               , {adBlockerMethodType: s} = a
               , u = s !== H.p.NONE
               , {enableRewardedAds: l} = (0,
             K.$n)();
             l ? (0,
             O.m4)() && u ? ei(null == r ? void 0 : r.replace("::fail", "::adblocker_detected")) : u || "visible" !== document.visibilityState || (null === (o = window.nggClientIpInfo) || void 0 === o ? void 0 : o.browserCode) === "mob" ? ei(r) : (sessionStorage.setItem(S.QvE, null == r ? void 0 : r.replace("::fail", "::user_refreshed_page")),
-            !i.rewardAdsLoadAdsSdk && l && A.default.dispatch({
+            !i.rewardAdsLoadAdsSdk && l && T.default.dispatch({
                 type: P.Z.UPDATE_REWARDED_SDK_STATE,
                 payload: {
                     rewardAdsLoadAdsSdk: !0
                 }
             }),
-            A.default.dispatch({
+            T.default.dispatch({
                 type: P.Z.UPDATE_REWARDED_SDK_STATE,
                 payload: {
                     rewardedAdType: t,
@@ -13285,7 +13389,7 @@
             O.Em)() && !(0,
             O.zc)() && !k.appState.appInfo.playFeFeatures.disableImap && "Html" !== k.appState.appInfo.appType && (0,
             R.qU)()) {
-                let {videoRef: o} = A.default.getState().play;
+                let {videoRef: o} = T.default.getState().play;
                 try {
                     D.ZP.initialize(e, (null === (t = null == o ? void 0 : o.current) || void 0 === t ? void 0 : t.width) || 1280, (null === (n = null == o ? void 0 : o.current) || void 0 === n ? void 0 : n.height) || 720, v.fl.splitScreenPerc)
                 } catch (e) {}
@@ -13307,7 +13411,7 @@
             }),
             n && !ej && (eb || eM(k.appState.appInfo.packageName),
             eb = !0,
-            A.default.getState().play.gameDisplayed || (0,
+            T.default.getState().play.gameDisplayed || (0,
             h.ZP)(Error("GameDisplayed"), {
                 metaData: {
                     eventData: e,
@@ -13315,7 +13419,7 @@
                     packageName: k.appState.appInfo.packageName
                 }
             }),
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.GAME_DISPLAYED,
                 payload: {
                     gameDisplayed: !0
@@ -13346,13 +13450,13 @@
                     y.Jj)(!0),
                     eo.nativeM = v.fl.native,
                     D.ZP.showLookAroundToasts = !0,
-                    "com.roblox.client/.game.ActivityGame" !== e.activityName && A.default.dispatch({
+                    "com.roblox.client/.game.ActivityGame" !== e.activityName && T.default.dispatch({
                         type: w.Z.ROBLOX_TOAST,
                         payload: {
                             robloxToast: !1
                         }
                     }),
-                    A.default.dispatch({
+                    T.default.dispatch({
                         type: w.Z.UPDATE_BACK_BTN,
                         payload: {
                             nativeMouseEnabled: v.fl.native
@@ -13362,22 +13466,22 @@
                     t && (0 > t.indexOf(e.activityName) || 0 > t.indexOf("*")) ? (v.fl.native = !1,
                     (0,
                     y.DA)()) : (0,
-                    O.c6)() && eL(eC())
+                    O.c6)() && eL(eN())
             }
-            A.default.dispatch({
-                type: T.Z.SET_LEGACY_CONTROLS,
+            T.default.dispatch({
+                type: A.Z.SET_LEGACY_CONTROLS,
                 payload: {
                     legacyControls: !v.fl.native
                 }
             }),
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.UPDATE_BACK_BTN,
                 payload: {
                     showBackbtn: !n && (null === (t = null === k.appState || void 0 === k.appState ? void 0 : k.appState.appInfo) || void 0 === t ? void 0 : t.enableBackButton)
                 }
             });
             let o = e.activityName === S.cDO;
-            A.default.dispatch({
+            T.default.dispatch({
                 type: w.Z.UPDATE_PLAY_STATE,
                 payload: {
                     androidActivityName: e.activityName
@@ -13406,7 +13510,7 @@
             case S.jA8:
                 {
                     let t = e.accountTypesPresent && e.accountTypesPresent.includes("com.google");
-                    A.default.dispatch({
+                    T.default.dispatch({
                         type: w.Z.UPDATE_PLAY_STATE,
                         payload: {
                             iapUserLogin: t
@@ -13434,23 +13538,23 @@
                         (0,
                         h.ZP)(e)
                     }
-                    let {ads: n} = A.default.getState()
+                    let {ads: n} = T.default.getState()
                       , {enableRewardedAds: o} = (0,
                     K.$n)();
-                    !n.rewardAdsLoadAdsSdk && o && A.default.dispatch({
+                    !n.rewardAdsLoadAdsSdk && o && T.default.dispatch({
                         type: P.Z.UPDATE_REWARDED_SDK_STATE,
                         payload: {
                             rewardAdsLoadAdsSdk: !0
                         }
                     }),
-                    A.default.dispatch({
+                    T.default.dispatch({
                         type: w.Z.GAME_DISPLAYED,
                         payload: {
                             gameDisplayed: !0
                         }
                     }),
                     e.packageName === k.appState.appInfo.packageName && eB(e),
-                    "true" === e.showGoogleLoginPopup && A.default.dispatch({
+                    "true" === e.showGoogleLoginPopup && T.default.dispatch({
                         type: w.Z.SHOW_GOOGLE_ACCOUNT_REQUIRED_POPUP,
                         payload: {
                             showGoogleAccountRequiredPopup: !0
@@ -13467,8 +13571,8 @@
                     Z.ZP)("APP_LAUNCHED", "", "NowggIfpSdkEvent"),
                     setTimeout( () => {
                         var e, t, n;
-                        let {isAndroidConnected: o} = A.default.getState().play;
-                        (null === (n = null === (t = null === (e = k.appState.appInfo) || void 0 === e ? void 0 : e.playFeFeatures) || void 0 === t ? void 0 : t.tryAndDownload) || void 0 === n ? void 0 : n.isEnabled) && o && A.default.dispatch({
+                        let {isAndroidConnected: o} = T.default.getState().play;
+                        (null === (n = null === (t = null === (e = k.appState.appInfo) || void 0 === e ? void 0 : e.playFeFeatures) || void 0 === t ? void 0 : t.tryAndDownload) || void 0 === n ? void 0 : n.isEnabled) && o && T.default.dispatch({
                             type: w.Z.SHOW_LOGIN_TIP,
                             payload: {
                                 loginTip: !0
@@ -13486,9 +13590,9 @@
                     eF(k.appState.appInfo.packageName),
                     et = !0,
                     e.screenorientation && (0,
-                    C.VE)(e.screenorientation),
+                    N.VE)(e.screenorientation),
                     m.be.native = k.appState.appInfo.playFeFeatures.enableNativeKeyboard,
-                    A.default.dispatch({
+                    T.default.dispatch({
                         type: w.Z.START_CONNECTION,
                         payload: {
                             isAndroidConnected: !0
@@ -13498,8 +13602,8 @@
                     eb || eM(k.appState.appInfo.packageName),
                     eb = !0,
                     (k.appState.appInfo.playFeFeatures.disableImap || !(0,
-                    R.qU)()) && A.default.dispatch({
-                        type: T.Z.SET_LEGACY_CONTROLS,
+                    R.qU)()) && T.default.dispatch({
+                        type: A.Z.SET_LEGACY_CONTROLS,
                         payload: {
                             legacyControls: !1
                         }
@@ -13508,12 +13612,12 @@
                       , i = parseInt(e.streamingHeight, 10);
                     if (Number.isNaN(r) || Number.isNaN(i))
                         ("smartphone" === e.deviceType || "phablet" === e.deviceType) && (0,
-                        C.D9)(2, 1);
+                        N.D9)(2, 1);
                     else {
                         let e = (0,
                         O.th)(r, i);
                         (0,
-                        C.D9)(i / e, r / e)
+                        N.D9)(i / e, r / e)
                     }
                     B.Z.type = e.deviceType,
                     em(),
@@ -13522,7 +13626,7 @@
                     break
                 }
             case S.yKg:
-                navigator.geolocation && "function" == typeof navigator.geolocation.getCurrentPosition && A.default.dispatch({
+                navigator.geolocation && "function" == typeof navigator.geolocation.getCurrentPosition && T.default.dispatch({
                     type: w.Z.GET_PERMISSION,
                     payload: {
                         permissionType: "Location"
@@ -13530,7 +13634,7 @@
                 });
                 break;
             case S.rN3:
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_POINTER_CAPTURE,
                     payload: {
                         pointerCaptureStatus: "true" === e.state
@@ -13544,7 +13648,7 @@
                 (0,
                 O.bl)(),
                 B.Z.inactivity = e,
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.MODAL_STATUS,
                     payload: {
                         inactivityModal: !0
@@ -13568,21 +13672,21 @@
                         sessionStorage.setItem(ee, "".concat(e.roblox_placeId));
                     else if (null !== t) {
                         sessionStorage.removeItem(ee);
-                        let e = A.default.getState().play.robloxExperienceId;
+                        let e = T.default.getState().play.robloxExperienceId;
                         -1 !== e && (D.ZP.experienceEnded(),
                         (0,
                         F.L9)("RobloxExperienceEnded", {
-                            activeDuration: (Date.now() - A.default.getState().play.currentRobloxExperienceTimer) / 1e3,
+                            activeDuration: (Date.now() - T.default.getState().play.currentRobloxExperienceTimer) / 1e3,
                             robloxExperience: e
                         }),
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.SET_EXPERIENCE_STATE,
                             payload: {
                                 isExperienceEnded: !0
                             }
                         }))
                     }
-                    A.default.dispatch({
+                    T.default.dispatch({
                         type: w.Z.SET_ROBLOX_EXPERIENCE_ID,
                         payload: {
                             robloxExperienceId: e.roblox_placeId,
@@ -13599,21 +13703,21 @@
                 if (ew(e.packageName))
                     return;
                 et && (0,
-                C.VE)(e.rotation);
+                N.VE)(e.rotation);
                 break;
             case S.Olr:
                 if (m.be.native && (0,
                 O.TC)())
                     return;
                 m.be.isOpen = "true" === e.enabled,
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_PLAY_STATE,
                     payload: {
                         keyboardActive: m.be.isOpen
                     }
                 }),
                 em(),
-                A.default.dispatch({
+                T.default.dispatch({
                     type: E.Z.IMAP_STATUS,
                     payload: {
                         isActive: !m.be.isOpen
@@ -13629,18 +13733,18 @@
                     ef(),
                     (0,
                     O.bl)();
-                    let {play: t} = A.default.getState()
+                    let {play: t} = T.default.getState()
                       , r = (0,
                     O.U1)((0,
                     Z.Pr)()) && S.yrp.includes(e.reason);
                     if (!(0,
                     O.m4)() && "FeAdBlockerDetected" === e.reason && !t.error) {
-                        A.default.dispatch((0,
+                        T.default.dispatch((0,
                         J.KF)("ForbiddenAdBlockerAndroid"));
                         return
                     }
                     if (e.reason === b.YR.FailureServiceNotInRegion) {
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.SET_ERROR,
                             payload: {
                                 error: b.YR.Failure,
@@ -13655,7 +13759,7 @@
                     if ((0,
                     O.U1)((0,
                     Z.Pr)()) && "OtherSessionInitiated" === e.reason) {
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.SESSION_MIGRATED,
                             payload: {
                                 sessionMigrated: !0
@@ -13663,7 +13767,7 @@
                         });
                         return
                     }
-                    if (t.isRecording && A.default.dispatch({
+                    if (t.isRecording && T.default.dispatch({
                         type: w.Z.UPDATE_IS_RECORDING,
                         payload: {
                             showRecordingModalBeforeExit: !0,
@@ -13672,7 +13776,7 @@
                     }),
                     e.reason === S.QRM.BCPU_SPOT_INTERRUPTION && !t.isRecording) {
                         let t = e.reason;
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.SESSION_DISCONNECT_TOAST,
                             payload: {
                                 sessionDisconnectScreenType: t
@@ -13681,7 +13785,7 @@
                     }
                     if (e.reason === S.QRM.PROXY_PLAYTIME_EXCEEDED) {
                         let t = e.reason;
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.SESSION_DISCONNECT_TOAST,
                             payload: {
                                 sessionDisconnectScreenType: t,
@@ -13692,7 +13796,7 @@
                         return
                     }
                     if (!r && t.sessionDisconnectScreenType) {
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.SESSION_DISCONNECT_TOAST,
                             payload: {
                                 showDisconnectWarning: !1,
@@ -13701,7 +13805,7 @@
                         });
                         return
                     }
-                    if (A.default.dispatch({
+                    if (T.default.dispatch({
                         type: w.Z.SESSION_INACTIVE,
                         payload: {
                             sessionComplete: !0
@@ -13712,7 +13816,7 @@
                         return
                     }
                     if (S.yrp.includes(e.reason))
-                        A.default.dispatch({
+                        T.default.dispatch({
                             type: w.Z.UPDATE_INACTIVE_TIMEOUT,
                             payload: {
                                 inactiveTimeout: !0
@@ -13720,7 +13824,7 @@
                         });
                     else {
                         if (null === (i = null === (o = null === (n = k.appState.appInfo) || void 0 === n ? void 0 : n.playFeFeatures) || void 0 === o ? void 0 : o.tryAndDownload) || void 0 === i ? void 0 : i.isEnabled) {
-                            A.default.dispatch({
+                            T.default.dispatch({
                                 type: w.Z.SHOW_TRY_NOW,
                                 payload: {
                                     endingTryNow: !0
@@ -13730,12 +13834,12 @@
                         }
                         if (t.error)
                             return;
-                        e.reason === S.QRM.TIME_LIMIT ? A.default.dispatch({
+                        e.reason === S.QRM.TIME_LIMIT ? T.default.dispatch({
                             type: I.Z.TOGGLE_LOGIN,
                             payload: {
                                 showLogin: !0
                             }
-                        }) : A.default.dispatch({
+                        }) : T.default.dispatch({
                             type: w.Z.SET_ERROR,
                             payload: {
                                 error: b.YR.Failure,
@@ -13749,7 +13853,7 @@
                     break
                 }
             case S.bO$:
-                eN(e);
+                eC(e);
                 break;
             case S.zoW:
                 ex();
@@ -13761,7 +13865,7 @@
             case S.T7I:
             case S.iBA:
                 (0,
-                O.G6)() || k.appState.features.enableExternalUrlPrompt ? A.default.dispatch({
+                O.G6)() || k.appState.features.enableExternalUrlPrompt ? T.default.dispatch({
                     type: w.Z.OPEN_URL,
                     payload: {
                         urlToOpen: e.url || e.paymentUrl
@@ -13775,7 +13879,7 @@
                     k.I6)(), 10);
                     e < 3 ? ((0,
                     k.sA)((e + 1).toString()),
-                    A.default.dispatch({
+                    T.default.dispatch({
                         type: w.Z.SET_ERROR,
                         payload: {
                             error: b.YR.Failure,
@@ -13784,7 +13888,7 @@
                             isAndroidConnected: !1,
                             errorDescription: S.J7H
                         }
-                    })) : (A.default.dispatch({
+                    })) : (T.default.dispatch({
                         type: w.Z.SET_ERROR,
                         payload: {
                             error: b.YR.Failure,
@@ -13798,7 +13902,7 @@
                     break
                 }
             case S.nd2:
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.SHOW_FILE_UPLOADER,
                     payload: {
                         showFileUploader: !0,
@@ -13809,7 +13913,7 @@
             case S.cXX:
                 r = null,
                 ev(),
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_UPLOAD_STATE,
                     payload: {
                         loaderType: "success",
@@ -13827,11 +13931,11 @@
                     return Q(this, void 0, void 0, function*() {
                         for (p = !0; f; )
                             yield eI(1e3);
-                        let {play: n} = A.default.getState();
+                        let {play: n} = T.default.getState();
                         if (n.peerConnection)
                             try {
                                 yield n.peerConnection.setRemoteDescription(new RTCSessionDescription(t));
-                                let o = yield eT(e);
+                                let o = yield eA(e);
                                 if (s) {
                                     let e = s.getTracks()[0];
                                     u = n.peerConnection.addTrack(e, s)
@@ -13856,7 +13960,7 @@
                     return Q(this, void 0, void 0, function*() {
                         for (f = !0; p; )
                             yield eI(1e3);
-                        let {play: t} = A.default.getState();
+                        let {play: t} = T.default.getState();
                         if (t.peerConnection)
                             try {
                                 yield t.peerConnection.setRemoteDescription(new RTCSessionDescription(e)),
@@ -13882,9 +13986,9 @@
                 "off" === e.cmd && eO(!0);
                 break;
             case S.NDh:
-                "on" === e.cmd && eT(e.facing, !0).catch(console.log),
+                "on" === e.cmd && eA(e.facing, !0).catch(console.log),
                 "off" === e.cmd && function() {
-                    let {play: e} = A.default.getState();
+                    let {play: e} = T.default.getState();
                     (null == e ? void 0 : e.peerConnection) && s && (s.getTracks().forEach(e => e.stop()),
                     u.replaceTrack(null).catch(console.log))
                 }();
@@ -13905,10 +14009,10 @@
                 break;
             case S.Qlw:
                 {
-                    let {isLoggedIn: t} = A.default.getState().auth;
+                    let {isLoggedIn: t} = T.default.getState().auth;
                     if (!t) {
                         sessionStorage.setItem("sideloadAppId", e.sideloadAppId);
-                        let {dispatch: t} = A.default;
+                        let {dispatch: t} = T.default;
                         t((0,
                         W.J)(e.sideloadAppId))
                     }
@@ -13916,7 +14020,7 @@
                 }
             case S.W9P:
                 {
-                    let {isLoggedIn: e} = A.default.getState().auth;
+                    let {isLoggedIn: e} = T.default.getState().auth;
                     e && (0,
                     O.Nh)();
                     break
@@ -13924,7 +14028,7 @@
             case S.gd4:
                 (0,
                 F.L9)("SessionCompleted", Object.assign({}, e)),
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.SESSION_MIGRATED,
                     payload: {
                         sessionMigrated: !0
@@ -13951,7 +14055,7 @@
           , ez = e => () => {
             switch (e) {
             case "open":
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_DOWNLOAD_STATE,
                     payload: {
                         showLoader: !0,
@@ -13960,7 +14064,7 @@
                 });
                 break;
             case "close":
-                er(A.default.getState().play.fileDownloadState.loaderType),
+                er(T.default.getState().play.fileDownloadState.loaderType),
                 a && (a.close(),
                 a = null);
                 break;
@@ -14026,9 +14130,9 @@
         function eK(e) {
             var t;
             return Q(this, void 0, void 0, function*() {
-                let {play: n} = A.default.getState()
+                let {play: n} = T.default.getState()
                   , o = e.target.files;
-                if (A.default.dispatch({
+                if (T.default.dispatch({
                     type: w.Z.SHOW_FILE_UPLOADER,
                     payload: {
                         showFileUploader: !1,
@@ -14044,7 +14148,7 @@
                 let i = o[0];
                 r = yield i.arrayBuffer(),
                 ei("fileupload::".concat(i.name, "::").concat(r.byteLength)),
-                A.default.dispatch({
+                T.default.dispatch({
                     type: w.Z.UPDATE_UPLOAD_STATE,
                     payload: {
                         loaderType: "uploading",
@@ -14348,7 +14452,7 @@
         "use strict";
         n.d(t, {
             Zb: function() {
-                return C
+                return N
             },
             ZP: function() {
                 return W
@@ -14406,8 +14510,8 @@
             }
             )
         };
-        let T = 0
-          , A = 0
+        let A = 0
+          , T = 0
           , O = (e, t, n) => {
             var o, r;
             let {isLoginResolved: i, guestFlow: s, showGoogleOneTap: u, showLogin: l, isLoggedIn: f, userInactive: g, manualLogoutShowLogin: h} = a.default.getState().auth
@@ -14483,7 +14587,7 @@
                 i.ZP.generateToken({
                     implicitGuestLogin: r
                 }, {}).then(t => P(void 0, void 0, void 0, function*() {
-                    t.success && N(t),
+                    t.success && C(t),
                     e(t)
                 })).catch(e => {
                     t(e)
@@ -14496,7 +14600,7 @@
             )),
             R
         });
-        function C(e, t, n, o, u, l, d) {
+        function N(e, t, n, o, u, l, d) {
             var p;
             return P(this, void 0, void 0, function*() {
                 let f = (0,
@@ -14504,9 +14608,9 @@
                   , g = null === (p = null == window ? void 0 : window.nggParams) || void 0 === p ? void 0 : p[c.E8i];
                 return [S.YR.FailureInvalidPlayUser].includes(u) && !t.path.includes("/play/v1/createPlayUser") ? yield function(e, t, n, o, r, s) {
                     return P(this, void 0, void 0, function*() {
-                        A === c.hTf && O("handleFailureInvalidPlayUser", r, s);
+                        T === c.hTf && O("handleFailureInvalidPlayUser", r, s);
                         try {
-                            A += 1;
+                            T += 1;
                             let r = yield I();
                             if (r.status === S.YR.Failure)
                                 return a.default.dispatch({
@@ -14538,9 +14642,9 @@
                 } : yield function(e, t, n, o, u, l) {
                     return P(this, void 0, void 0, function*() {
                         let d;
-                        T === c.hTf && O("handleTokenErr", u, l);
+                        A === c.hTf && O("handleTokenErr", u, l);
                         try {
-                            T += 1,
+                            A += 1,
                             d = yield k()
                         } catch (e) {}
                         return d && (null == d ? void 0 : d.success) ? yield(0,
@@ -14563,7 +14667,7 @@
                 }(e, t, n, o, l, d)
             })
         }
-        let N = e => {
+        let C = e => {
             (0,
             y.IV)(c.B1h, e.access_token),
             (0,
@@ -14737,7 +14841,7 @@
                 }, {})
             } catch (e) {}
             if (null == n ? void 0 : n.success) {
-                N(n),
+                C(n),
                 (0,
                 f.L9)(c.KLB, {});
                 let t = yield i.ZP.createPlayUser({}, {
@@ -15179,10 +15283,10 @@
                 return eK
             },
             Zw: function() {
-                return eC
+                return eN
             },
             Cf: function() {
-                return tC
+                return tN
             },
             ri: function() {
                 return eQ
@@ -15260,7 +15364,7 @@
                 return eD
             },
             A$: function() {
-                return tA
+                return tT
             },
             JY: function() {
                 return ea
@@ -15314,7 +15418,7 @@
                 return tL
             },
             RG: function() {
-                return tN
+                return tC
             },
             To: function() {
                 return q
@@ -15359,7 +15463,7 @@
                 return tv
             },
             s$: function() {
-                return tT
+                return tA
             },
             c6: function() {
                 return eS
@@ -15368,7 +15472,7 @@
                 return ed
             },
             VR: function() {
-                return eN
+                return eC
             },
             Em: function() {
                 return X
@@ -15484,12 +15588,12 @@
             ,
             o: (e, t) => Object.prototype.hasOwnProperty.call(e, t)
         }
-          , T = {};
-        P.d(T, {
+          , A = {};
+        P.d(A, {
             A: () => _,
             k: () => O
         });
-        var A = function(e, t) {
+        var T = function(e, t) {
             var n, o, r, i, a = {
                 label: 0,
                 sent: function() {
@@ -15591,7 +15695,7 @@
             t = void 0,
             n = Promise,
             o = function() {
-                return A(this, function(e) {
+                return T(this, function(e) {
                     switch (e.label) {
                     case 0:
                         return [4, new Promise(function(e, t) {
@@ -15693,12 +15797,12 @@
         }
         "undefined" != typeof window && (window.detectIncognito = O);
         let _ = O;
-        T.A;
-        var I = T.k
+        A.A;
+        var I = A.k
           , R = n(1517)
           , k = n(15431)
-          , C = n(16948)
-          , N = n(78647)
+          , N = n(16948)
+          , C = n(78647)
           , x = n(66418)
           , D = n(50678)
           , L = n(21651)
@@ -15958,9 +16062,9 @@
             return void 0 === e && (e = null === (t = null === s.default || void 0 === s.default ? void 0 : s.default.appInfo) || void 0 === t ? void 0 : t.packageName),
             "com.gravityneocyon.dc79zbw" === e
         }
-          , eT = "10005"
-          , eA = e => !eS(e.packageName) && "workflow3" !== e.workflowCategory
-          , eO = e => e.filter(eA)
+          , eA = "10005"
+          , eT = e => !eS(e.packageName) && "workflow3" !== e.workflowCategory
+          , eO = e => e.filter(eT)
           , e_ = e => {
             let t = new Set
               , n = "";
@@ -15970,7 +16074,7 @@
                 delete e.media.desktop,
                 delete e.media.mobile,
                 !t.has(e.appId) && (t.add(e.appId),
-                eA(e)))),
+                eT(e)))),
                 prefetchLink: n
             }
         }
@@ -15982,7 +16086,7 @@
         ),
         e)
           , eR = "51946"
-          , ek = e => e.reduce( (e, t) => (t.appId === eT && (e.androidStoreApp = t),
+          , ek = e => e.reduce( (e, t) => (t.appId === eA && (e.androidStoreApp = t),
         e.androidApps.length < 30 && ("Android" === t.appType || t.appId === eR) ? e.androidApps.push(t) : e.htmlApps.length < 30 - e.androidApps.length && "Html" === t.appType && t.appId !== eR ? e.htmlApps.push(t) : e.remainingApps.push(t),
         e), {
             androidApps: [],
@@ -15990,7 +16094,7 @@
             remainingApps: [],
             androidStoreApp: null
         })
-          , eC = function(e) {
+          , eN = function(e) {
             let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : Number.POSITIVE_INFINITY
               , n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2]
               , o = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : ""
@@ -16011,11 +16115,11 @@
                         byogGameApp: p,
                         prefetchLink: ""
                     };
-                d = d.filter(e => e.appId !== eT),
+                d = d.filter(e => e.appId !== eA),
                 p = c
             }
             let f = d.slice(0, t);
-            return n && "US" === o && c && !r && !f.some(e => e.appId === eT) && f.push(c),
+            return n && "US" === o && c && !r && !f.some(e => e.appId === eA) && f.push(c),
             {
                 otherApps: f,
                 topApps: [],
@@ -16026,7 +16130,7 @@
                 prefetchLink: a
             }
         }
-          , eN = e => {
+          , eC = e => {
             var t;
             return void 0 === e && (e = null === (t = null === s.default || void 0 === s.default ? void 0 : s.default.appInfo) || void 0 === t ? void 0 : t.packageName),
             "com.nowgg.h5.pub152.app51237" === e
@@ -16395,7 +16499,7 @@
         }
         ;
         function tt(e) {
-            let t = e.headers[C._s] || "";
+            let t = e.headers[N._s] || "";
             return {
                 isQuancastPopupSupportByCountry: !!c.h5A[t]
             }
@@ -16531,7 +16635,7 @@
             return !!t && !!o && "now" === o
         }
         ;
-        function tT() {
+        function tA() {
             var e;
             let t = (0,
             L.Pr)()
@@ -16541,7 +16645,7 @@
               , i = null == t ? void 0 : t.toLowerCase();
             return !(!tv() || t && n && o && (r === i || ty()))
         }
-        let tA = () => {
+        let tT = () => {
             var e, t;
             return M(c.gP5) && localStorage.removeItem(c.gP5),
             null === (t = null === (e = null === s.default || void 0 === s.default ? void 0 : s.default.appInfo) || void 0 === e ? void 0 : e.playFeFeatures) || void 0 === t ? void 0 : t.enableAiBot
@@ -16565,7 +16669,7 @@
             return !("7958" === e || "8272" === e || s.default.isMultiSubscriptionFlow || tI()) && ((null === (t = sessionStorage.getItem(c.R28)) || void 0 === t ? void 0 : t.includes("aptoidesearch")) || t_() || "now.us" === window.location.host || window.autoLaunchByNtm)
         }
         ;
-        function tC() {
+        function tN() {
             try {
                 let e = document.getElementsByClassName("fc-ab-root")[0];
                 if (!e)
@@ -16585,7 +16689,7 @@
                 }
             }
         }
-        let tN = a()( () => "local.testngg.net:8443" === window.location.host)
+        let tC = a()( () => "local.testngg.net:8443" === window.location.host)
           , tx = () => {
             F(void 0, void 0, void 0, function*() {
                 var e;
@@ -16688,7 +16792,7 @@
             }
         }
         let tH = (0,
-        N.kP)("useandom26T198340PX75pxJACKVERYMINDBUSHWOLFGQZbfghjklqvwyzrict", 21);
+        C.kP)("useandom26T198340PX75pxJACKVERYMINDBUSHWOLFGQZbfghjklqvwyzrict", 21);
         function tV(e) {
             let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 21;
             return (e ? "".concat(e, "-") : "") + tH(t)
@@ -16774,49 +16878,55 @@
         let o;
         n.d(t, {
             $f: function() {
-                return R
+                return N
             },
             $x: function() {
-                return A
+                return _
+            },
+            A_: function() {
+                return S
             },
             Ce: function() {
-                return E
+                return A
             },
             Cr: function() {
                 return y
             },
             YY: function() {
-                return T
+                return O
             },
             Z3: function() {
-                return C
-            },
-            ZY: function() {
-                return w
-            },
-            Z_: function() {
-                return L
-            },
-            a5: function() {
-                return P
-            },
-            go: function() {
-                return _
-            },
-            ip: function() {
-                return D
-            },
-            my: function() {
                 return x
             },
+            ZY: function() {
+                return E
+            },
+            Z_: function() {
+                return U
+            },
+            a5: function() {
+                return T
+            },
+            go: function() {
+                return R
+            },
+            ip: function() {
+                return F
+            },
+            my: function() {
+                return L
+            },
             p8: function() {
-                return b
+                return w
+            },
+            q3: function() {
+                return P
             },
             sR: function() {
-                return k
+                return C
             },
             uL: function() {
-                return S
+                return b
             }
         });
         var r = n(77621)
@@ -16859,27 +16969,34 @@
             )
         };
         let y = ["US", "GB", "BR", "AU", "IN", "ID", "VN", "TH", "PH", "CA"]
-          , v = ["US", "GB", "CH"];
-        function S(e) {
+          , v = ["US", "GB", "CH"]
+          , S = () => m(void 0, void 0, void 0, function*() {
+            let e, t;
+            if ((0,
+            u.RG)())
+                try {
+                    let n = yield f.ZP.generatePaymentToken({
+                        implicitGuestLogin: !0
+                    }, {});
+                    if (n.success)
+                        e = n.access_token,
+                        t = "https://sandbox-now.gg";
+                    else
+                        throw Error("Fail generatePaymentToken: ".concat(JSON.stringify(n)))
+                } catch (e) {
+                    throw Error("generatePaymentToken API error: ".concat(e))
+                }
+            else
+                e = localStorage.getItem(g.B1h),
+                t = "https://".concat(r.default.appInfo.authServiceHost);
+            return {
+                accessToken: e,
+                hostUrl: t
+            }
+        });
+        function b(e) {
             return m(this, void 0, void 0, function*() {
-                let t, n;
-                if ((0,
-                u.RG)())
-                    try {
-                        let e = yield f.ZP.generatePaymentToken({
-                            implicitGuestLogin: !0
-                        }, {});
-                        if (e.success)
-                            t = e.access_token,
-                            n = "https://sandbox-now.gg";
-                        else
-                            throw Error("Fail generatePaymentToken: ".concat(JSON.stringify(e)))
-                    } catch (e) {
-                        throw Error("generatePaymentToken API error: ".concat(e))
-                    }
-                else
-                    t = localStorage.getItem(g.B1h),
-                    n = "https://".concat(r.default.appInfo.authServiceHost);
+                let {accessToken: t, hostUrl: n} = yield S();
                 return p.Z.silenceCallback({}, {
                     access_token: t,
                     hostUrl: n,
@@ -16891,7 +17008,7 @@
                 })
             })
         }
-        function b(e) {
+        function w(e) {
             let {productId: t, orderNumber: n, purchaseToken: o, token: a} = e;
             return m(this, void 0, void 0, function*() {
                 return f.ZP.confirmSubscription({}, {
@@ -16930,15 +17047,16 @@
                 })
             })
         }
-        let w = () => (0,
+        let E = e => "nowbux" === e
+          , P = () => (0,
         u.GT)() && !(0,
         r.DJ)() && !r.default.isMultiSubscriptionFlow && "US" === r.default.countryCode && r.default.appInfo.playFeFeatures.enableSubscriptionPass
-          , E = () => {
+          , A = () => {
             var e, t, n, o, i;
-            return (null === (t = null === (e = r.default.appInfo) || void 0 === e ? void 0 : e.playFeFeatures) || void 0 === t ? void 0 : t.enableSubscriptionPass) && r.default.isAppPage && y.includes(r.default.countryCode) && !(null === (i = null === (o = null === (n = r.default.appInfo) || void 0 === n ? void 0 : n.playFeFeatures) || void 0 === o ? void 0 : o.tryAndDownload) || void 0 === i ? void 0 : i.isEnabled) && !(0,
+            return (null === (t = null === (e = r.default.appInfo) || void 0 === e ? void 0 : e.playFeFeatures) || void 0 === t ? void 0 : t.enableSubscriptionPass) && (r.default.isAppPage || r.default.isHomePage) && y.includes(r.default.countryCode) && !(null === (i = null === (o = null === (n = r.default.appInfo) || void 0 === n ? void 0 : n.playFeFeatures) || void 0 === o ? void 0 : o.tryAndDownload) || void 0 === i ? void 0 : i.isEnabled) && !(0,
             r.DJ)()
         }
-          , P = () => {
+          , T = () => {
             var e, t, n;
             return r.default.isAppPage && v.includes(r.default.countryCode) && !(null === (n = null === (t = null === (e = r.default.appInfo) || void 0 === e ? void 0 : e.playFeFeatures) || void 0 === t ? void 0 : t.tryAndDownload) || void 0 === n ? void 0 : n.isEnabled) && !(0,
             r.DJ)() && (0,
@@ -16947,22 +17065,24 @@
             u.J6)()) && !(0,
             u.vn)()
         }
-          , T = () => r.default.appInfo.playFeFeatures.enableSubscriptionPass && (0,
+          , O = () => r.default.appInfo.playFeFeatures.enableSubscriptionPass && (0,
         u.nI)() && y.includes(r.default.countryCode)
-          , A = () => r.default.appInfo.playFeFeatures.enableSubscriptionPass && !(0,
+          , _ = () => r.default.appInfo.playFeFeatures.enableSubscriptionPass && !(0,
         u.nI)() && y.includes(r.default.countryCode)
-          , O = e => {
+          , I = e => {
             let t = new Date(e);
             return "".concat(t.getDate(), "\n  ").concat(u.Yi[t.getMonth()], " ").concat(t.getFullYear(), ", ") + ("".concat((t.getHours() % 12).toString().padStart(2, "0"), ":").concat(t.getMinutes().toString().padStart(2, "0")) + (t.getHours() > 11 ? "PM" : "AM"))
         }
-          , _ = 86400
-          , I = () => {
+          , R = 86400
+          , k = () => {
             i.default.dispatch({
                 type: a.Z.NOWPREMIUM_SUBSCRIPTION_STATUS,
                 payload: {
                     nowPremiumSubscriptionActive: !1,
                     premiumPassType: "",
-                    formattedNpDate: ""
+                    formattedNpDate: "",
+                    showSubscriptionExpiredModal: !(0,
+                    u.T2)() && !r.default.isMultiSubscriptionFlow
                 }
             }),
             (0,
@@ -16981,14 +17101,14 @@
             }))
         }
         ;
-        function R(e, t) {
+        function N(e, t) {
             if (clearInterval(o),
             !e)
                 return;
             let {playPassTimeLeft: n=0} = e || {}
               , {type: l=""} = e || {}
               , c = "";
-            e.expiryAt && (c = O(e.expiryAt)),
+            e.expiryAt && (c = I(e.expiryAt)),
             i.default.dispatch({
                 type: a.Z.NOWPREMIUM_SUBSCRIPTION_STATUS,
                 payload: {
@@ -17019,13 +17139,11 @@
                         activeSubscriptionTimeSecs: n -= 1
                     }
                 }),
-                n < 1 && (I(),
+                n < 1 && (k(),
                 clearInterval(o),
                 (0,
                 u.vn)() ? ((0,
                 d.LK)(),
-                (0,
-                u.xG)(g.wMl.NowPremiumPlanScreen),
                 i.default.dispatch({
                     type: a.Z.UPDATE_PLAY_STATE,
                     payload: {
@@ -17044,12 +17162,12 @@
             }
             , 1e3))
         }
-        function k(e, t, n) {
+        function C(e, t, n) {
             return m(this, void 0, void 0, function*() {
                 try {
                     let o = t || "";
                     if (!o) {
-                        let t = yield S(e);
+                        let t = yield b(e);
                         if (!t.success)
                             throw Error("silenceCallback API Fail: ".concat(JSON.stringify(t)));
                         o = t.data.token
@@ -17067,7 +17185,7 @@
                         if ((null == r ? void 0 : r.length) > 0)
                             for (let e = 0; e < (null == r ? void 0 : r.length); e += 1) {
                                 let {productId: t, orderId: n, purchaseToken: i} = r[e];
-                                s.push(b({
+                                s.push(w({
                                     productId: t,
                                     orderNumber: n,
                                     purchaseToken: i,
@@ -17085,7 +17203,7 @@
                                     paymentInProgress: !1
                                 }
                             }),
-                            R(u.subscriptionInfo),
+                            N(u.subscriptionInfo),
                             n && i.default.dispatch({
                                 type: a.Z.NOWPREMIUM_SUBSCRIPTION_STATUS,
                                 payload: {
@@ -17111,7 +17229,7 @@
                 !1
             })
         }
-        let C = function(e) {
+        let x = function(e) {
             let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : void 0;
             return m(void 0, void 0, void 0, function*() {
                 if (void 0 !== t && i.default.dispatch({
@@ -17130,16 +17248,16 @@
                     return
                 }
                 let {status: n} = e;
-                "pending" === n ? k(e.subscriptionAppId, void 0, !0) : R(e, !0)
+                "pending" === n ? C(e.subscriptionAppId, void 0, !0) : N(e, !0)
             })
         }
-          , N = "NOW_BUX_GRANTED"
-          , x = () => sessionStorage.getItem(N) === r.rs
-          , D = () => {
-            sessionStorage.setItem(N, r.rs)
+          , D = "NOW_BUX_GRANTED"
+          , L = () => sessionStorage.getItem(D) === r.rs
+          , F = () => {
+            sessionStorage.setItem(D, r.rs)
         }
-          , L = () => {
-            sessionStorage.removeItem(N)
+          , U = () => {
+            sessionStorage.removeItem(D)
         }
     },
     68992: function(e, t, n) {
@@ -17226,7 +17344,7 @@
                 return S
             },
             Sg: function() {
-                return T
+                return A
             },
             UY: function() {
                 return y
@@ -17387,7 +17505,7 @@
             b && (clearTimeout(b),
             b = 0)
         }
-          , T = e => {
+          , A = e => {
             setTimeout( () => {
                 if (!w[e.type]) {
                     let t = s.Atx[e.type];
@@ -17406,7 +17524,7 @@
             }
             , 0)
         }
-          , A = !1
+          , T = !1
           , O = (e, t, n, o) => {
             var r, i, s, u, l, d;
             let f = n === c.a.APP_PAGE
@@ -17415,7 +17533,7 @@
               , {play: h, ads: y} = p.default.getState()
               , {isPlayerLoaded: v, gameDisplayed: b, premiumPassType: w} = h || {}
               , {adsEnded: E, rewardedPremiumTimeInSec: P} = y || {}
-              , T = {
+              , A = {
                 elapsedTime: (Date.now() - e) / 1e3,
                 isTabVisible: "visible" === document.visibilityState,
                 intervalDurationSecs: 30,
@@ -17426,14 +17544,14 @@
                 jsHeapSizeLimit: (null === (u = null === (s = null == window ? void 0 : window.performance) || void 0 === s ? void 0 : s.memory) || void 0 === u ? void 0 : u.jsHeapSizeLimit) || -1,
                 usedJSHeapSize: (null === (d = null === (l = null == window ? void 0 : window.performance) || void 0 === l ? void 0 : l.memory) || void 0 === d ? void 0 : d.usedJSHeapSize) || -1
             };
-            T.isGameDisplayed = !t && m(),
-            f && (T.isPlayerLoaded = v,
-            T.playtimeType = P > 0 ? "AdFreeRewarded" : w || "NA"),
+            A.isGameDisplayed = !t && m(),
+            f && (A.isPlayerLoaded = v,
+            A.playtimeType = P > 0 ? "AdFreeRewarded" : w || "NA"),
             v && sessionStorage.setItem("lastUptimeEventTime", Date.now().toString());
-            let O = A ? "Uptime" : "FirstUptime";
-            "2" === o ? S("Uptime".concat(o || ""), T, void 0, n) : (0,
-            a.N7)() || !A ? (A = !0,
-            S("".concat(O).concat(o || ""), T, void 0, n)) : S("LoginScreenUptime", T, void 0)
+            let O = T ? "Uptime" : "FirstUptime";
+            "2" === o ? S("Uptime".concat(o || ""), A, void 0, n) : (0,
+            a.N7)() || !T ? (T = !0,
+            S("".concat(O).concat(o || ""), A, void 0, n)) : S("LoginScreenUptime", A, void 0)
         }
           , _ = function() {
             let e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0]
@@ -17479,7 +17597,7 @@
                 return G
             },
             Hh: function() {
-                return C
+                return N
             },
             Hy: function() {
                 return O
@@ -17494,10 +17612,10 @@
                 return U
             },
             Sr: function() {
-                return A
+                return T
             },
             Us: function() {
-                return T
+                return A
             },
             We: function() {
                 return P
@@ -17820,8 +17938,8 @@
                 utmCampaign: (null === (n = window.sessionStorage) || void 0 === n ? void 0 : n.getItem("utm_campaign")) || E("utm_campaign") || "NA"
             }
         }
-          , T = () => sessionStorage.getItem(s.g0E) !== d
-          , A = () => {
+          , A = () => sessionStorage.getItem(s.g0E) !== d
+          , T = () => {
             sessionStorage.setItem(s.g0E, d)
         }
           , O = () => sessionStorage.getItem(s.CB7) === d
@@ -17832,8 +17950,8 @@
           , R = () => (localStorage.getItem("portalExperiment") && localStorage.removeItem("portalExperiment"),
         sessionStorage.getItem(s.aC0) === d)
           , k = () => sessionStorage.setItem(s.aC0, d)
-          , C = () => sessionStorage.removeItem(s.aC0)
-          , N = {
+          , N = () => sessionStorage.removeItem(s.aC0)
+          , C = {
             gamesList: {
                 topApps: [],
                 topBarApps: [],
@@ -17882,11 +18000,11 @@
                     })
                 }
                 ).catch(t => {
-                    e(N)
+                    e(C)
                 }
                 )
             } catch (t) {
-                e(N)
+                e(C)
             }
         }
         )
@@ -18054,7 +18172,7 @@
                 return R
             },
             TG: function() {
-                return C
+                return N
             },
             Ul: function() {
                 return _
@@ -18063,7 +18181,7 @@
                 return I
             },
             W0: function() {
-                return N
+                return C
             },
             m7: function() {
                 return P
@@ -18150,8 +18268,8 @@
             d.style.height = "".concat(u, "px")) : (d.style.width = "".concat(u, "px"),
             d.style.height = "".concat(a, "px")))
         }
-          , T = function(e, t, n, o, i) {
-            var a, u, p, f, g, h, v, S, E, P, T, A, O, _, I, R, k, C, N, x, D;
+          , A = function(e, t, n, o, i) {
+            var a, u, p, f, g, h, v, S, E, P, A, T, O, _, I, R, k, N, C, x, D;
             let L, F, U, M, j = arguments.length > 5 && void 0 !== arguments[5] ? arguments[5] : c.cj.landscape;
             arguments.length > 6 && arguments[6];
             let B = s.default.getState()
@@ -18166,9 +18284,9 @@
             L = G.current.offsetHeight - 4 - (Y || z > 0 ? 0 : (0,
             l.tq)() ? r.Zzv : r.Qcp),
             (null === (S = null === (v = null === (h = null == B ? void 0 : B.play) || void 0 === h ? void 0 : h.consoleFooterRef) || void 0 === v ? void 0 : v.current) || void 0 === S ? void 0 : S.clientHeight) && !t && (L -= B.play.consoleFooterRef.current.clientHeight),
-            (null === (T = null === (P = null === (E = null == B ? void 0 : B.play) || void 0 === E ? void 0 : E.consoleHeaderRef) || void 0 === P ? void 0 : P.current) || void 0 === T ? void 0 : T.clientHeight) && !t && (L -= B.play.consoleHeaderRef.current.clientHeight)) : (F = 0,
+            (null === (A = null === (P = null === (E = null == B ? void 0 : B.play) || void 0 === E ? void 0 : E.consoleHeaderRef) || void 0 === P ? void 0 : P.current) || void 0 === A ? void 0 : A.clientHeight) && !t && (L -= B.play.consoleHeaderRef.current.clientHeight)) : (F = 0,
             L = 0) : (0,
-            l.tq)() && j === c.cj.landscape ? (F = (null === (A = null == G ? void 0 : G.current) || void 0 === A ? void 0 : A.offsetWidth) || 0,
+            l.tq)() && j === c.cj.landscape ? (F = (null === (T = null == G ? void 0 : G.current) || void 0 === T ? void 0 : T.offsetWidth) || 0,
             L = (null === (O = null == G ? void 0 : G.current) || void 0 === O ? void 0 : O.offsetHeight) || 0) : ((0,
             l.tq)() && j === c.cj.portrait ? window.innerWidth > window.innerHeight ? (L = window.innerWidth,
             F = window.innerHeight) : (L = window.innerHeight,
@@ -18177,6 +18295,8 @@
             F = window.innerWidth - m(t, e, j)),
             L -= K + (Y ? 24 : 0)),
             V && V.current && (L -= r.Fbl),
+            !(0,
+            l.nI)() && B.play.isAnnouncementBarVisible && (L -= 40),
             (0,
             l.tq)() && j === c.cj.portrait && q && !(0,
             l.RZ)() && H && (null == H ? void 0 : H.current) && (L -= H.current.offsetHeight),
@@ -18234,28 +18354,42 @@
             l.tq)() && ((0,
             l.uU)() || (0,
             l.Tt)()) && !t || (0,
-            l.zc)())
-                return F = U,
+            l.zc)()) {
+                if (F = U,
                 L = M,
-                (null == Z ? void 0 : Z.current) && (Z.current.style.top = "50%",
-                Z.current.style.left = "50%",
-                Z.current.style.position = "absolute",
-                Z.current.style.objectFit = "cover",
-                j === c.cj.portrait ? Z.current.style.transformOrigin = "" : Z.current.style.transformOrigin = "0 0",
-                Z.current.style.transform = "",
-                Z.current.style.height = "".concat(L, "px"),
-                Z.current.style.width = "".concat(F, "px"),
-                V && V.current && (Z.current.style.top = "calc(50% + ".concat(r.Fbl / 2, "px)"))),
-                {
+                null == Z ? void 0 : Z.current) {
+                    if (Z.current.style.top = "50%",
+                    Z.current.style.left = "50%",
+                    Z.current.style.position = "absolute",
+                    Z.current.style.objectFit = "cover",
+                    j === c.cj.portrait ? Z.current.style.transformOrigin = "" : Z.current.style.transformOrigin = "0 0",
+                    Z.current.style.transform = "",
+                    Z.current.style.height = "".concat(L, "px"),
+                    Z.current.style.width = "".concat(F, "px"),
+                    !(0,
+                    l.nI)() && B.play.isAnnouncementBarVisible) {
+                        let e = 20;
+                        V && V.current && (e += r.Fbl / 2),
+                        Z.current.style.top = "calc(50% + ".concat(e, "px)")
+                    } else
+                        V && V.current && (Z.current.style.top = "calc(50% + ".concat(r.Fbl / 2, "px)"))
+                }
+                return {
                     width: F,
                     height: L,
                     arWidth: U,
                     arHeight: M,
                     styleVideo: !1
-                };
-            if (d.default.isMultiPanelAdsEnabled && (null == Z ? void 0 : Z.current)) {
-                let e = (null === (C = null === (k = null === (R = null == B ? void 0 : B.play) || void 0 === R ? void 0 : R.consoleHeaderRef) || void 0 === k ? void 0 : k.current) || void 0 === C ? void 0 : C.clientHeight) || 0
-                  , t = (null === (D = null === (x = null === (N = null == B ? void 0 : B.play) || void 0 === N ? void 0 : N.consoleFooterRef) || void 0 === x ? void 0 : x.current) || void 0 === D ? void 0 : D.clientHeight) || 0;
+                }
+            }
+            if (!(0,
+            l.nI)() && B.play.isAnnouncementBarVisible && (null == Z ? void 0 : Z.current)) {
+                let e = 20;
+                V && V.current && (e += r.Fbl / 2),
+                Z.current.style.top = "calc(50% + ".concat(e, "px)")
+            } else if (d.default.isMultiPanelAdsEnabled && (null == Z ? void 0 : Z.current)) {
+                let e = (null === (N = null === (k = null === (R = null == B ? void 0 : B.play) || void 0 === R ? void 0 : R.consoleHeaderRef) || void 0 === k ? void 0 : k.current) || void 0 === N ? void 0 : N.clientHeight) || 0
+                  , t = (null === (D = null === (x = null === (C = null == B ? void 0 : B.play) || void 0 === C ? void 0 : C.consoleFooterRef) || void 0 === x ? void 0 : x.current) || void 0 === D ? void 0 : D.clientHeight) || 0;
                 j === c.cj.portrait && (Z.current.style.top = "92px !important"),
                 Z.current.style.top = "calc(50% - ".concat(Y || z > 0 ? (0,
                 l.nI)() ? 58 : 0 : (t - e) / 2, "px)")
@@ -18265,7 +18399,7 @@
                 width: F
             }
         }
-          , A = (e, t) => {
+          , T = (e, t) => {
             if (e && t) {
                 let n = "screen::size::".concat(e, "::").concat(t);
                 (0,
@@ -18286,7 +18420,7 @@
             d.DJ)())
                 return;
             let {skyScraperRef1: y, skyScraperRef2: v, leaderBoardRef1: S, leaderBoardRef2: b, inGameAd: w, showInGameAds: E, imaError: P, adBlocker: O} = e.ads
-              , {height: _, width: I, styleVideo: R=!0, arHeight: k, arWidth: C} = T(w, h, P, O, t, a, null === d.default || void 0 === d.default ? void 0 : d.default.isAppPage);
+              , {height: _, width: I, styleVideo: R=!0, arHeight: k, arWidth: N} = A(w, h, P, O, t, a, null === d.default || void 0 === d.default ? void 0 : d.default.isAppPage);
             if (w && E) {
                 if (w === r.Va_)
                     S && (null == S ? void 0 : S.current) && b && (null == b ? void 0 : b.current) && u && u.current && (S.current.style.top = "2px",
@@ -18310,18 +18444,18 @@
             }
             n && n.current && R && (n.current.style.width = "".concat(_, "px"),
             n.current.style.height = "".concat(I, "px")),
-            a === c.cj.landscape && (null == n ? void 0 : n.current) ? (n.current.style.height = "".concat(C, "px"),
+            a === c.cj.landscape && (null == n ? void 0 : n.current) ? (n.current.style.height = "".concat(N, "px"),
             n.current.style.width = "".concat(k, "px")) : (null == n ? void 0 : n.current) && a === c.cj.portrait && (n.current.style.height = "".concat((0,
             l.Tt)() ? k : _, "px"),
             n.current.style.width = "".concat((0,
-            l.Tt)() ? C : I, "px")),
+            l.Tt)() ? N : I, "px")),
             f.fl.splitScreenSize = (0,
             g.Z)(I * f.fl.splitScreenPerc, 2),
-            (o || m) && (A(I, _),
+            (o || m) && (T(I, _),
             i.ZP.initialized && (i.ZP.setDimensions(I, _, f.fl.splitScreenPerc),
             i.ZP.updateDimensions()));
-            let N = new Event("resizeDone");
-            window.dispatchEvent(N)
+            let C = new Event("resizeDone");
+            window.dispatchEvent(C)
         }
           , I = e => {
             let t = parseInt(e, 10)
@@ -18366,16 +18500,16 @@
             }
         }
           , k = e => +(Math.round(100 * e) / 100).toFixed(2)
-          , C = () => {
+          , N = () => {
             let e = k(.01 * Math.min(window.innerHeight, window.outerHeight || 1 / 0))
               , t = k(.01 * Math.min(window.innerWidth, window.outerWidth || 1 / 0));
             document.documentElement.style.setProperty("--vh", "".concat(e, "px")),
             document.documentElement.style.setProperty("--vw", "".concat(t, "px"))
         }
-          , N = e => {
+          , C = e => {
             clearInterval(o),
             o = setTimeout( () => {
-                if (C(),
+                if (N(),
                 d.default.isHomePage)
                     return;
                 let {isPlayerLoaded: e, duplicateTab: t} = s.default.getState().play;
@@ -18734,15 +18868,15 @@
                   , w = "Object"
                   , E = c && u.java ? "JavaPackage" : m(u.java)
                   , P = /\bJava/.test(E) && u.java
-                  , T = P && m(u.environment) == (c ? w : "Environment")
-                  , A = u.document || {}
+                  , A = P && m(u.environment) == (c ? w : "Environment")
+                  , T = u.document || {}
                   , O = u.operamini || u.opera
                   , _ = l.test(_ = c && O ? O["[[Class]]"] : m(O)) ? _ : O = null
                   , I = t
                   , R = []
                   , k = null
-                  , C = t == f
-                  , N = C && O && "function" == typeof O.version && O.version()
+                  , N = t == f
+                  , C = N && O && "function" == typeof O.version && O.version()
                   , x = v([{
                     label: "EdgeHTML",
                     pattern: "Edge"
@@ -18959,36 +19093,36 @@
                 /Accelerated *= *true/i.test(t) && R.unshift("accelerated")) : "UC Browser" == D && /\bUCWEB\b/.test(t) ? R.push("speed mode") : "PaleMoon" == D && (a = /\bFirefox\/([\d.]+)\b/.exec(t)) ? R.push("identifying as Firefox " + a[1]) : "Firefox" == D && (a = /\b(Mobile|Tablet|TV)\b/i.exec(t)) ? (U || (U = "Firefox OS"),
                 L || (L = a[1])) : !D || (a = !/\bMinefield\b/i.test(t) && /\b(?:Firefox|Safari)\b/.exec(D)) ? (D && !L && /[\/,]|^[^(]+?\)/.test(t.slice(t.indexOf(a + "/") + 8)) && (D = null),
                 (a = L || F || U) && (L || F || /\b(?:Android|Symbian OS|Tablet OS|webOS)\b/.test(U)) && (D = /[a-z]+(?: Hat)?/i.exec(/\bAndroid\b/.test(U) ? U : a) + " Browser")) : "Electron" == D && (a = (/\bChrome\/([\d.]+)\b/.exec(t) || 0)[1]) && R.push("Chromium " + a),
-                N || (N = j(["(?:Cloud9|CriOS|CrMo|Edge|Edg|EdgA|EdgiOS|FxiOS|HeadlessChrome|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$)|UCBrowser|YaBrowser)", "Version", y(D), "(?:Firefox|Minefield|NetFront)"])),
-                (a = "iCab" == x && parseFloat(N) > 3 && "WebKit" || /\bOpera\b/.test(D) && (/\bOPR\b/.test(t) ? "Blink" : "Presto") || /\b(?:Midori|Nook|Safari)\b/i.test(t) && !/^(?:Trident|EdgeHTML)$/.test(x) && "WebKit" || !x && /\bMSIE\b/i.test(t) && ("Mac OS" == U ? "Tasman" : "Trident") || "WebKit" == x && /\bPlayStation\b(?! Vita\b)/i.test(D) && "NetFront") && (x = [a]),
+                C || (C = j(["(?:Cloud9|CriOS|CrMo|Edge|Edg|EdgA|EdgiOS|FxiOS|HeadlessChrome|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$)|UCBrowser|YaBrowser)", "Version", y(D), "(?:Firefox|Minefield|NetFront)"])),
+                (a = "iCab" == x && parseFloat(C) > 3 && "WebKit" || /\bOpera\b/.test(D) && (/\bOPR\b/.test(t) ? "Blink" : "Presto") || /\b(?:Midori|Nook|Safari)\b/i.test(t) && !/^(?:Trident|EdgeHTML)$/.test(x) && "WebKit" || !x && /\bMSIE\b/i.test(t) && ("Mac OS" == U ? "Tasman" : "Trident") || "WebKit" == x && /\bPlayStation\b(?! Vita\b)/i.test(D) && "NetFront") && (x = [a]),
                 "IE" == D && (a = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(t) || 0)[1]) ? (D += " Mobile",
                 U = "Windows Phone " + (/\+$/.test(a) ? a : a + ".x"),
                 R.unshift("desktop mode")) : /\bWPDesktop\b/i.test(t) ? (D = "IE Mobile",
                 U = "Windows Phone 8.x",
                 R.unshift("desktop mode"),
-                N || (N = (/\brv:([\d.]+)/.exec(t) || 0)[1])) : "IE" != D && "Trident" == x && (a = /\brv:([\d.]+)/.exec(t)) && (D && R.push("identifying as " + D + (N ? " " + N : "")),
+                C || (C = (/\brv:([\d.]+)/.exec(t) || 0)[1])) : "IE" != D && "Trident" == x && (a = /\brv:([\d.]+)/.exec(t)) && (D && R.push("identifying as " + D + (C ? " " + C : "")),
                 D = "IE",
-                N = a[1]),
-                C) {
+                C = a[1]),
+                N) {
                     if (o = "global",
                     r = null != (n = u) ? typeof n[o] : "number",
                     /^(?:boolean|number|string|undefined)$/.test(r) || "object" == r && !n[o])
                         m(a = u.runtime) == (c ? w : "ScriptBridgingProxyObject") ? (D = "Adobe AIR",
                         U = a.flash.system.Capabilities.os) : m(a = u.phantom) == (c ? w : "RuntimeObject") ? (D = "PhantomJS",
-                        N = (a = a.version || null) && a.major + "." + a.minor + "." + a.patch) : "number" == typeof A.documentMode && (a = /\bTrident\/(\d+)/i.exec(t)) ? (N = [N, A.documentMode],
-                        (a = +a[1] + 4) != N[1] && (R.push("IE " + N[1] + " mode"),
+                        C = (a = a.version || null) && a.major + "." + a.minor + "." + a.patch) : "number" == typeof T.documentMode && (a = /\bTrident\/(\d+)/i.exec(t)) ? (C = [C, T.documentMode],
+                        (a = +a[1] + 4) != C[1] && (R.push("IE " + C[1] + " mode"),
                         x && (x[1] = ""),
-                        N[1] = a),
-                        N = "IE" == D ? String(N[1].toFixed(1)) : N[0]) : "number" == typeof A.documentMode && /^(?:Chrome|Firefox)\b/.test(D) && (R.push("masking as " + D + " " + N),
+                        C[1] = a),
+                        C = "IE" == D ? String(C[1].toFixed(1)) : C[0]) : "number" == typeof T.documentMode && /^(?:Chrome|Firefox)\b/.test(D) && (R.push("masking as " + D + " " + C),
                         D = "IE",
-                        N = "11.0",
+                        C = "11.0",
                         x = ["Trident"],
                         U = "Windows");
                     else if (P && (I = (a = P.lang.System).getProperty("os.arch"),
                     U = U || a.getProperty("os.name") + " " + a.getProperty("os.version")),
-                    T) {
+                    A) {
                         try {
-                            N = u.require("ringo/engine").version.join("."),
+                            C = u.require("ringo/engine").version.join("."),
                             D = "RingoJS"
                         } catch (e) {
                             (a = u.system) && a.global.system == u.system && (D = "Narwhal",
@@ -18998,64 +19132,64 @@
                     } else
                         "object" == typeof u.process && !u.process.browser && (a = u.process) && ("object" == typeof a.versions && ("string" == typeof a.versions.electron ? (R.push("Node " + a.versions.node),
                         D = "Electron",
-                        N = a.versions.electron) : "string" == typeof a.versions.nw && (R.push("Chromium " + N, "Node " + a.versions.node),
+                        C = a.versions.electron) : "string" == typeof a.versions.nw && (R.push("Chromium " + C, "Node " + a.versions.node),
                         D = "NW.js",
-                        N = a.versions.nw)),
+                        C = a.versions.nw)),
                         D || (D = "Node.js",
                         I = a.arch,
                         U = a.platform,
-                        N = (N = /[\d.]+/.exec(a.version)) ? N[0] : null));
+                        C = (C = /[\d.]+/.exec(a.version)) ? C[0] : null));
                     U = U && g(U)
                 }
-                if (N && (a = /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(N) || /(?:alpha|beta)(?: ?\d)?/i.exec(t + ";" + (C && d.appMinorVersion)) || /\bMinefield\b/i.test(t) && "a") && (k = /b/i.test(a) ? "beta" : "alpha",
-                N = N.replace(RegExp(a + "\\+?$"), "") + ("beta" == k ? P ? "b" : "β" : P ? "a" : "α") + (/\d+\+?/.exec(a) || "")),
+                if (C && (a = /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(C) || /(?:alpha|beta)(?: ?\d)?/i.exec(t + ";" + (N && d.appMinorVersion)) || /\bMinefield\b/i.test(t) && "a") && (k = /b/i.test(a) ? "beta" : "alpha",
+                C = C.replace(RegExp(a + "\\+?$"), "") + ("beta" == k ? P ? "b" : "β" : P ? "a" : "α") + (/\d+\+?/.exec(a) || "")),
                 "Fennec" == D || "Firefox" == D && /\b(?:Android|Firefox OS|KaiOS)\b/.test(U))
                     D = "Firefox Mobile";
-                else if ("Maxthon" == D && N)
-                    N = N.replace(/\.[\d.]+/, ".x");
+                else if ("Maxthon" == D && C)
+                    C = C.replace(/\.[\d.]+/, ".x");
                 else if (/\bXbox\b/i.test(L))
                     "Xbox 360" == L && (U = null),
                     "Xbox 360" == L && /\bIEMobile\b/.test(t) && R.unshift("mobile mode");
                 else if ((/^(?:Chrome|IE|Opera)$/.test(D) || D && !L && !/Browser|Mobi/.test(D)) && ("Windows CE" == U || /Mobi/i.test(t)))
                     D += " Mobile";
-                else if ("IE" == D && C)
+                else if ("IE" == D && N)
                     try {
                         null === u.external && R.unshift("platform preview")
                     } catch (e) {
                         R.unshift("embedded")
                     }
                 else
-                    (/\bBlackBerry\b/.test(L) || /\bBB10\b/.test(t)) && (a = (RegExp(L.replace(/ +/g, " *") + "/([.\\d]+)", "i").exec(t) || 0)[1] || N) ? (U = ((a = [a, /BB10/.test(t)])[1] ? (L = null,
+                    (/\bBlackBerry\b/.test(L) || /\bBB10\b/.test(t)) && (a = (RegExp(L.replace(/ +/g, " *") + "/([.\\d]+)", "i").exec(t) || 0)[1] || C) ? (U = ((a = [a, /BB10/.test(t)])[1] ? (L = null,
                     F = "BlackBerry") : "Device Software") + " " + a[0],
-                    N = null) : this != h && "Wii" != L && (C && O || /Opera/.test(D) && /\b(?:MSIE|Firefox)\b/i.test(t) || "Firefox" == D && /\bOS X (?:\d+\.){2,}/.test(U) || "IE" == D && (U && !/^Win/.test(U) && N > 5.5 || /\bWindows XP\b/.test(U) && N > 8 || 8 == N && !/\bTrident\b/.test(t))) && !l.test(a = e.call(h, t.replace(l, "") + ";")) && a.name && (a = "ing as " + a.name + ((a = a.version) ? " " + a : ""),
+                    C = null) : this != h && "Wii" != L && (N && O || /Opera/.test(D) && /\b(?:MSIE|Firefox)\b/i.test(t) || "Firefox" == D && /\bOS X (?:\d+\.){2,}/.test(U) || "IE" == D && (U && !/^Win/.test(U) && C > 5.5 || /\bWindows XP\b/.test(U) && C > 8 || 8 == C && !/\bTrident\b/.test(t))) && !l.test(a = e.call(h, t.replace(l, "") + ";")) && a.name && (a = "ing as " + a.name + ((a = a.version) ? " " + a : ""),
                     l.test(D) ? (/\bIE\b/.test(a) && "Mac OS" == U && (U = null),
                     a = "identify" + a) : (a = "mask" + a,
                     D = _ ? g(_.replace(/([a-z])([A-Z])/g, "$1 $2")) : "Opera",
                     /\bIE\b/.test(a) && (U = null),
-                    C || (N = null)),
+                    N || (C = null)),
                     x = ["Presto"],
                     R.push(a));
                 (a = (/\bAppleWebKit\/([\d.]+\+?)/i.exec(t) || 0)[1]) && (a = [parseFloat(a.replace(/\.(\d)$/, ".0$1")), a],
                 "Safari" == D && "+" == a[1].slice(-1) ? (D = "WebKit Nightly",
                 k = "alpha",
-                N = a[1].slice(0, -1)) : (N == a[1] || N == (a[2] = (/\bSafari\/([\d.]+\+?)/i.exec(t) || 0)[1])) && (N = null),
+                C = a[1].slice(0, -1)) : (C == a[1] || C == (a[2] = (/\bSafari\/([\d.]+\+?)/i.exec(t) || 0)[1])) && (C = null),
                 a[1] = (/\b(?:Headless)?Chrome\/([\d.]+)/i.exec(t) || 0)[1],
                 537.36 == a[0] && 537.36 == a[2] && parseFloat(a[1]) >= 28 && "WebKit" == x && (x = ["Blink"]),
-                C && (b || a[1]) ? (x && (x[1] = "like Chrome"),
+                N && (b || a[1]) ? (x && (x[1] = "like Chrome"),
                 a = a[1] || ((a = a[0]) < 530 ? 1 : a < 532 ? 2 : a < 532.05 ? 3 : a < 533 ? 4 : a < 534.03 ? 5 : a < 534.07 ? 6 : a < 534.1 ? 7 : a < 534.13 ? 8 : a < 534.16 ? 9 : a < 534.24 ? 10 : a < 534.3 ? 11 : a < 535.01 ? 12 : a < 535.02 ? "13+" : a < 535.07 ? 15 : a < 535.11 ? 16 : a < 535.19 ? 17 : a < 536.05 ? 18 : a < 536.1 ? 19 : a < 537.01 ? 20 : a < 537.11 ? "21+" : a < 537.13 ? 23 : a < 537.18 ? 24 : a < 537.24 ? 25 : a < 537.36 ? 26 : "Blink" != x ? "27" : "28")) : (x && (x[1] = "like Safari"),
                 a = (a = a[0]) < 400 ? 1 : a < 500 ? 2 : a < 526 ? 3 : a < 533 ? 4 : a < 534 ? "4+" : a < 535 ? 5 : a < 537 ? 6 : a < 538 ? 7 : a < 601 ? 8 : a < 602 ? 9 : a < 604 ? 10 : a < 606 ? 11 : a < 608 ? 12 : "12"),
                 x && (x[1] += " " + (a += "number" == typeof a ? ".x" : /[.+]/.test(a) ? "" : "+")),
-                "Safari" == D && (!N || parseInt(N) > 45) ? N = a : "Chrome" == D && /\bHeadlessChrome/i.test(t) && R.unshift("headless")),
+                "Safari" == D && (!C || parseInt(C) > 45) ? C = a : "Chrome" == D && /\bHeadlessChrome/i.test(t) && R.unshift("headless")),
                 "Opera" == D && (a = /\bzbov|zvav$/.exec(U)) ? (D += " ",
                 R.unshift("desktop mode"),
                 "zvav" == a ? (D += "Mini",
-                N = null) : D += "Mobile",
+                C = null) : D += "Mobile",
                 U = U.replace(RegExp(" *" + a + "$"), "")) : "Safari" == D && /\bChrome\b/.exec(x && x[1]) ? (R.unshift("desktop mode"),
                 D = "Chrome Mobile",
-                N = null,
+                C = null,
                 /\bOS X\b/.test(U) ? (F = "Apple",
-                U = "iOS 4.3+") : U = null) : /\bSRWare Iron\b/.test(D) && !N && (N = j("Chrome")),
-                N && 0 == N.indexOf(a = /[\d.]+$/.exec(U)) && t.indexOf("/" + a + "-") > -1 && (U = S(U.replace(a, ""))),
+                U = "iOS 4.3+") : U = null) : /\bSRWare Iron\b/.test(D) && !C && (C = j("Chrome")),
+                C && 0 == C.indexOf(a = /[\d.]+$/.exec(U)) && t.indexOf("/" + a + "-") > -1 && (U = S(U.replace(a, ""))),
                 U && -1 != U.indexOf(D) && !RegExp(D + " OS").test(U) && (U = U.replace(RegExp(" *" + y(D) + " *"), "")),
                 x && !/\b(?:Avant|Nook)\b/.test(D) && (/Browser|Lunascape|Maxthon/.test(D) || "Safari" != D && /^iOS/.test(U) && /\bSafari\b/.test(x[1]) || /^(?:Adobe|Arora|Breach|Midori|Opera|Phantom|Rekonq|Rock|Samsung Internet|Sleipnir|SRWare Iron|Vivaldi|Web)/.test(D) && x[1]) && (a = x[x.length - 1]) && R.push(a),
                 R.length && (R = ["(" + R.join("; ") + ")"]),
@@ -19073,7 +19207,7 @@
                 }),
                 (a = /\b(?:AMD|IA|Win|WOW|x86_|x)64\b/i.exec(I)) && !/\bi686\b/i.test(I) ? (U && (U.architecture = 64,
                 U.family = U.family.replace(RegExp(" *" + a), "")),
-                D && (/\bWOW64\b/i.test(t) || C && /\w(?:86|32)$/.test(d.cpuClass || d.platform) && !/\bWin64; x64\b/i.test(t)) && R.unshift("32-bit")) : U && /^OS X/.test(U.family) && "Chrome" == D && parseFloat(N) >= 39 && (U.architecture = 64),
+                D && (/\bWOW64\b/i.test(t) || N && /\w(?:86|32)$/.test(d.cpuClass || d.platform) && !/\bWin64; x64\b/i.test(t)) && R.unshift("32-bit")) : U && /^OS X/.test(U.family) && "Chrome" == D && parseFloat(C) >= 39 && (U.architecture = 64),
                 t || (t = null);
                 var B = {};
                 return B.description = t,
@@ -19083,7 +19217,7 @@
                 B.prerelease = k,
                 B.product = L,
                 B.ua = t,
-                B.version = D && N,
+                B.version = D && C,
                 B.os = U || {
                     architecture: null,
                     family: null,
@@ -19097,7 +19231,7 @@
                     return this.description || ""
                 }
                 ,
-                B.version && R.unshift(N),
+                B.version && R.unshift(C),
                 B.name && R.unshift(D),
                 U && D && !(U == String(U).split(" ")[0] && (U == D.split(" ")[0] || L)) && R.push(L ? "(" + U + ")" : "on " + U),
                 R.length && (B.description = R.join(" ")),
@@ -19310,7 +19444,7 @@
             function P() {
                 return h.getFixedT(null, "fallback" === v.nsMode ? w : w[0], b)
             }
-            var T = (t = (0,
+            var A = (t = (0,
             s.useState)(P),
             (0,
             o.Z)(t) || function(e, t) {
@@ -19339,8 +19473,8 @@
             }(t, 2) || (0,
             r.Z)(t, 2) || (0,
             i.Z)())
-              , A = T[0]
-              , O = T[1]
+              , T = A[0]
+              , O = A[1]
               , _ = w.join()
               , I = p(_)
               , R = (0,
@@ -19377,12 +19511,12 @@
                 R.current && !k.current && O(P),
                 k.current = !1
             }, [h, b]);
-            var C = [A, h, E];
-            if (C.t = A,
-            C.i18n = h,
-            C.ready = E,
+            var N = [T, h, E];
+            if (N.t = T,
+            N.i18n = h,
+            N.ready = E,
             E || !E && !S)
-                return C;
+                return N;
             throw new Promise(function(e) {
                 (0,
                 l.DC)(h, w, function() {
@@ -20197,7 +20331,7 @@
                     if (45 === a.charCodeAt(8))
                         return "-webkit-" + a + a;
                     if (0 < a.indexOf("image-set(", 11))
-                        return a.replace(A, "$1-webkit-$2") + a;
+                        return a.replace(T, "$1-webkit-$2") + a;
                     break;
                 case 932:
                     if (45 === a.charCodeAt(4))
@@ -20269,7 +20403,7 @@
                         break;
                 case 931:
                 case 953:
-                    if (!0 === T.test(e))
+                    if (!0 === A.test(e))
                         return 115 === (u = e.substring(e.indexOf(":") + 1)).charCodeAt(0) ? o(e.replace("stretch", "fill-available"), t, n, i).replace(":fill-available", ":stretch") : a.replace(u, "-webkit-" + u) + a.replace(u, "-moz-" + u.replace("fill-", "")) + a;
                     break;
                 case 962:
@@ -20290,8 +20424,8 @@
                 return n !== t + ";" ? n.replace(w, " or ($1)").substring(4) : "(" + t + ")"
             }
             function a(e, t, n, o, r, i, a, s, l, c) {
-                for (var d, p = 0, f = t; p < N; ++p)
-                    switch (d = C[p].call(u, e, f, n, o, r, i, a, s, l, c)) {
+                for (var d, p = 0, f = t; p < C; ++p)
+                    switch (d = N[p].call(u, e, f, n, o, r, i, a, s, l, c)) {
                     case void 0:
                     case !1:
                     case !0:
@@ -20313,18 +20447,18 @@
                 var s = e;
                 if (33 > s.charCodeAt(0) && (s = s.trim()),
                 s = [s],
-                0 < N) {
+                0 < C) {
                     var u = a(-1, n, s, s, _, O, 0, 0, 0, 0);
                     void 0 !== u && "string" == typeof u && (n = u)
                 }
                 var d = function e(n, s, u, d, p) {
-                    for (var f, g, h, S, w, E = 0, P = 0, T = 0, A = 0, C = 0, x = 0, L = h = f = 0, F = 0, U = 0, M = 0, j = 0, B = u.length, G = B - 1, Z = "", W = "", H = "", V = ""; F < B; ) {
+                    for (var f, g, h, S, w, E = 0, P = 0, A = 0, T = 0, N = 0, x = 0, L = h = f = 0, F = 0, U = 0, M = 0, j = 0, B = u.length, G = B - 1, Z = "", W = "", H = "", V = ""; F < B; ) {
                         if (g = u.charCodeAt(F),
-                        F === G && 0 !== P + A + T + E && (0 !== P && (g = 47 === P ? 10 : 47),
-                        A = T = E = 0,
+                        F === G && 0 !== P + T + A + E && (0 !== P && (g = 47 === P ? 10 : 47),
+                        T = A = E = 0,
                         B++,
                         G++),
-                        0 === P + A + T + E) {
+                        0 === P + T + A + E) {
                             if (F === G && (0 < U && (Z = Z.replace(c, "")),
                             0 < Z.trim().length)) {
                                 switch (g) {
@@ -20402,7 +20536,7 @@
                                         U = k
                                     }
                                     if (j = (h = e(s, U, h, g, p + 1)).length,
-                                    0 < N && (w = a(3, h, U = t(k, Z, M), s, _, O, j, g, p, d),
+                                    0 < C && (w = a(3, h, U = t(k, Z, M), s, _, O, j, g, p, d),
                                     Z = U.join(""),
                                     void 0 !== w && 0 === (j = (h = w.trim()).length) && (g = 0,
                                     h = "")),
@@ -20437,7 +20571,7 @@
                             case 59:
                                 if (1 < (j = (Z = (0 < U ? Z.replace(c, "") : Z).trim()).length))
                                     switch (0 === L && (45 === (f = Z.charCodeAt(0)) || 96 < f && 123 > f) && (j = (Z = Z.replace(" ", ":")).length),
-                                    0 < N && void 0 !== (w = a(1, Z, s, n, _, O, W.length, d, p, d)) && 0 === (j = (Z = w.trim()).length) && (Z = "\0\0"),
+                                    0 < C && void 0 !== (w = a(1, Z, s, n, _, O, W.length, d, p, d)) && 0 === (j = (Z = w.trim()).length) && (Z = "\0\0"),
                                     f = Z.charCodeAt(0),
                                     g = Z.charCodeAt(1),
                                     f) {
@@ -20461,13 +20595,13 @@
                         case 10:
                             47 === P ? P = 0 : 0 === 1 + f && 107 !== d && 0 < Z.length && (U = 1,
                             Z += "\0"),
-                            0 < N * D && a(0, Z, s, n, _, O, W.length, d, p, d),
+                            0 < C * D && a(0, Z, s, n, _, O, W.length, d, p, d),
                             O = 1,
                             _++;
                             break;
                         case 59:
                         case 125:
-                            if (0 === P + A + T + E) {
+                            if (0 === P + T + A + E) {
                                 O++;
                                 break
                             }
@@ -20477,8 +20611,8 @@
                             g) {
                             case 9:
                             case 32:
-                                if (0 === A + E + P)
-                                    switch (C) {
+                                if (0 === T + E + P)
+                                    switch (N) {
                                     case 44:
                                     case 58:
                                     case 9:
@@ -20499,48 +20633,48 @@
                                 S = "\\v";
                                 break;
                             case 38:
-                                0 === A + P + E && (U = M = 1,
+                                0 === T + P + E && (U = M = 1,
                                 S = "\f" + S);
                                 break;
                             case 108:
-                                if (0 === A + P + E + I && 0 < L)
+                                if (0 === T + P + E + I && 0 < L)
                                     switch (F - L) {
                                     case 2:
-                                        112 === C && 58 === u.charCodeAt(F - 3) && (I = C);
+                                        112 === N && 58 === u.charCodeAt(F - 3) && (I = N);
                                     case 8:
                                         111 === x && (I = x)
                                     }
                                 break;
                             case 58:
-                                0 === A + P + E && (L = F);
+                                0 === T + P + E && (L = F);
                                 break;
                             case 44:
-                                0 === P + T + A + E && (U = 1,
+                                0 === P + A + T + E && (U = 1,
                                 S += "\r");
                                 break;
                             case 34:
                             case 39:
-                                0 === P && (A = A === g ? 0 : 0 === A ? g : A);
+                                0 === P && (T = T === g ? 0 : 0 === T ? g : T);
                                 break;
                             case 91:
-                                0 === A + P + T && E++;
+                                0 === T + P + A && E++;
                                 break;
                             case 93:
-                                0 === A + P + T && E--;
+                                0 === T + P + A && E--;
                                 break;
                             case 41:
-                                0 === A + P + E && T--;
+                                0 === T + P + E && A--;
                                 break;
                             case 40:
-                                0 === A + P + E && (0 === f && (2 * C + 3 * x == 533 || (f = 1)),
-                                T++);
+                                0 === T + P + E && (0 === f && (2 * N + 3 * x == 533 || (f = 1)),
+                                A++);
                                 break;
                             case 64:
-                                0 === P + T + A + E + L + h && (h = 1);
+                                0 === P + A + T + E + L + h && (h = 1);
                                 break;
                             case 42:
                             case 47:
-                                if (!(0 < A + E + T))
+                                if (!(0 < T + E + A))
                                     switch (P) {
                                     case 0:
                                         switch (2 * g + 3 * u.charCodeAt(F + 1)) {
@@ -20553,20 +20687,20 @@
                                         }
                                         break;
                                     case 42:
-                                        47 === g && 42 === C && j + 2 !== F && (33 === u.charCodeAt(j + 2) && (W += u.substring(j, F + 1)),
+                                        47 === g && 42 === N && j + 2 !== F && (33 === u.charCodeAt(j + 2) && (W += u.substring(j, F + 1)),
                                         S = "",
                                         P = 0)
                                     }
                             }
                             0 === P && (Z += S)
                         }
-                        x = C,
-                        C = g,
+                        x = N,
+                        N = g,
                         F++
                     }
                     if (0 < (j = W.length)) {
                         if (U = s,
-                        0 < N && void 0 !== (w = a(2, W, U, n, _, O, j, d, p, d)) && 0 === (W = w).length)
+                        0 < C && void 0 !== (w = a(2, W, U, n, _, O, j, d, p, d)) && 0 === (W = w).length)
                             return V + W + H;
                         if (W = U.join(",") + "{" + W + "}",
                         0 != R * I) {
@@ -20583,7 +20717,7 @@
                     }
                     return V + W + H
                 }(k, s, n, 0, 0);
-                return 0 < N && void 0 !== (u = a(-2, d, s, s, _, O, d.length, 0, 0, 0)) && (d = u),
+                return 0 < C && void 0 !== (u = a(-2, d, s, s, _, O, d.length, 0, 0, 0)) && (d = u),
                 I = 0,
                 O = _ = 1,
                 d
@@ -20603,26 +20737,26 @@
               , w = /([\s\S]*?);/g
               , E = /-self|flex-/g
               , P = /[^]*?(:[rp][el]a[\w-]+)[^]*/
-              , T = /stretch|:\s*\w+\-(?:conte|avail)/
-              , A = /([^-])(image-set\()/
+              , A = /stretch|:\s*\w+\-(?:conte|avail)/
+              , T = /([^-])(image-set\()/
               , O = 1
               , _ = 1
               , I = 0
               , R = 1
               , k = []
-              , C = []
-              , N = 0
+              , N = []
+              , C = 0
               , x = null
               , D = 0;
             return u.use = function e(t) {
                 switch (t) {
                 case void 0:
                 case null:
-                    N = C.length = 0;
+                    C = N.length = 0;
                     break;
                 default:
                     if ("function" == typeof t)
-                        C[N++] = t;
+                        N[C++] = t;
                     else if ("object" == typeof t)
                         for (var n = 0, o = t.length; n < o; ++n)
                             e(t[n]);
@@ -20719,10 +20853,10 @@
         function P(e) {
             return e.displayName || e.name || "Component"
         }
-        function T(e) {
+        function A(e) {
             return e && "string" == typeof e.styledComponentId
         }
-        var A = void 0 !== m && void 0 !== m.env && (m.env.REACT_APP_SC_ATTR || m.env.SC_ATTR) || "data-styled"
+        var T = void 0 !== m && void 0 !== m.env && (m.env.REACT_APP_SC_ATTR || m.env.SC_ATTR) || "data-styled"
           , O = "undefined" != typeof window && "HTMLElement"in window
           , _ = !!("boolean" == typeof SC_DISABLE_SPEEDY ? SC_DISABLE_SPEEDY : void 0 !== m && void 0 !== m.env && (void 0 !== m.env.REACT_APP_SC_DISABLE_SPEEDY && "" !== m.env.REACT_APP_SC_DISABLE_SPEEDY ? "false" !== m.env.REACT_APP_SC_DISABLE_SPEEDY && m.env.REACT_APP_SC_DISABLE_SPEEDY : void 0 !== m.env.SC_DISABLE_SPEEDY && "" !== m.env.SC_DISABLE_SPEEDY && "false" !== m.env.SC_DISABLE_SPEEDY && m.env.SC_DISABLE_SPEEDY))
           , I = {};
@@ -20781,26 +20915,26 @@
             ,
             e
         }()
-          , C = new Map
           , N = new Map
+          , C = new Map
           , x = 1
           , D = function(e) {
-            if (C.has(e))
-                return C.get(e);
-            for (; N.has(x); )
+            if (N.has(e))
+                return N.get(e);
+            for (; C.has(x); )
                 x++;
             var t = x++;
-            return C.set(e, t),
-            N.set(t, e),
+            return N.set(e, t),
+            C.set(t, e),
             t
         }
           , L = function(e, t) {
             t >= x && (x = t + 1),
-            C.set(e, t),
-            N.set(t, e)
+            N.set(e, t),
+            C.set(t, e)
         }
-          , F = "style[" + A + '][data-styled-version="5.3.11"]'
-          , U = RegExp("^" + A + '\\.g(\\d+)\\[id="([\\w\\d-]+)"\\].*?"([^"]*)')
+          , F = "style[" + T + '][data-styled-version="5.3.11"]'
+          , U = RegExp("^" + T + '\\.g(\\d+)\\[id="([\\w\\d-]+)"\\].*?"([^"]*)')
           , M = function(e, t, n) {
             for (var o, r = n.split(","), i = 0, a = r.length; i < a; i++)
                 (o = r[i]) && e.registerName(t, o)
@@ -20832,12 +20966,12 @@
               , r = function(e) {
                 for (var t = e.childNodes, n = t.length; n >= 0; n--) {
                     var o = t[n];
-                    if (o && 1 === o.nodeType && o.hasAttribute(A))
+                    if (o && 1 === o.nodeType && o.hasAttribute(T))
                         return o
                 }
             }(n)
               , i = void 0 !== r ? r.nextSibling : null;
-            o.setAttribute(A, "active"),
+            o.setAttribute(T, "active"),
             o.setAttribute("data-styled-version", "5.3.11");
             var a = B();
             return a && o.setAttribute("nonce", a),
@@ -20952,7 +21086,7 @@
                 function(e) {
                     for (var t = document.querySelectorAll(F), n = 0, o = t.length; n < o; n++) {
                         var r = t[n];
-                        r && "active" !== r.getAttribute(A) && (j(e, r),
+                        r && "active" !== r.getAttribute(T) && (j(e, r),
                         r.parentNode && r.parentNode.removeChild(r))
                     }
                 }(this))
@@ -21016,12 +21150,12 @@
                 return function(e) {
                     for (var t = e.getTag(), n = t.length, o = "", r = 0; r < n; r++) {
                         var i, a = (i = r,
-                        N.get(i));
+                        C.get(i));
                         if (void 0 !== a) {
                             var s = e.names.get(a)
                               , u = t.getGroup(r);
                             if (s && u && s.size) {
-                                var l = A + ".g" + r + '[id="' + a + '"]'
+                                var l = T + ".g" + r + '[id="' + a + '"]'
                                   , c = "";
                                 void 0 !== s && s.forEach(function(e) {
                                     e.length > 0 && (c += e + ",")
@@ -21057,7 +21191,7 @@
         function Q(e) {
             for (var t = 0; t < e.length; t += 1) {
                 var n = e[t];
-                if (E(n) && !T(n))
+                if (E(n) && !A(n))
                     return !1
             }
             return !0
@@ -21273,7 +21407,7 @@
                     "" !== (r = eS(e[a], t, n, o)) && (Array.isArray(r) ? i.push.apply(i, r) : i.push(r));
                 return i
             }
-            return ev(e) ? "" : T(e) ? "." + e.styledComponentId : E(e) ? "function" != typeof e || e.prototype && e.prototype.isReactComponent || !t ? e : eS(e(t), t, n, o) : e instanceof ep ? n ? (e.inject(n, o),
+            return ev(e) ? "" : A(e) ? "." + e.styledComponentId : E(e) ? "function" != typeof e || e.prototype && e.prototype.isReactComponent || !t ? e : eS(e(t), t, n, o) : e instanceof ep ? n ? (e.inject(n, o),
             e.getName(o)) : e : S(e) ? function e(t, n) {
                 var o, r = [];
                 for (var i in t)
@@ -21295,9 +21429,9 @@
             e.theme !== n.theme && e.theme || t || n.theme
         }
           , eP = /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~-]+/g
-          , eT = /(^-|-$)/g;
-        function eA(e) {
-            return e.replace(eP, "-").replace(eT, "")
+          , eA = /(^-|-$)/g;
+        function eT(e) {
+            return e.replace(eP, "-").replace(eA, "")
         }
         var eO = function(e) {
             return $(J(e) >>> 0)
@@ -21322,8 +21456,8 @@
             }, e.children) : null
         }
         eR.Consumer;
-        var eC = {}
-          , eN = function(e) {
+        var eN = {}
+          , eC = function(e) {
             return function e(t, n, o) {
                 if (void 0 === o && (o = w),
                 !(0,
@@ -21344,26 +21478,26 @@
                 ,
                 r
             }(function e(t, n, o) {
-                var r = T(t)
+                var r = A(t)
                   , i = !e_(t)
                   , a = n.attrs
                   , u = void 0 === a ? b : a
                   , l = n.componentId
                   , c = void 0 === l ? (S = n.displayName,
-                A = n.parentComponentId,
-                eC[O = "string" != typeof S ? "sc" : eA(S)] = (eC[O] || 0) + 1,
-                _ = O + "-" + eO("5.3.11" + O + eC[O]),
-                A ? A + "-" + _ : _) : l
+                T = n.parentComponentId,
+                eN[O = "string" != typeof S ? "sc" : eT(S)] = (eN[O] || 0) + 1,
+                _ = O + "-" + eO("5.3.11" + O + eN[O]),
+                T ? T + "-" + _ : _) : l
                   , d = n.displayName
                   , p = void 0 === d ? e_(t) ? "styled." + t : "Styled(" + P(t) + ")" : d
-                  , g = n.displayName && n.componentId ? eA(n.displayName) + "-" + n.componentId : n.componentId || c
+                  , g = n.displayName && n.componentId ? eT(n.displayName) + "-" + n.componentId : n.componentId || c
                   , m = r && t.attrs ? Array.prototype.concat(t.attrs, u).filter(Boolean) : u
                   , v = n.shouldForwardProp;
                 r && t.shouldForwardProp && (v = n.shouldForwardProp ? function(e, o, r) {
                     return t.shouldForwardProp(e, o, r) && n.shouldForwardProp(e, o, r)
                 }
                 : t.shouldForwardProp);
-                var S, A, O, _, I, R = new et(o,g,r ? t.componentStyle : void 0), k = R.isStatic && 0 === u.length, C = function(e, t) {
+                var S, T, O, _, I, R = new et(o,g,r ? t.componentStyle : void 0), k = R.isStatic && 0 === u.length, N = function(e, t) {
                     return function(e, t, n, o) {
                         var r, i, a, u, l, c = e.attrs, d = e.componentStyle, p = e.defaultProps, g = e.foldedComponentIds, h = e.shouldForwardProp, m = e.styledComponentId, v = e.target, S = (void 0 === (r = eE(t, (0,
                         s.useContext)(eR), p) || w) && (r = w),
@@ -21379,20 +21513,20 @@
                                 o = r[t],
                                 n && o ? n + " " + o : n || o) : r[t]
                         }),
-                        [i, a]), b = S[0], P = S[1], T = (u = el(),
+                        [i, a]), b = S[0], P = S[1], A = (u = el(),
                         l = ec(),
-                        o ? d.generateAndInjectStyles(w, u, l) : d.generateAndInjectStyles(b, u, l)), A = P.$as || t.$as || P.as || t.as || v, O = e_(A), _ = P !== t ? y({}, t, {}, P) : t, I = {};
+                        o ? d.generateAndInjectStyles(w, u, l) : d.generateAndInjectStyles(b, u, l)), T = P.$as || t.$as || P.as || t.as || v, O = e_(T), _ = P !== t ? y({}, t, {}, P) : t, I = {};
                         for (var R in _)
-                            "$" !== R[0] && "as" !== R && ("forwardedAs" === R ? I.as = _[R] : (h ? h(R, f, A) : !O || f(R)) && (I[R] = _[R]));
+                            "$" !== R[0] && "as" !== R && ("forwardedAs" === R ? I.as = _[R] : (h ? h(R, f, T) : !O || f(R)) && (I[R] = _[R]));
                         return t.style && P.style !== t.style && (I.style = y({}, t.style, {}, P.style)),
-                        I.className = Array.prototype.concat(g, m, T !== m ? T : null, t.className, P.className).filter(Boolean).join(" "),
+                        I.className = Array.prototype.concat(g, m, A !== m ? A : null, t.className, P.className).filter(Boolean).join(" "),
                         I.ref = n,
                         (0,
-                        s.createElement)(A, I)
+                        s.createElement)(T, I)
                     }(I, e, t, k)
                 };
-                return C.displayName = p,
-                (I = s.forwardRef(C)).attrs = m,
+                return N.displayName = p,
+                (I = s.forwardRef(N)).attrs = m,
                 I.componentStyle = R,
                 I.displayName = p,
                 I.shouldForwardProp = v,
@@ -21409,7 +21543,7 @@
                             t.indexOf(n = i[o]) >= 0 || (r[n] = e[n]);
                         return r
                     }(n, ["componentId"])
-                      , a = r && r + "-" + (e_(t) ? t : eA(P(t)));
+                      , a = r && r + "-" + (e_(t) ? t : eT(P(t)));
                     return e(t, y({}, i, {
                         attrs: m,
                         componentId: a
@@ -21456,7 +21590,7 @@
             }, e)
         };
         ["a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "big", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "marquee", "menu", "menuitem", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr", "circle", "clipPath", "defs", "ellipse", "foreignObject", "g", "image", "line", "linearGradient", "marker", "mask", "path", "pattern", "polygon", "polyline", "radialGradient", "rect", "stop", "svg", "text", "textPath", "tspan"].forEach(function(e) {
-            eN[e] = eN(e)
+            eC[e] = eC(e)
         });
         var ex = function() {
             function e(e, t) {
@@ -21533,7 +21667,7 @@
                 if (!t)
                     return "";
                 var n = B();
-                return "<style " + [n && 'nonce="' + n + '"', A + '="true"', 'data-styled-version="5.3.11"'].filter(Boolean).join(" ") + ">" + t + "</style>"
+                return "<style " + [n && 'nonce="' + n + '"', T + '="true"', 'data-styled-version="5.3.11"'].filter(Boolean).join(" ") + ">" + t + "</style>"
             }
             ,
             this.getStyleTags = function() {
@@ -21543,7 +21677,7 @@
             this.getStyleElement = function() {
                 if (e.sealed)
                     return R(2);
-                var t, n = ((t = {})[A] = "",
+                var t, n = ((t = {})[T] = "",
                 t["data-styled-version"] = "5.3.11",
                 t.dangerouslySetInnerHTML = {
                     __html: e.instance.toString()
@@ -21578,7 +21712,7 @@
             return (0,
             s.useContext)(eR)
         }
-          , eU = eN
+          , eU = eC
     },
     83878: function(e, t, n) {
         "use strict";
@@ -21977,16 +22111,16 @@
             var o = E(e, t, Object);
             o.obj[o.k] = n
         }
-        function T(e, t) {
+        function A(e, t) {
             var n = E(e, t)
               , o = n.obj
               , r = n.k;
             if (o)
                 return o[r]
         }
-        function A(e, t, n) {
-            var o = T(e, n);
-            return void 0 !== o ? o : T(t, n)
+        function T(e, t, n) {
+            var o = A(e, n);
+            return void 0 !== o ? o : A(t, n)
         }
         function O(e) {
             return e.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
@@ -22006,7 +22140,7 @@
         }
         var R = "undefined" != typeof window && window.navigator && void 0 === window.navigator.userAgentData && window.navigator.userAgent && window.navigator.userAgent.indexOf("MSIE") > -1
           , k = [" ", ",", "?", "!", ";"];
-        function C(e, t) {
+        function N(e, t) {
             var n = Object.keys(e);
             if (Object.getOwnPropertySymbols) {
                 var o = Object.getOwnPropertySymbols(e);
@@ -22017,13 +22151,13 @@
             }
             return n
         }
-        function N(e) {
+        function C(e) {
             for (var t = 1; t < arguments.length; t++) {
                 var n = null != arguments[t] ? arguments[t] : {};
-                t % 2 ? C(Object(n), !0).forEach(function(t) {
+                t % 2 ? N(Object(n), !0).forEach(function(t) {
                     (0,
                     d.Z)(e, t, n[t])
-                }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : C(Object(n)).forEach(function(t) {
+                }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : N(Object(n)).forEach(function(t) {
                     Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t))
                 })
             }
@@ -22086,7 +22220,7 @@
                     n && "string" != typeof n && (a = a.concat(n)),
                     n && "string" == typeof n && (a = a.concat(r ? n.split(r) : n)),
                     e.indexOf(".") > -1 && (a = e.split("."));
-                    var s = T(this.data, a);
+                    var s = A(this.data, a);
                     return s || !i || "string" != typeof n ? s : function e(t, n) {
                         var o = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : ".";
                         if (t) {
@@ -22161,12 +22295,12 @@
                     n = t,
                     t = a[1]),
                     this.addNamespaces(t);
-                    var s = T(this.data, a) || {};
+                    var s = A(this.data, a) || {};
                     o ? function e(t, n, o) {
                         for (var r in n)
                             "__proto__" !== r && "constructor" !== r && (r in t ? "string" == typeof t[r] || t[r]instanceof String || "string" == typeof n[r] || n[r]instanceof String ? o && (t[r] = n[r]) : e(t[r], n[r], o) : t[r] = n[r]);
                         return t
-                    }(s, n, r) : s = N(N({}, s), n),
+                    }(s, n, r) : s = C(C({}, s), n),
                     P(this.data, a, s),
                     i.silent || this.emit("added", e, t, n)
                 }
@@ -22186,7 +22320,7 @@
                 key: "getResourceBundle",
                 value: function(e, t) {
                     return (t || (t = this.options.defaultNS),
-                    "v1" === this.options.compatibilityAPI) ? N(N({}, {}), this.getResource(e, t)) : this.getResource(e, t)
+                    "v1" === this.options.compatibilityAPI) ? C(C({}, {}), this.getResource(e, t)) : this.getResource(e, t)
                 }
             }, {
                 key: "getDataByLanguage",
@@ -22387,35 +22521,35 @@
                             h) : P
                         }
                         if (a) {
-                            var T = "[object Array]" === S
-                              , A = T ? [] : {}
-                              , O = T ? v : y;
+                            var A = "[object Array]" === S
+                              , T = A ? [] : {}
+                              , O = A ? v : y;
                             for (var _ in m)
                                 if (Object.prototype.hasOwnProperty.call(m, _)) {
                                     var I = "".concat(O).concat(a).concat(_);
-                                    A[_] = this.translate(I, F(F({}, t), {
+                                    T[_] = this.translate(I, F(F({}, t), {
                                         joinArrays: !1,
                                         ns: c
                                     })),
-                                    A[_] === I && (A[_] = m[_])
+                                    T[_] === I && (T[_] = m[_])
                                 }
-                            m = A
+                            m = T
                         }
                     } else if (w && "string" == typeof b && "[object Array]" === S)
                         (m = m.join(b)) && (m = this.extendTranslation(m, e, t, n));
                     else {
                         var R = !1
                           , k = !1
-                          , C = void 0 !== t.count && "string" != typeof t.count
-                          , N = s.hasDefaultValue(t)
-                          , x = C ? this.pluralResolver.getSuffix(p, t.count, t) : ""
+                          , N = void 0 !== t.count && "string" != typeof t.count
+                          , C = s.hasDefaultValue(t)
+                          , x = N ? this.pluralResolver.getSuffix(p, t.count, t) : ""
                           , D = t["defaultValue".concat(x)] || t.defaultValue;
-                        !this.isValidLookup(m) && N && (R = !0,
+                        !this.isValidLookup(m) && C && (R = !0,
                         m = D),
                         this.isValidLookup(m) || (k = !0,
                         m = l);
                         var L = (t.missingKeyNoValueFallbackToKey || this.options.missingKeyNoValueFallbackToKey) && k ? void 0 : m
-                          , U = N && D !== m && this.options.updateMissing;
+                          , U = C && D !== m && this.options.updateMissing;
                         if (k || R || U) {
                             if (this.logger.log(U ? "updateKey" : "missingKey", p, d, l, U ? D : m),
                             a) {
@@ -22432,11 +22566,11 @@
                             else
                                 "all" === this.options.saveMissingTo ? j = this.languageUtils.toResolveHierarchy(t.lng || this.language) : j.push(t.lng || this.language);
                             var Z = function(e, n, o) {
-                                var i = N && o !== m ? o : L;
+                                var i = C && o !== m ? o : L;
                                 r.options.missingKeyHandler ? r.options.missingKeyHandler(e, d, n, i, U, t) : r.backendConnector && r.backendConnector.saveMissing && r.backendConnector.saveMissing(e, d, n, i, U, t),
                                 r.emit("missingKey", e, d, n, m)
                             };
-                            this.options.saveMissing && (this.options.saveMissingPlurals && C ? j.forEach(function(e) {
+                            this.options.saveMissing && (this.options.saveMissingPlurals && N ? j.forEach(function(e) {
                                 r.pluralResolver.getSuffixes(e, t).forEach(function(n) {
                                     Z([e], l + n, t["defaultValue".concat(n)] || D)
                                 })
@@ -23033,7 +23167,7 @@
                     }
                     var c = function(e) {
                         if (0 > e.indexOf(s.formatSeparator)) {
-                            var r = A(t, u, e);
+                            var r = T(t, u, e);
                             return s.alwaysFormat ? s.format(r, void 0, n, z(z(z({}, o), t), {}, {
                                 interpolationkey: e
                             })) : r
@@ -23041,7 +23175,7 @@
                         var i = e.split(s.formatSeparator)
                           , a = i.shift().trim()
                           , l = i.join(s.formatSeparator).trim();
-                        return s.format(A(t, u, a), l, n, z(z(z({}, o), t), {}, {
+                        return s.format(T(t, u, a), l, n, z(z(z({}, o), t), {}, {
                             interpolationkey: a
                         }))
                     };
@@ -24078,7 +24212,7 @@
     },
     40464: function(e) {
         "use strict";
-        e.exports = JSON.parse('{"and":"and","disclaimerSub1":"All rights reserved.","disclaimerSub2":"By using now.gg you agree to our ","disclaimerSub3":"including cookie use.","end":"End","loading":"Loading","logo":"Logo","or":"Or","including":"including","privacyPolicy":"Privacy Policy","somethingWentWrong":"Unfortunately, something went wrong.","refreshingIn":"Refreshing in ","refreshNow":"Refresh now ","support":"Support","termsOfUse":"Terms of Use","website":"Website","launchGame":"Launch Game","backToGame":"Back to Game","back":"Back","takeMeBack":"Take me back","neverMiss":"Never miss an update","joinDiscord":"Join our Discord","gameReady":"Your game is ready.","gameEnd":"Enjoyed the game?","soundIcon":"Sound Icon","mutedSoundIcon":"Muted Sound Icon","gameWillStart":"Game will start after the ad","sponsored":"Sponsored Ad","playInBrowser":"Play in browser","download":"Download","uhOh":"Uh-Oh","pouringRequests":"It’s pouring requests","backShortly":"We will be back soon. Try again shortly.","dailyTimeOver":"Daily gameplay time over!","dailyTimeOverMessage":"Your 30 min gameplay time is over, but you can enjoy popular games to your heart’s content.","exploreMoreGames":"Explore more games","nerdMode":"Nerd mode","nerdModeDescription":"Nerd mode impacts gameplay performance. Please use Nerd mode only when required.","platform":"Platform","cancel":"Cancel","restartNow":"Restart Now","yes":"Yes","next":"Next","appPackage":"App Package","country":"Country","connectionState":"Connection State","ping":"Ping","viewport":"Viewport","buildVersion":"Build version","devicePixelRatio":"Device Pixel Ratio","currentResolution":"Current Resolution","frames":"Frames","jitter":"Jitter / AvgJitterBufferDelay","framesPerSecond":"Frames per second","reportAProblem":"Report a Problem","build":"Build","clientID":"Client ID","sessionID":"Session ID","copiedToClipboard":"Copied to clipboard","networkLost":"Network lost. Trying to reconnect...","reconnecting":"Trying to reconnect...","connected":"Connected","faqs":"FAQs","clickToUnmute":"Click to unmute","tapToUnmute":"Tap to unmute","launchingGame":"Launching game...","launchGameText":"Launching game in {{time}}","fullscreen":"Fullscreen","exitFullscreen":"Exit fullscreen","enterFullscreen":"Enter fullscreen","robloxToastMsg":"Hold right click to rotate camera","closeAdIn":"Close ad in {{time}}","ad":"Ad","other":"Other","runDiagnostics":"Run a diagnostic report","email":"Email","problemDescription":"Problem Description","uploadScreenshot":"Upload picture or screenshot","problemInfo":"Use atleast 12 characters to describe the problem you are experiencing","min12Characters":"Minimum 12 Characters are required","uploadFromDevice":"Upload from device","captureScreen":"Capture screen","thankYou":"Thank you","submissionFailed":"Submission Failed","feedbackFailedTryAgain":"Failed to submit the feedback, please try again.","reviewingResponse":"We have received your response and it\'s being reviewed by our Support Team.","invalidFileTryAgain":"Uploaded file is not a valid image. Please try again.","areYouThere":"Hey, are you still there?","idleScreentext":"You’ll be logged out of the session if you’re away from the screen for a while. Don’t worry, everything will be saved automatically.","iAmStillHere":"I\'m still here","stoppingGame":"Stopping game in 30 Second(s)","disclaimer":"By using now.gg, you agree to the","rights":"\xa9 {{year}} now.gg. All rights reserved.","copyright":"\xa9 {{year}} now.gg.","cookieUse":"Cookie Use","getStarted":"Let\'s get started","signInHead":"Sign in to start playing","signInProg":"Sign in to save progress","signInInactive":"Sign in to continue playing","endLogin":"Playtime limit reached. Sign in to continue playing.","continuePlayingHere":"Continue Playing Here","loggedInAs":"Logged in as","asGuest":"play as guest","logout":"Logout","lockCursor":"Lock mouse cursor","cursorLockedInfo":"to unlock cursor","cursorLocked":"Cursor locked. Press [Esc] to exit.","unsupportedBrowser":"Browser not supported","switchBrowser":"For best experience switch to one of these browsers","googleChrome":"Google Chrome","appleSafari":"Apple Safari","microsoftEdge":"Microsoft Edge","linkCopied":"Link copied","okay":"Okay","gotIt":"Ok, got it","permission":"This game needs permission for the following","spotInstanceShortMsg":"Assigning a new server.","spotInstanceLongMsg":"Due to high traffic, we may switch users to a different server","sessionEndShortMsg":"Your session is almost over! Please save your progress before it ends","sessionEndLongMsg":"As part of our fair usage policy, game sessions have a time limit to ensure a smooth experience for everyone","serverBusy":"Server busy","serverBusyMsg":"Refresh the page to get on a new server and continue playing!","restart":"Restart","gameTile":"Game tile","roundLoader":"Round loader","infoIcon":"Info icon","closeIcon":"Close icon","overlay.klook":"Tip: Hold","overlay.look":"Tip: Press","overlay.tip2":" to use mouse for look around.","controls.title":"Game controls","mouseSensitivity":"Mouse sensitivity","mouseLock":"Mouse lock (Ctrl + Shift + 1)","sensitivity":"Sensitivity","video":"Video","audio":"Audio","bitrate":"Bitrate","codec":"Codec","packets":"Packets","slowNetwork":"Extremely high latency may impact gameplay","unstableNetwork":"High latency may impact gameplay","currentlyPoor":"Currently poor","slowInternetConnection":"Slow intenet connection","recommendations":"Recommendations","networkStability":"Network stability","troubleshootAndHelp":"Troubleshooting & Help","knowMore":"Know more","moveCloser":"If you are using Wifi, try moving closer.","avoidActivities":"Avoid activities with heavy internet usage.","connectToEthernet":"Connect to Ethernet.","farFromServer":"Maybe you are far away from server location.","shiftLockMsg":"to activate/deactivate shift lock","shiftLockActive":"Shift lock activated","shiftLockInactive":"Shift lock deactivated","press":"Press","notFound":"Unfortunately, we are currently unable to provide our service in your country. We hope to serve you soon!","proxyDetected":"Proxy/VPN Detected","toPlayGame":"To play the game:","disableVpn":"Disable any active VPN connection","reloadPage":"Reload the page","useURL":"Use the following URL","copyUrl":"Copy URL","uploadingFile":"Uploading file","uploadedSuccessfully":"Uploaded successfully","uploadFailed":"Upload failed","downloadingFile":"Downloading file","downloadedSuccessfully":"Downloaded successfully","downloadFailed":"Download failed","underMaintenance":"Under Maintenance","currentlyUnderMaintenance":"We are currently under maintenance,","tryAfterSometime":"please try after some time","diagnosingProblem":"Diagnosing problem","sidebar.legacyTitle":"Legacy controls","sidebar.nativeTitle":"Native controls","sidebar.legacyInfo":"Legacy Controls allows you to use key mappings defined by the modders.","sidebar.nativeInfo":"Native Controls allows you to use the inbuilt controls by the game developers.","sidebar.onscreenControls":"On-screen controls","sidebar.controlSchemes":"Control Scheme","sidebar.keyboard":"Keyboard","sidebar.gamepad":"Gamepad","sidebar.specialKey":"Special Key","sidebar.gamepadNotDetected":"Gamepad not detected","sidebar.gamepadNotSupported":"Gamepad not supported","sidebar.gamepadNotDetectedInfo":"If you have one, make sure it’s plugged-in/paired, and press buttons to wake it up.","sidebar.gamepadNotSupportedInfo":"Unfortunately, this game does not support gamepad.","loginPromptHead":"Save your game progress","loginPromptText":"Login and save your game progress with a single click!","guestToast":"Playing as Guest","player":"Player","welcome":"Welcome","pwaTitle":"Pro tip: Install game shortcut","completeHead":"Gameplay time limit reached","completeMsg":"This session has a playtime limit to promote fair usage of our services. Please restart to play again.","inactiveHead":"Game stopped due to inactivity","inactiveMsg":"Your game session stops when you\'re away from the screen for a while. Don\'t worry, everything is saved automatically.","disconnectedHead":"Game connection lost","disconnectedMsg":"Please refresh the page to continue playing.","migratedHead":"Screen Limit","duplicateHead":"Tab Limit","migratedMsg":"Your account may be in use on more than one device or screen. Play on this screen with just one click.","duplicateMsg":"This game is already active in another tab. You can start playing here by clicking on the button below.","sessionEndTimeLimitHead":"Time Limit","yourGameWill":"Your game will begin after the following advertisement","playLogo":"Play logo","playNow":"Play now","gettingReady":"Getting ready","enableInAppPurchases":"Enable In-app purchases","volume":"Volume","helpAndSupport":"Help & Support","retry":"Retry","somethingWrong":"Something went wrong","playing":"Playing","login":"Login","profile":"Profile","profilePic":"Profile pic","iAmYourCloudy":"Hi, I am your cloudy.","tapToStart":"Tap me to start!","searchPremiumGames":"Search","noSearchResults":"No results found","searchGames":"Search","allGames":"All Games","close":"Close","gameplay.label":"Gameplay","gameplay.gameUpdate":"Game Update","gameplay.gameFroze":"Game froze during gameplay","gameplay.gameStuck":"Game stuck at loading screen","gameplay.gameLagging":"Game is lagging","gamecontrols.label":"Game Controls","gamecontrols.keyControls":"Key controls","gamecontrols.mouseIssues":"Mouse-related issues","gamecontrols.gamepadIssues":"Gamepad support issues","accountLogin.label":"Account login","accountLogin.incorrectPassword":"Incorrect password","accountLogin.LoginIssues":"Now.gg login issues","accountLogin.unableToSave":"Unable to save progress","appOrGameRequest.label":"App or game request","appOrGameRequest.appRequest":"App request","appOrGameRequest.gameRequest":"Game request","createDeviceProfile":"Creating device profile","collectingStats":"Collecting stats","collectingOtherInformation":"Collecting other information","sendingProblemReport":"Sending problem report","compilingInformation":"Compiling information","processingProblemReport":"Processing problem report","recentlyPlayed":"Recently played","otherGamesYouMayLike":"Other games you may like","clear":"Clear","trendingThisWeek":"Trending games","tryOtherGames":"Try other games","cantFindAnything":"Hmmm...can’t find anything for that","trySomethingElse":"Try searching for something else","error":"ERROR","errorServerOverloaded":"Preparing the environment.","errorServerOverloaded2":"Launching instances. Please wait ...","errorServerOverloadedTimerEnd1":"We couldn\'t allocate an instance at this time.","errorServerOverloadedTimerEnd2":"Please try again later","errorServerOverloadedCatchingUp":"Welp! Servers overloaded! Catching up soon","serverOverloadedInfoLine1":"It may take up to 5 minutes,","serverOverloadedInfoLine2":"the game will start automatically once it\'s ready.","errorNotSupported":"Uh oh! Looks like {{appName}} is not supported on your device","errorGameNotFound":"Oops! Looks like the game could not be found","errorServiceNotInRegion":"Sorry, this game is not available in your region...yet!","errorFailure":"Yikes! Something unexpected happened","errorInvalidPlayToken":"Error connecting to now.gg servers","errorNotFound":"404: that page is MIA!","errorFailureTokenExpired.heading":"Oops! Our magic token just expired","errorFailureTokenExpired.subHeading":"It seems we need a refresh. Just a quick click should do the trick.","errorFailureInvalidToken.heading":"Uh oh! Token Mishap: Quick Reset Needed!","errorFailureInvalidToken.subHeading":"Looks like our internal key went off track. Let\'s reset and roll!","errorFailureForbidden.heading":"Whoa! Unknown Realms!","errorFailureForbidden.subHeading":"Looks like we sailed into uncharted territory. Best to return to known shores.","errorFailureAdBlockerDetected.heading":"Uh oh! Ad blocker detected!","errorFailureAdBlockerDetected.subHeading":"To play, please switch your ad blocker off","playAmazingGames":"But you can still play these amazing games.","checkEpicGames":"Feeling adventurous? Check out these epic games instead.","tryPerformingGames":"No sweat, try out these top-performing games instead.","checkFunGames":"You can always check out other fun games!","refreshSecs":"Hit refresh in {0} seconds","tryRefresh":"Try refreshing now!","browseGames":"Browse more games","goRogue":"Or Go Rogue","play":"Play","tp.toggle":"Show visual feeback for taps/clicks","recordTitle":"Record your game","recordTooltip":"Click here to start recording","recordFilenameOp0":"Epic {0} Gameplay","recordFilenameOp1":"Awesome {0} clutch in now.gg","recordFilenameOp2":"{0} on now.gg lit gameplay","recordFilenameOp3":"Epic now.gg {0} clip","recordFilenameOp4":"Super {0} clutch on now.gg","recordFilenameOp5":"Legendary {0} clutch in now.gg","recordFilenameOp6":"Mind-blowing {0} plays on now.gg","recordFilenameOp7":"Spectacular {0} moments on now.gg","recordFilenameOp8":"Lit now.gg {0} round","recordingReady":"Your video is ready","recordingStarted":"Recording started","recordingTransitionTitle":"Starting recording mode","recordingTransitionInfo":"Let’s create something exciting","recordingComplete":"Recording complete","recCompleteDesc":"Your gameplay was lit! Ready to blow up the internet?","shareOnYT":"Share on YouTube","discardRecording":"Discard recording?","discardRecDescription":"Your current recording will be permanantly deleted if you haven\'t saved it.","goBack":"Go back","iapTitle":"Enable in-app purchases","iapDescription":"Login to your Google Play Store account to enable in-app purchases","iapBtnText":"Continue to login","iapToastText":"in-app purchases enabled","iapLoaderText":"Activating in-app purchases","pleaseWait":"Please wait...","pleaseAllowAds":"Please allow ads on now.gg","adBlockerMsg":"Uh oh- looks like you are using an ad blocker. now.gg uses ads to keep the cloud free for everyone. Please turn off your ad blocker and press refresh to continue.","adBlockerCnfrmMsg":"I have turned off ad blocker","cantTurnOff":"Can’t turn off ad-blocker?","joinOnDiscord":"Join us on Discord","discard":"Discard","save":"Save","micBlocked.head":"Microphone Blocked","micBlocked.info1":"Now.gg requires access to your microphone so. Click on the blocked Mic","micBlocked.info2":"or camera icon","micBlocked.info3":"in your address bar.","install":"Install","tryNow":"Try now","tryNowFor_one":"Try now for {{count}} hour","tryNowFor_other":"Try now for {{count}} hours","tryNowForMinutes_one":"Try now for {{count}} minute","tryNowForMinutes_other":"Try now for {{count}} minutes","noInstall":"No install required","noInstallMsg":"No install required, play instantly in browser","downloadAndContinue":"Download & continue playing from where you left by logging into the game","progressMsg":"Progress and Purchased items from trial will be restored in the downloaded version if you log in to the game","accountSecurityMsg":"To enhance account security, log out from the game on shared PCs","scanPhone":"Scan on your phone","scanPhoneDownload":"Scan on your phone to download","wantToTry":"Want to try before installing?","installToContinue":"Install to continue playing game","trialLimitReached":"Trial limit reached","downloadStart":"If your download does not start in sometime then","launchInstaller":"Launch the installer after it has downloaded.","tip":"Tip","useEmail":"Use email to create in-game account and save progress","notSupported":"Try now is currently not supported in your region","secretPassage":"Secret Passage","toPlayGames":"To play now.gg games with ad blocker on","searchFor":"Search for “<1>Online games</1>” on Google Search","findBelow":"Find the below result to play with Ad blocker","hint":"Hint","secretPassageTutorial":"Secret Passage Tutorial","exploreTooltipText":"Choose from list of popular games to play","warning":"Warning","recordingStopOnGameSwitch":"Recording can’t continue if you choose to play a different game.","startRecordingSwitch":"Save recording & switch","stopRecordingSwitch":"Stop recording & switch","continueRecording":"Continue recording","recordingStopped":"Recording stopped","queue":"You are in a queue","queueModal.youAreIn":"You are in {{queueType}} queue","queueModal.priority":"a priority","queue.pos":"Your position:","queue.members":"members can","queue.jump":"jump the queue","queue.est":"Estimated waiting time","queue.success":"Membership Verified","queue.njp":"now.jp membership number","queue.invalid":"Invalid membership. Please check your details.","queue.verifying":"Verifying Membership Number","queue.submit":"Submit Membership Number","recordingStoppedGametime":"Your gameplay was stopped due to gametime limit reached, what do you want to do with the last recording?","saveRecording":"Save recording","discardRecordingNoQM":"Discard recording","recordingStoppedDuplicateTab":"Your gameplay was stopped because you switched to another tab, what do you want to do with the last recording?","recordingStoppedInactivity":"Your gameplay was stopped due to inactivity, what do you want to do with the last recording?","recordingStoppedLogin":"Recording needs to be stopped to continue logging in.","endScreenHeading":"Gameplay time is over","endScreenSubHeading":"Due to fair usage policy the gameplay time for every session has been restricted, so that every user gets a chance to play.","restartSession":"Restart Session","restartSessionModalMessage":"Your current session will terminate and a new session will start","youtube":"YouTube","discord":"Discord","apple":"Apple","facebook":"Facebook","tiktok":"TikTok","iap":"In-app purchases","startRecording":"Start Recording","stopRecording":"Stop Recording","processingRecording":"Processing Recording","toggleMic":"Mute/Unmute your mic","showingResults":"Showing results for","resultsFor":"Results for","onlineOnNowgg":"online on now.gg","gamepadWarning":"Gamepad warning","mouseLockKey":"Mouse lock","shiftLockKey":"Shift lock","search":"search","signInGoogle":"Sign in with Google","signInApple":"Sign in with Apple","recorder":"Recorder","learnMore":"Learn more","emailPlaceholder":"Enter your email address","loginEmailPlaceholder":"Enter your email","exisitingloginPasswordPlaceholder":"Enter your password","newloginPasswordPlaceholder":"Create a password","appIcon":"App Icon","copy":"Copy","frameDrop":"dropped out of","frameLost":"lost out of","claimPlayTime":"Sign in to claim your play time","invitationToPlay":"You have an invitation to play ad free on now.gg","removeAds":"Remove Ads","invite&Earn":"Invite & Earn","inviteFriends":"Invite your friends and earn 30 minutes of ad free gameplay for each friend you invite","rewardValue":"1 New Friend = 30 minutes","loginToInvite":"Login to Invite","signinToPlayAdFreeTime":"Please sign in to play ad free on now.gg","copyInviteLink":"Copy Invite Link","copyLink":"Copy Link","inviteLinkCopied":"Invite link copied","earnedAdFreeMinutes":"You earned {{minutes}} ad-free minutes","earnedMinutes":"You earned {{minutes}} minutes","inviteMoreFriends":"Invite more friends","accountAlreadyExists":"Account already exists!","stillWinAdFreeTime":"Do not worry, you can still win ad-free time.","adFreeTimeOver":"Your ad-free time is over","adFreeTimeLeft":"ad-free time left","getMoreTime":"Get more time","inviteAndEarn":"Invite and earn","earnFreePlayTime":"Earn up-to 500 minutes ad free playtime","saveOnNowgg":"Save on now.gg","giveGameplayName":"Give your lit gameplay a name","videoReadyForSharing":"Your video is ready for sharing","shareWithFriends":"Share with your friends","loadMore":"Load More","surpriseMe":"Surprise Me","videos":"Videos","retryNow":"Retry Now","retryUploading":"Retry uploading","retryDescription":"There was a problem saving your video. Please retry.","stopUploadingDesc":"Are you sure you want to stop uploading to Now.gg? A live online link will make it easy for everyone to access.","stopUploading":"Stop uploading","savingVideo":"Saving video","uploading":"Uploading...","findVideos":"Find all your videos here","uploadStopped":"Uploading Stopped","videoReady":"Your video is ready","noVideosYet":"No videos yet","signInToShare":"Sign in to share","findSolitaire":"Play “<1>Solitaire</1>” on now.gg.","getAdFree":"Get ad-free Roblox!","stilConfused":"Still confused?","askForHelp":"Ask for help on our Discord","cheatCode":"Cheat Code?","playInstantly":"Play Roblox Ad-Free Instantly","popularGames":"Popular Games","readMore":"Read more","readLess":"Read less","videoClips":"Video Clips","moreGames":"More Games","anaGreetingText":"Hello! I am Ana, I am here to make your journey more fun!","anaDisclaimer":"Ana can make mistakes. Consider checking important information.","aiApps":"AI Apps","byogClaimBtn":"Claim secret phone","byogPlayonCloud":"Play any game in the cloud","faq":"Frequently asked questions","shortVideosText":"Enjoy some Short videos","topGames":"Top Games","exploreByCategory":"Explore by Categories","showMoreCategories":"Show more categories","casualGames":"Casual Games","games":"Games","home":"Home","playRoblox":"Play Roblox without ads","downloading":"Downloading","loader":"Loader","edit":"Edit","delete":"Delete","addControls":"Add New Control","saveChanges":"Save changes","discardChanges":"Discard changes","downloadConfig":"Download cfg","addControlScheme":"Add Control scheme","copyControlScheme":"Add Copy of current scheme","deleteControlScheme":"Delete current scheme","videoUploading":"Video Upload in progress","minimize":"minimize","saveRecordingLogin":"Save recording & login","stopRecordingLogin":"Stop recording & login","playInstantlyTip":"Play Instantly","submit":"Submit","tryAgain":"Try Again","playOnlineOnNowgg":"Play {{appName}} online on now.gg","sports":"Sports","adventure":"Adventure","puzzle":"Puzzle","simulation":"Simulation","casual":"Casual","card":"Card","board":"Board","casino":"Casino","word":"Word","trivia":"Trivia","startergy":"Strategy","social":"Social","communication":"Communication","rolePlaying":"Role Playing","action":"Action","arcade":"Arcade","educational":"Educational","racing":"Racing","videoPlayers&Editors":"Video Players & Editors","platformer":"Platformer","education":"Education","rpg":"RPG","tools":"Tools","portal":"Portal","shopping":"Shopping","lifestyle":"Lifestyle","shooter":"Shooter","skill":"Skill","music":"Music","idle":"Idle","sandbox":"Sandbox","entertainment":"Entertainment","personalization":"Personalization","onScreenKeyboard":"On-screen Keyboard","externalPopupMessage":"This link will open in a new tab","nowPassText":"Unavailable in your region","nowPassHeading":"We will roll out in your geo soon","choosePlan":"Choose your plan","select":"Select","bestValue":"Best Value","limitedOfferLabel":"Limited Offer","chosenPlan":"Your chosen plan","changePlan":"Change plan","enterEmailAddress":"Enter email address","getNowPass":"Get nowPass","autoRenew":"Auto renew on plan expiry","lockedPrice":"We have locked your price","subscribeNowPassLaunches":"You will be able to subscribe at the above price when nowPass launches.","enablingNowPass":"Enabling nowPass","hourly":"hourly","daily":"daily","monthly":"monthly","continuePlayingOnAnyDevice":"Continue playing on any device","noAds":"No Ads","fullScreenImmersiveGameplay":"Full-screen immersive gameplay","playPremiumGames":"Play premium games","unlimitedPlaytime":"Unlimited playtime","playInFullscreen":"Play in Full Screen","testDrive":"TEST DRIVE","adFree":"Ad-free","robloxNotAvailable":"Roblox is currently not available in your region","talkieNotAvailable":"Talkie: Soulful AI is currently not available in your region","similarGame":"Don’t worry, here is a similar game:","earnedNowbux":"You have earned a nowBux","wonNowbuxMessage":"Hurray! You have won a nowBux","wonNowbuxAfterGameplay":"You win 1 nowBux for every {{minutes}} minutes of gameplay","nowbuxTermsCondition":"All rewards earned will expire if you do not login to your now.gg account for 30 days.","termAndConditions":"Terms and Conditions","dontLoseReward":"Don’t lose your reward","quitNowMessage":"You are {{minutes}} minutes away from winning a nowBux. You will lose your progress if you quit now","loseReward":"Lose my reward","keepPlaying":"Keep Playing","claimReward":"Claim your reward","nowbuxInAccount":"You have a nowBux in your account to be claimed. Login to claim now","wonNowbux":"You have won {{nowbuxCreditsEarned}} nowBux","claimedNowbux":"You have claimed {{nowbuxCreditsEarned}} nowBux","nowbuxRules":"You will get 1 nowBux for every {{rewardFrequencyTimeSecs}} minutes of continueous gameplay on now.gg","clickToRedeem":"Click the button below to redeem","earnMoreToRedeem":"Earn {{creditsDiff}} more to redeem them","loginToClaim":"Login to claim","redeemedCodes":"Redeemed codes","redeemNowbux":"Redeem {{rewardRedemption}}","earnNowbux":"Earn a nowBux for every {{rewardFrequencyTimeSecs}} minutes of gameplay.","playNEarn":"Play and earn nowBux","nowbuxWon":"nowBux won","byPlayingNowgg":"by playing on now.gg","distributedSoFar":"distributed so far","oneNowbuxForGameplay":"Win 1 nowBux for every {{minutes}} minutes of the continuous gameplay on now.gg","redeemingNowbux":"Redeeming {{rewardRedemption}} nowBux","hereIsTheCode":"Here is your {{rewardRedemption}} nowBux code","couponUnavailable":"Coupon not available","redemptionErrorDesc1":"It seems we have run out of coupons right now.","redemptionErrorDesc2":"Please check back after 5 mins to redeem your nowBux.","winNextNowbux":"Win next nowBux in","minutes":"{{minutes}} minutes","min":"min","mins":"mins","tryMyLuck":"Try my luck","jackpot":"Jackpot","jackpotDesc":"Try your luck and you can win upto ","winWithEverySpin":"Win with Every Spin","get":"Get","winANowbuxCard":"Get a chance to win {{nowbux}} nowBux","dailySpinsRemaining":"Daily spins remaining","betterLuck":"Better luck next time","yay":"Yay!","nowbuxCount":"you won {{nowbuxCreditsRewarded}} nowBux!","shareOnDiscord":"Share on discord","earnNowbuxToTry":"Earn atleast 1 nowBux to Try","spinFor":"Spin for","enterEmailForSpin":"Enter your now.gg email to earn a free jackpot spin and win upto {{nowbux}} nowBux","emailId":"Email address","enterHere":"Enter here","emailMismatchError":"Entered email address does not match your login email address","verifyAndGetSpin":"Verify and get free spin","freeSpin":"Free Spin","reportIssue":"Report issue","signInForSpin":"Sign in to get your free spin","guest":"Guest","signInToClaimReward":"Claim nowBux & save progress","gamesPlayed":"Games played","totalPlaytime":"Total playtime","signIn":"Sign in","aboutUs":"About us","advertising":"Advertising","developers":"Developers","nowbuxRewards":"nowBux rewards","winNowbux":"Win 1 nowBux every {{minutes}} mins","minsRemaining":"{{minutes}} remaining","likedGames":"Liked games","likeInfo":"Hit the like button on the games you love playing to unlock this section","dayStreak":"{{days}} Day Streak","streakInfo":"Play everyday to unlock the next streak badge","playtimeHours":"{{hours}} Hours Playtime","uploadImage":"Upload image","supportedResolution":"Max resolution: 500x500","supportedTypes":"Supported format: jpg, png.","yourProfile":"Your Profile","displayPicture":"Display picture","username":"Username","widgets":"Widgets","earnMinutes":"Earn Ad-free Time","loginClaimNowbux":"Login to claim nowBux to your account to prevent losing","claimNowbux":"Hurray, you can redeem nowBux for an actual {{value}} Robux card","getAdFreeMins":"Get {{minutes}} mins ad-free.","inviteFriend":"When your friend joins through your invite","copyInvite":"Copy Invite Link","followUs":"Follow us on","haveNowbux":"Wow! Turn Your nowBux into Robux!","redeemNowbuxUSD":"You can redeem {{nowbux}} for {{value}}$ Robux card","redemption":"Redemption","redeem":"Redeem","badge1Day":"Badge 1","badge7Day":"Badge 7","badge15Day":"Badge 15","badge30Day":"Badge 30","time":"Time","nowbux":"nowBux","recent":"Recent","winNowbuxEveryMinutes":"Win 1 nowBux every {{minutes}} mins","remainingMinutes":"{{minutes}}m remaining","noEnoughNowbux":"You don’t have enough nowBux, earn <bold>{{nowbux}}</bold> nowBux to redeem them.","youCanRedeemNowbux":"Click here to redeem","nowbuxCode":"{{nowbux}} Robux Code","viewAllPreviousCodes":"View all Previous Codes","checkBackWithin":"Check back in {{time}} hours","noAppRecents":"Play a game to unlock this section","loginForUserMetrics":"Login to unlock your gaming stats","footerText":"<img /><strong>{{totalDistributedNowbux}}</strong>distributed so far<a>Terms and Conditions</a>","newUsername":"New username","newAvatar":"New picture","searchAppStore":"Search on App Store","gameLaunchAfterAd":"{{gameName}} will launch after the ad","preparingToLaunch":"Preparing to launch","logoTitle":"Play {{title}} Online","rankings":"Rankings","today":"Today","thisWeek":"This Week","thisMonth":"This Month","leaderboard":"Leaderboard","name":"Name","guestUser":"Guest User","you":"You","winNowbuxTitle":"Win nowBux","taskCompleteMsg":"You have successfully completed {{task}} and won {{reward}} nowBux. Check your Rewards to claim it.","viewRewards":"View Rewards","taskCompleted":"{{task}} completed","nowbuxWonSoFar":"nowBux won so far","quests":"Quests","winNowbuxHead":"Win nowBux","notEnoughNowbuxHead":"Not enough nowBux?","buyInGameItems":"Buy in-game items","buyIngameItemsDescription":"Make in-app purchases using nowBux in games below","earnNowbuxToRedeem":"Earn {{minNowbuxRqd}} nowBux to redeem.","boostNowbuxChances":"Boost your chances of winning robux by doing daily quest","claimNow":"Claim now","claiming":"Claiming...","claimed":"Claimed","daysLeft":"Days left","dayLeft":"Day left","hoursLeft":"Hours left","hourLeft":"Hour left","completed":"Completed","completedNewQuest":"You completed a new quest!","loginToViewRank":"Login to view your rank","lastUpdated":"Last updated:","seconds":"{{seconds}} secs","followTikTok":"Follow <span>@nowgg_games</span> on TikTok","visitTiktok":"Visit TikTok","tiktokAccount":"Tiktok Account","tiktokPlaceholder":"Enter tiktok username here","cloudDevice":"Cloud device","cloudDeviceLocation":"Cloud device location","signingToCloudService":"You are signing in to a cloud device","securePlatform":"You are on a secure platform","editVideo":"Edit Video","stream.start":"You have 1 new viewer request.","stream.startInfo":"Stream your game to your friends and others.","stream.live":"You are live","stream.shareUrl":"Share the stream with your friends and flaunt your gameplay","stream.button.start":"Start Streaming","stream.button.noStart":"Don\'t Stream","stream.stop":"Stop your live stream","stream.stopInfo":"This action is not reversible, are you sure you want to stop the stream?","stream.button.stop":"Stop Streaming","stream.button.noStop":"Continue Streaming","continuePlaying":"Continue Playing","startStreaming":"Start Live Stream","paused":"Paused","stopStream":"Stop stream","resumeStream":"Resume stream","pauseStream":"Pause stream","unmuteMic":"Unmute mic","muteMic":"Mute mic","streaming":"Streaming","streamEndToast":"Live stream stopped! Continue your gameplay","no":"No","stream.stopStart":"You can pause or stop anytime.","noViewer":"It’s just you here!","shareStreamUrl":"Share the stream with your friends and flaunt your gameplay","shuffleStream":"Shuffle Stream","exitStream":"Exit Stream","watchingLive":"Watching live","viewing":"Viewing","waitingStream":"Waiting for stream!","waitingStreamInfo":"Please wait while we connect you to a stream","pausedLive":"Live streaming paused","browseGamesBtnText":"Browse Games","streamPauseText":"It generally happens when the streamer is entering private information like passwords, payments or other credentials","ShufflingStream":"Switching stream","FindingHeading":"Looking for a stream...","NotAvailableHeading":"No stream available right now","streamPaused":"Stream Paused","leaveStreamTitle":"Leave Stream?","leaveStream":"Leave Stream","leaveStreamSubTitle":"This action is not reversible, are you sure you want to stop the stream?","continueWatching":"Continue watching","watchLiveStreams":"Watch Live Streams","videoTagNotSupport":"Your browser does not support the video tag.","showMore":"Show More","controls":"Controls","native":"Native","scheme":"Scheme","nativeControlsInfo":"Native Controls are on","switchOffNative":"Switch off native game controls to see Now.gg game controls for this game.","noGameGuide":"No Game Guide","noGameGuideInfo":"No game guide exists for this game, please use On Screen Controls to see key controls","seeGameControls":"See game controls from here","fortniteLabel":"Fortnite is not a part of Open Gaming Store and is not supported for one-click play","sideloadPlay":"Sideload and Play","signInOrCreate":"Login or Sign up","saveProgressAndEarn":"Save your progress & earn rewards","continue":"Continue","orSignInWith":"Or sign in with","signInToAccount":"Sign in to your account","createFreeAccount":"Create your free account","forgotPassword":"Forgot Password?","sendPwdResetLink":"Send password reset link","resetPwd":"Reset Password","registeredEmail":"Registered Email","resetPwdLinkSent":"Reset password link sent","resetDesc1":"If there’s a now.gg account associated with {{email}} you’ll get a link in your inbox to reset your password.","resetDesc2":"If you don’t get the link, check your spam folder or <span>re-enter your email address</span>.","goBackToSignIn":"Go back to sign in","changePassword":"Change password","account":"Account","currentPwd":"Current Password","newPwd":"New Password","confirmPwd":"Confirm Password","updatePassword":"Update password","enterNewPwd":"Enter new password","incorrectEmailOrPwd":"The password entered was incorrect","chooseAStrongPwd":"Please choose a stronger password. Try a mix of letters and numbers.","pwdMismatch":"The new password does not match","pwdUpdated":"Password Updated","updatingPassword":"Updating Password","google":"Google","noAccountFound":"This Account does not exist!","loginWithEmail":"Login with Email","emailIsIncorrect":"Please enter a valid email","continueToLogin":"Continue to login","createAccount":"Create account","creatingAccount":"Creating account","nowbuxDescription1":"Your {{nowbuxCreditsEarned}} Robux are now same-value nowBux. Play and redeem with no worries!","nowbuxDescription2":"Your earnt Robux are now same-value nowBux. Play and redeem with no worries!","awesomeLetsPlay":"Awesome, let’s play!","appNotAvailableInRegion":"{{appName}} is currently not available in your region","tryTheseGamesInstead":"Try this game instead","similarGames":"Don’t worry, here are few similar games:","adHelpFree":"Ads help keep now.gg Free!","blogs":"Blogs","topPicks":"Top Picks","streamHereToast":"Click here to live stream your game anytime!","googleAccountRequiredHeading":"Google account required","googleAccountRequiredDesc":"This game requires a Google account to play","appUnavailable":"\'{{appName}}\' is not officially available on now.gg","sideloadAndPlay":"Sideload & Play","findingYourGame":"Finding your game","searchingApk":"Searching for APK on the web","poweredBy":"Powered by","bestSource":"Best source","evaluatingResults":"Evaluating Search Results","foundBestSource":"Found the best source","openingAptoideStore":"Opening Aptoide App Store","wait":"Please wait","doNotClose":"Do not close tab","new":"NEW","live":"LIVE","codeCopied":"Code copied","copyCode":"Copy code","doYouWantToCopy":"Did you want to copy that?","yesCopy":"Yes, copy","copyToClipboard":"Copy to clipboard","textYouSelected":"Text you selected","paste":"Paste","forbiddenZone":"Forbidden Zone!","restrictedAreaError":"We\'ve wandered into a restricted area!","unsafeProxy":"Unsafe proxy or VPN detected!","visitOfficialProxy":"For a secure and smooth experience, please connect to our official proxy and turn off any VPN.","setPasswordFirst":"Please create your password through \'Forgot Password\'","robuxEqualsNowbux":"Your Robux are now equal-value nowBux!","emptyQuestsText":"Stay tuned for more adventures!","seeMore":"See More","more":"More","watchLive":"Watch Live","liveStreamsAvailable":"Live streams available for {{appName}}","helloIAmAna":"Ana","iCanHelpFindGames":"I can help you find games","whatsGoingOn":"Hello! I am Ana, I am here to make your journey more fun!","sayHi":"Say \\"Hi\\" or Ask about a game","send":"Send","freshChat":"Fresh Chat","aiChatDisclaimer":"Ana can make mistakes. Consider checking important information.","playAnyGameInCloud":"Play any game in the cloud!","launchSecretPhone":"Launch secret phone","history":"History","credit":"Credit","debit":"Debit","emptyNowbuxHistory":"You haven’t done any transaction yet.","nowbuxDesc":"The official BlueStacks currency for in-app purchases in selected games and more.","help&Support":"Help & Support","preparingLiveStream":"Preparing for live stream","searchWithAna":"Search {{text}} with Ana AI","PoweredByAI":"Powered by AI","forbiddenTitle":"Content Unavailable","forbiddenMsg":"This content is currently not available.","goToHome":"Go to Homepage","aboutNowbux":"About nowBux","chatFlagMsg":"Message flagged. Use of inappropriate language","sendMessage":"Send a message","playOnVpn":"Play on any Proxy or VPN","betterExp":"Better experience","limitedOffer":"Limited Time Offer","pass":"Pass","unofficialProxyDetected":"Unofficial proxy detected!","selectSubPlan":"Please select a subscription plan to continue playing","visitOurProxy":"Here’s an alternate, please visit our official proxy.","getNowPrime":"Get nowPrime","enablingNowPrime":"Enabling nowPrime","won":"Won","cannotAccessGame":"Sorry, you can\'t access this game right now.","errorFailureAnotherSessionActive.heading":"Multiple Sessions Detected!","errorFailureAnotherSessionActive.subHeading":"Looks like you\'re already playing in another window.","errorFailureSessionEnded.heading":"Game Session Over!","errorFailureSessionEnded.subHeading":" Your game session has ended.","errorFailureUnauthorized.heading":"Unauthorized Access!","errorFailureUnauthorized.subHeading":"Oops, you\'re not authorized to access this game.","migratedHeadMondia":"Game Session Over!","refreshMsg":"To restart the game, please refresh this page.","migratedMsgMondia":"Your game session has ended because you initiated a new session on another tab or device.","errorFailureInsufficientPlaytime.heading":"Insufficient Playtime credit","errorFailureInsufficientPlaytime.subHeading":"You\'re unable to play because you don\'t have enough playtime credit.","errorFailureSessionMigrated.heading":"Game Session Over!","errorFailureSessionMigrated.subHeading":"Your game session has ended because you initiated a new session on another tab or device.","selectFile":"Select file","uploadFile":"Upload from your device","subscription":"Subscriptions","manageSubscriptions":"Manage your subscriptions from here","manageSubButtonText":"Manage Subscription","pause":"Ps.","oneAccount":"One account for","commonDisclaimer":"By signing up, you agree to the","unableToFetch":"Unable to fetch data","fetchingData":"Fetching Data","nowPrime":"nowPrime","paymentMethods":"Payment Method","creditDebitCard":"Credit/Debit cards","pay":"Pay","termsAccepted":"I have read and accepted the","paymentPending":"Payment pending","completePayment":"Please complete your payment on the browser in:","checkingStatus":"Checking Status","contact":"Contact","help":"for any help","nowPrimeTime":"nowPrime Ad-free gameplay time left","enabledSuccessfully":"enabled successfully","paymentFailed":"Payment failed","cancelTransaction":"Cancel transaction","paymentIncomplete":"Payment not complete","confirmCancellation":"Are you sure you want to cancel the transaction?","paymentIncompleteDesc":"You didn’t complete the payment on time","paymentFailedDesc":"We were unable to process your payment","confirm":"Confirm","dontCancel":"Don’t cancel","reachOutIfCharged":"If you were charged please reach out to us on","buy":"Buy","dailyPass":"Daily Pass","timeMinPass":"{{min}} mins Pass","15Minutes":"15 mins Pass","watchAd":"Watch Ad","watch1AdForPremium":"Watch 1 ad to get free premium","watchAdNow":"Watch Ad now","lookingForAd":"Looking for an Ad","adErrorMsg":"No ads available right now, please try again later.","almostThere":"Almost there!","watch1stAd":"Watch 1st Ad","watc2ndAd":"Watch 2nd Ad","adFreeRewarded":"{{min}} Min AdFree Reward","watch2Ad":"Watch 2nd Ad now","revaluationTooltipText":"{{nowbuxAdded}} nowBux added due to a change in nowBux value","anaSpectatePrompt":"Whoa! This looks cool! Can I watch you play?","anaWatchMsg":"Awesome, I\'ll keep it low-key while I watch!","anaUnmute":"Unmute Ana","anaMute":"Mute Ana for this session","showAnaMessages":"Talk to Ana","anaNoSpectate":"Thanks! I’ll be here quietly cheering you on!","youCanStillPlay":"You can still play","sidebarRewardedInfo":"Expires if you do not login in 30 days.","sidebarPurchasedInfo":"Always stay in your account.","accountRewardedInfo":"nowBux earned through rewards expires after 30 days of inactivity.","accountPurchasedInfo":"Purchased nowBux will never expire from your account.","transactionHistory":"Transaction history","premium":"premium","expiresOn":"Expires on","hotNow":"Hot now","addMoreTime":"Add more time","1ad":"1 Ad","subscriptionNotAutoRenew":"This subscription will not auto-renew","cancelToRefund":"Cancel within 7 days for a full refund.","redirectForPayment":"You will be redirected to a new browser window to complete the purchase.","noAutoRenew":"We will not auto-renew on expiry","letsGo":"Let\'s go","pleaseDontCloseTab":"Please don\'t close this tab","orderNo":"Order number:","playWithoutLimits":"Play without limits,","goAdFree":"Go Ad-free","playAdFree":"Play Ad-free","testdriveThingsSetup":"We\'re setting things up to launch your game.","testdriveEnvironmentSetup":"Loading the test environment may take up to 5 minutes if inactive for over an hour.","testDriveLoading":"Loading the test environment may take up to 5 minutes if inactive for over an hour.","nowPrime.label":"nowPrime Subscription","nowPrime.paymentIssues":"Payment issues","nowPrime.featureIssues":"Feature-Related issues","nowPrime.accountAccess":"Account access","noPaymentPage":"Payment page not showing?","showPaymentScreen":"Complete payment","matureContentWarning":"Mature Content Warning","matureContentDescription":"This game may contain content that is not appropriate for all ages. By proceeding, you affirm that you are at least 18 years old.","min18YearsDisclaimer":"You must be at least 18 years old to access this game","yesIam18":"Yes, I\'m 18+","cloudRecordingEnding":"Cloud recording is going away","downloadCloudRecordings":"Download your saved videos before 15th November","downloadRecordingTooltipMsg":"Download your saved recordings by November 15th. After that, they will no longer be available.","videoDiscarded":"Video Discarded","pickYourPlayStyle":"Pick your play style","vipMiniPass":"VIP Mini Pass","timeMinsAdFree":"{{min}} mins, Ad-free","noPaymentRequired":"No payment required","playWithoutLimits2":"Play without Limits","startsAt":"Starts at","freeAccess":"Free access","limitedExperience":"Limited experience","notAvailableForThisGame":"Not available for this game","buyNow":"Buy Now","adBlockerMessage":"Didn’t see an Ad? Disable Ad-blocker and reload!","allProblemResolved":"All your problems solved.","reachToEmailHelp":"Reach out to {{email}} for more help.","termPrivacy":"Terms and Privacy","copyrightPolicy":"Copyright Dispute Policy","euPrivacy":"EU Privacy","amazon":"Amazon","dmmGames":"DMM Games","upcomingStores":"Upcoming stores","partnerGames":"Partner games","cancelMembership":"Cancel Membership","membership":"membership","youNowjpmember":"You are a {{brandName}} member","membershipConfirmed":"Membership confirmed","successReceivedRequest":"We’ve successfully received your request.","nowjpMemberId":"now.jp Member ID:","connectPaypal":"Connect your PayPal email","emailId1":"Email ID","connect":"Connect","connectPaypalInfo":"Email ID cannot be changed after submission.","confirmPaypalConfirmation":"Are you sure you want to connect?","connecting":"Connecting","playUnlimited":"Play unlimited","percentOff":"% off","maxLimitExceedMsg":"You\'ve reached today\'s limit for earning nowBux through ads","earn1NowBuxWatchAd":"Earn 1 nowBux by watching an ad!","1Nowbux":"1 nowbux","successfullyAddedToBalance":"successfully added to your balance!","watchAnotherAd":"Watch Another Ad","skipForNow":"Skip for now","off":"off","okayGotIt":"Okay, got it","limitReachMsg":"You\'ve reached today\'s limit for earning nowBux through ads.","1NowbuxEarned":"1 nowbux earned","claimItByLogin":"Claim it by logging in to your account","discardNowBux":"Discard nowBux","yourNowBuxWillBeLost":"Your nowBux will be lost!","nowBuxConfirmationModalDescription":"This action is irreversible. Your earned nowBux will be permanently lost","confirmDiscard":"Confirm discard","keepMyNowBux":"Keep my nowBux","earnedNowbuxDiscarded":"Earned nowbux discarded","robloxMoved":"Roblox has moved","migrateToLinkFinder":"To find playable Roblox links, goto <strong>wsup.ai</strong> via the below link, and talk to the character \\"Roblox link finder\\"","launchLinkFinder":"Launch Roblox Link Finder","atleast8Chars":"At least 8 chars,","number":"1 number.","specialChar":"Optional symbols: !@#$%^&*","togglePwd":"Toggle password","yourBenefits":"Your benefits","expiryDate":"Expiry Date","id":"ID","logoMembershipPerks":"{{brandName}} membership perks","premiumStores":"Premium Stores","runGameStoreChoice":"Run games from the store of your choice","AiPoweredGPUs":"AI-Powered GPUs","nextGenAIGpu":"Next-gen AI GPUs for seamless gaming","priorityAccess":"Priority Access","neverRunoutOfSpace":"Never run out of space with endless storage","getPriorityAccessPremiumGame":"Never run out of space with endless storage","perMonth":"per month","claimEarlyBirdOffer":"Claim Early Bird Offer","cancel7DayRefund":"Cancel within 7 days for a full refund","additionalBenefits":"Additional benefits","sorryToLetGo":"We’re sorry to see you go!","membershipCancelSubscriptionNotice":"Your membership is active until {{expiryDate}}. If you cancel now, you’ll still have access to exclusive perks till the end of your subscription period.","keepMembership":"Keep Membership","leaveNowPrime":"Leave nowPrime","getOwnCloudPhone":"Get your own cloud phone","getPriorityExperience":"Get priority experience","availableAcrossMultipleGame":"Available across mutiple games","robuxAlertMsg":"Last chance! Robux gift card redemption is closing on 25th December","youAreInQueue":"You are in the queue","estimatedWaitTime":"Estimated wait time","tiredOfWaiting":"Tired of waiting? Get priority access now!","hurrayPriorityQueue":"Hurray! You are in priority queue","whatIsNowPrimeQuestion":"What is nowPrime?","whatIsNowPrimeAnswer":"As a nowPrime member, you get access to premium games, exclusive in-game discounts, a personal cloud phone, and AI-powered GPU support—all working together to provide a smooth and superior gaming experience.","canPlayMultipleDevicesQuestion":"Can I play on multiple devices?","canPlayMultipleDevicesAnswer":"Absolutely. Your personal cloud phone and game library are accessible across various compatible devices so that you can enjoy gaming anywhere, anytime.","aiGpuDifferenceQuestion":"Do AI-powered GPUs make a difference?","aiGpuDifferenceAnswer":"Yes. AI-powered GPUs deliver enhanced performance, reduce lag, and create a smoother gaming environment. You’ll notice faster load times and more responsive gameplay.","howDataProtectedQuestion":"How is my personal data protected?","howDataProtectedAnswer":"We are committed to maintaining the highest level of privacy and security for your personal data. Rigorous measures are in place to ensure your information remains fully protected and confidential.","priorityAccessQuestion":"Do I get priority access to premium games?","priorityAccessAnswer":"Yes. nowPrime members enjoy priority access, allowing you to jump right into new releases and exclusive titles without waiting in line.","specialDiscountsQuestion":"Are there special discounts on in-game items?","specialDiscountsAnswer":"Yes. nowPrime members receive exclusive in-game discounts, helping you save on your favorite titles and enjoy extra value.","tryNowPrimeQuestion":"Can I try nowPrime?","tryNowPrimeAnswer":"Yes. We offer a 7-day free trial, allowing you to experience our features, performance, and game library risk-free before deciding.","cancelAnytimeQuestion":"Can I cancel my membership anytime?","cancelAnytimeAnswer":"Yes. You’re free to cancel anytime. If you cancel within the first 7 days, you’ll receive a full refund—no questions asked.","specialDiscountInGame":"Special Discounts on in-game items","immersiveFullScreenExperience":"Immersive full-screen experience","fullhdGameExperience":"Full HD gaming experience","creditcard/debitcard":"Credit Card / Debit Card","creditcard":"Credit Card","balance":"Balance","cashableBalance":"Cashable Balance","cashout":"Cashout","offerProgress":"Offer Progress","offerProgress.completed":"Completed","offerProgress.cashedOut":"Cashed out","offerProgress.expired":"Expired","offerProgress.timeLeft.hours":"hours left","offerProgress.timeLeft.hour":"hour left","offerProgress.timeLeft.minutes":"minutes left","offerProgress.timeLeft.minute":"minute left","offerProgress.gameInstalled":"Game Installed","offerProgress.installationVerified":"Installation Verified","offerProgress.installationVerifiedTooltip":"We verified your Installation","offerProgress.playTheGame":"Play the game for {{minutes}} minutes","offerProgress.purchaseItems":"Purchase items at least worth {{purchase_amount}} in {{purchase_in_days}} days","offerProgress.purchaseItems.remainingAmount":"({{amount}} remaining)","loyaltyProgram.title":"Game Hunt","loyaltyProgram.description":"Discover games you”ll love and earn rewards for playing","loyaltyProgram.discover":"Discover the program","bluestacks":"BlueStacks","details":"Details","progress":"Progress","complete":"Complete","errorMsg":"There was an error, please try again.","requestSubmitted":"Request submitted","requestSubmittedMsg":"Your withdrawal request <strong>{{transaction_id}}</strong> is received. Funds will transfer in {{days}} business days, and you\'ll get an email notification.","requestSubmittedSupport":"Reach out to us on <a>{{email}}</a> for any queries.","noRedeemableFunds":"No redeemable funds","noRedeemableFundsMsg":"You can withdraw only after you  complete all steps in an offer.","withdrawlNote":"Your reward will be sent to this email address. Make sure this email is linked to your PayPal account.","withdrawlConfirmation.1":"I confirm this PayPal email can receive payments","withdrawlConfirmation.2":"I understand my order is non-refundable","withdraw":"Withdraw","currency":"Currency","eligibleGames":"Eligible Games","paypalAccount":"PayPal account","withdrawalFees":"Withdrawal Fees","amount":"Amount","willRecieve":"You will receive","codeValidForSingleUse":"Code is valid for single use only","couponCode":"Coupon Code","watch2minAd":"Watch 2 min ad to generate free coupon that can be used to unlock rewards","disableAdBlockerGenerateCoupon":"Disable ad-blocker to continue","generateCoupon":"Generate Coupon","generatingCodeIn":"Generating coupon code in","noMoreCoupon":"No more coupons <br/> available at the moment.","checkBackLater":"Please check back later!","adFreeModeActivate":"Ad-free mode activated!","enjoyTimeUniterruptedMin":"Enjoy {{timeInMin}} uninterrupted minutes of gaming!","letsGo!":"Let’s Go!"}')
+        e.exports = JSON.parse('{"and":"and","disclaimerSub1":"All rights reserved.","disclaimerSub2":"By using now.gg you agree to our ","disclaimerSub3":"including cookie use.","end":"End","loading":"Loading","logo":"Logo","or":"Or","including":"including","privacyPolicy":"Privacy Policy","somethingWentWrong":"Unfortunately, something went wrong.","refreshingIn":"Refreshing in ","refreshNow":"Refresh now ","support":"Support","termsOfUse":"Terms of Use","website":"Website","launchGame":"Launch Game","backToGame":"Back to Game","back":"Back","takeMeBack":"Take me back","neverMiss":"Never miss an update","joinDiscord":"Join our Discord","gameReady":"Your game is ready.","gameEnd":"Enjoyed the game?","soundIcon":"Sound Icon","mutedSoundIcon":"Muted Sound Icon","gameWillStart":"Game will start after the ad","sponsored":"Sponsored Ad","playInBrowser":"Play in browser","download":"Download","uhOh":"Uh-Oh","pouringRequests":"It’s pouring requests","backShortly":"We will be back soon. Try again shortly.","dailyTimeOver":"Daily gameplay time over!","dailyTimeOverMessage":"Your 30 min gameplay time is over, but you can enjoy popular games to your heart’s content.","exploreMoreGames":"Explore more games","nerdMode":"Nerd mode","nerdModeDescription":"Nerd mode impacts gameplay performance. Please use Nerd mode only when required.","platform":"Platform","cancel":"Cancel","restartNow":"Restart Now","yes":"Yes","next":"Next","appPackage":"App Package","country":"Country","connectionState":"Connection State","ping":"Ping","viewport":"Viewport","buildVersion":"Build version","devicePixelRatio":"Device Pixel Ratio","currentResolution":"Current Resolution","frames":"Frames","jitter":"Jitter / AvgJitterBufferDelay","framesPerSecond":"Frames per second","reportAProblem":"Report a Problem","build":"Build","clientID":"Client ID","sessionID":"Session ID","copiedToClipboard":"Copied to clipboard","networkLost":"Network lost. Trying to reconnect...","reconnecting":"Trying to reconnect...","connected":"Connected","faqs":"FAQs","clickToUnmute":"Click to unmute","tapToUnmute":"Tap to unmute","launchingGame":"Launching game...","launchGameText":"Launching game in {{time}}","fullscreen":"Fullscreen","exitFullscreen":"Exit fullscreen","enterFullscreen":"Enter fullscreen","robloxToastMsg":"Hold right click to rotate camera","closeAdIn":"Close ad in {{time}}","ad":"Ad","other":"Other","runDiagnostics":"Run a diagnostic report","email":"Email","problemDescription":"Problem Description","uploadScreenshot":"Upload picture or screenshot","problemInfo":"Use atleast 12 characters to describe the problem you are experiencing","min12Characters":"Minimum 12 Characters are required","uploadFromDevice":"Upload from device","captureScreen":"Capture screen","thankYou":"Thank you","submissionFailed":"Submission Failed","feedbackFailedTryAgain":"Failed to submit the feedback, please try again.","reviewingResponse":"We have received your response and it\'s being reviewed by our Support Team.","invalidFileTryAgain":"Uploaded file is not a valid image. Please try again.","areYouThere":"Hey, are you still there?","idleScreentext":"You’ll be logged out of the session if you’re away from the screen for a while. Don’t worry, everything will be saved automatically.","iAmStillHere":"I\'m still here","stoppingGame":"Stopping game in 30 Second(s)","disclaimer":"By using now.gg, you agree to the","rights":"\xa9 {{year}} now.gg. All rights reserved.","copyright":"\xa9 {{year}} now.gg.","cookieUse":"Cookie Use","getStarted":"Let\'s get started","signInHead":"Sign in to start playing","signInProg":"Sign in to save progress","signInInactive":"Sign in to continue playing","endLogin":"Playtime limit reached. Sign in to continue playing.","continuePlayingHere":"Continue Playing Here","loggedInAs":"Logged in as","asGuest":"play as guest","logout":"Logout","lockCursor":"Lock mouse cursor","cursorLockedInfo":"to unlock cursor","cursorLocked":"Cursor locked. Press [Esc] to exit.","unsupportedBrowser":"Browser not supported","switchBrowser":"For best experience switch to one of these browsers","googleChrome":"Google Chrome","appleSafari":"Apple Safari","microsoftEdge":"Microsoft Edge","linkCopied":"Link copied","okay":"Okay","OkGotIt":"Ok, got it","permission":"This game needs permission for the following","spotInstanceShortMsg":"Assigning a new server.","spotInstanceLongMsg":"Due to high traffic, we may switch users to a different server","sessionEndShortMsg":"Your session is almost over! Please save your progress before it ends","sessionEndLongMsg":"As part of our fair usage policy, game sessions have a time limit to ensure a smooth experience for everyone","serverBusy":"Server busy","serverBusyMsg":"Refresh the page to get on a new server and continue playing!","restart":"Restart","gameTile":"Game tile","roundLoader":"Round loader","infoIcon":"Info icon","closeIcon":"Close icon","overlay.klook":"Tip: Hold","overlay.look":"Tip: Press","overlay.tip2":" to use mouse for look around.","controls.title":"Game controls","mouseSensitivity":"Mouse sensitivity","mouseLock":"Mouse lock (Ctrl + Shift + 1)","sensitivity":"Sensitivity","video":"Video","audio":"Audio","bitrate":"Bitrate","codec":"Codec","packets":"Packets","slowNetwork":"Extremely high latency may impact gameplay","unstableNetwork":"High latency may impact gameplay","currentlyPoor":"Currently poor","slowInternetConnection":"Slow intenet connection","recommendations":"Recommendations","networkStability":"Network stability","troubleshootAndHelp":"Troubleshooting & Help","knowMore":"Know more","moveCloser":"If you are using Wifi, try moving closer.","avoidActivities":"Avoid activities with heavy internet usage.","connectToEthernet":"Connect to Ethernet.","farFromServer":"Maybe you are far away from server location.","shiftLockMsg":"to activate/deactivate shift lock","shiftLockActive":"Shift lock activated","shiftLockInactive":"Shift lock deactivated","press":"Press","notFound":"Unfortunately, we are currently unable to provide our service in your country. We hope to serve you soon!","proxyDetected":"Proxy/VPN Detected","toPlayGame":"To play the game:","disableVpn":"Disable any active VPN connection","reloadPage":"Reload the page","useURL":"Use the following URL","copyUrl":"Copy URL","uploadingFile":"Uploading file","uploadedSuccessfully":"Uploaded successfully","uploadFailed":"Upload failed","downloadingFile":"Downloading file","downloadedSuccessfully":"Downloaded successfully","downloadFailed":"Download failed","underMaintenance":"Under Maintenance","currentlyUnderMaintenance":"We are currently under maintenance,","tryAfterSometime":"please try after some time","diagnosingProblem":"Diagnosing problem","sidebar.legacyTitle":"Legacy controls","sidebar.nativeTitle":"Native controls","sidebar.legacyInfo":"Legacy Controls allows you to use key mappings defined by the modders.","sidebar.nativeInfo":"Native Controls allows you to use the inbuilt controls by the game developers.","sidebar.onscreenControls":"On-screen controls","sidebar.controlSchemes":"Control Scheme","sidebar.keyboard":"Keyboard","sidebar.gamepad":"Gamepad","sidebar.specialKey":"Special Key","sidebar.gamepadNotDetected":"Gamepad not detected","sidebar.gamepadNotSupported":"Gamepad not supported","sidebar.gamepadNotDetectedInfo":"If you have one, make sure it’s plugged-in/paired, and press buttons to wake it up.","sidebar.gamepadNotSupportedInfo":"Unfortunately, this game does not support gamepad.","loginPromptHead":"Save your game progress","loginPromptText":"Login and save your game progress with a single click!","guestToast":"Playing as Guest","player":"Player","welcome":"Welcome","pwaTitle":"Pro tip: Install game shortcut","completeHead":"Gameplay time limit reached","completeMsg":"This session has a playtime limit to promote fair usage of our services. Please restart to play again.","inactiveHead":"Game stopped due to inactivity","inactiveMsg":"Your game session stops when you\'re away from the screen for a while. Don\'t worry, everything is saved automatically.","disconnectedHead":"Game connection lost","disconnectedMsg":"Please refresh the page to continue playing.","migratedHead":"Screen Limit","duplicateHead":"Tab Limit","migratedMsg":"Your account may be in use on more than one device or screen. Play on this screen with just one click.","duplicateMsg":"This game is already active in another tab. You can start playing here by clicking on the button below.","sessionEndTimeLimitHead":"Time Limit","yourGameWill":"Your game will begin after the following advertisement","playLogo":"Play logo","playNow":"Play now","gettingReady":"Getting ready","enableInAppPurchases":"Enable In-app purchases","volume":"Volume","helpAndSupport":"Help & Support","retry":"Retry","somethingWrong":"Something went wrong","playing":"Playing","login":"Login","profile":"Profile","profilePic":"Profile pic","iAmYourCloudy":"Hi, I am your cloudy.","tapToStart":"Tap me to start!","searchPremiumGames":"Search","noSearchResults":"No results found","searchGames":"Search","allGames":"All Games","close":"Close","gameplay.label":"Gameplay","gameplay.gameUpdate":"Game Update","gameplay.gameFroze":"Game froze during gameplay","gameplay.gameStuck":"Game stuck at loading screen","gameplay.gameLagging":"Game is lagging","gamecontrols.label":"Game Controls","gamecontrols.keyControls":"Key controls","gamecontrols.mouseIssues":"Mouse-related issues","gamecontrols.gamepadIssues":"Gamepad support issues","accountLogin.label":"Account login","accountLogin.incorrectPassword":"Incorrect password","accountLogin.LoginIssues":"Now.gg login issues","accountLogin.unableToSave":"Unable to save progress","appOrGameRequest.label":"App or game request","appOrGameRequest.appRequest":"App request","appOrGameRequest.gameRequest":"Game request","createDeviceProfile":"Creating device profile","collectingStats":"Collecting stats","collectingOtherInformation":"Collecting other information","sendingProblemReport":"Sending problem report","compilingInformation":"Compiling information","processingProblemReport":"Processing problem report","recentlyPlayed":"Recently played","otherGamesYouMayLike":"Other games you may like","clear":"Clear","trendingThisWeek":"Trending games","tryOtherGames":"Try other games","cantFindAnything":"Hmmm...can’t find anything for that","trySomethingElse":"Try searching for something else","error":"ERROR","errorServerOverloaded":"Preparing the environment.","errorServerOverloaded2":"Launching instances. Please wait ...","errorServerOverloadedTimerEnd1":"We couldn\'t allocate an instance at this time.","errorServerOverloadedTimerEnd2":"Please try again later","errorServerOverloadedCatchingUp":"Welp! Servers overloaded! Catching up soon","serverOverloadedInfoLine1":"It may take up to 5 minutes,","serverOverloadedInfoLine2":"the game will start automatically once it\'s ready.","errorNotSupported":"Uh oh! Looks like {{appName}} is not supported on your device","errorGameNotFound":"Oops! Looks like the game could not be found","errorServiceNotInRegion":"Sorry, this game is not available in your region...yet!","errorFailure":"Yikes! Something unexpected happened","errorInvalidPlayToken":"Error connecting to now.gg servers","errorNotFound":"404: that page is MIA!","errorFailureTokenExpired.heading":"Oops! Our magic token just expired","errorFailureTokenExpired.subHeading":"It seems we need a refresh. Just a quick click should do the trick.","errorFailureInvalidToken.heading":"Uh oh! Token Mishap: Quick Reset Needed!","errorFailureInvalidToken.subHeading":"Looks like our internal key went off track. Let\'s reset and roll!","errorFailureForbidden.heading":"Whoa! Unknown Realms!","errorFailureForbidden.subHeading":"Looks like we sailed into uncharted territory. Best to return to known shores.","errorFailureAdBlockerDetected.heading":"Uh oh! Ad blocker detected!","errorFailureAdBlockerDetected.subHeading":"To play, please switch your ad blocker off","playAmazingGames":"But you can still play these amazing games.","checkEpicGames":"Feeling adventurous? Check out these epic games instead.","tryPerformingGames":"No sweat, try out these top-performing games instead.","checkFunGames":"You can always check out other fun games!","refreshSecs":"Hit refresh in {0} seconds","tryRefresh":"Try refreshing now!","browseGames":"Browse more games","goRogue":"Or Go Rogue","play":"Play","tp.toggle":"Show visual feeback for taps/clicks","recordTitle":"Record your game","recordTooltip":"Click here to start recording","recordFilenameOp0":"Epic {0} Gameplay","recordFilenameOp1":"Awesome {0} clutch in now.gg","recordFilenameOp2":"{0} on now.gg lit gameplay","recordFilenameOp3":"Epic now.gg {0} clip","recordFilenameOp4":"Super {0} clutch on now.gg","recordFilenameOp5":"Legendary {0} clutch in now.gg","recordFilenameOp6":"Mind-blowing {0} plays on now.gg","recordFilenameOp7":"Spectacular {0} moments on now.gg","recordFilenameOp8":"Lit now.gg {0} round","recordingReady":"Your video is ready","recordingStarted":"Recording started","recordingTransitionTitle":"Starting recording mode","recordingTransitionInfo":"Let’s create something exciting","recordingComplete":"Recording complete","recCompleteDesc":"Your gameplay was lit! Ready to blow up the internet?","shareOnYT":"Share on YouTube","discardRecording":"Discard recording?","discardRecDescription":"Your current recording will be permanantly deleted if you haven\'t saved it.","goBack":"Go back","iapTitle":"Enable in-app purchases","iapDescription":"Login to your Google Play Store account to enable in-app purchases","iapBtnText":"Continue to login","iapToastText":"in-app purchases enabled","iapLoaderText":"Activating in-app purchases","pleaseWait":"Please wait...","pleaseAllowAds":"Please allow ads on now.gg","adBlockerMsg":"Uh oh- looks like you are using an ad blocker. now.gg uses ads to keep the cloud free for everyone. Please turn off your ad blocker and press refresh to continue.","adBlockerCnfrmMsg":"I have turned off ad blocker","cantTurnOff":"Can’t turn off ad-blocker?","joinOnDiscord":"Join us on Discord","discard":"Discard","save":"Save","micBlocked.head":"Microphone Blocked","micBlocked.info1":"Now.gg requires access to your microphone so. Click on the blocked Mic","micBlocked.info2":"or camera icon","micBlocked.info3":"in your address bar.","install":"Install","tryNow":"Try now","tryNowFor_one":"Try now for {{count}} hour","tryNowFor_other":"Try now for {{count}} hours","tryNowForMinutes_one":"Try now for {{count}} minute","tryNowForMinutes_other":"Try now for {{count}} minutes","noInstall":"No install required","noInstallMsg":"No install required, play instantly in browser","downloadAndContinue":"Download & continue playing from where you left by logging into the game","progressMsg":"Progress and Purchased items from trial will be restored in the downloaded version if you log in to the game","accountSecurityMsg":"To enhance account security, log out from the game on shared PCs","scanPhone":"Scan on your phone","scanPhoneDownload":"Scan on your phone to download","wantToTry":"Want to try before installing?","installToContinue":"Install to continue playing game","trialLimitReached":"Trial limit reached","downloadStart":"If your download does not start in sometime then","launchInstaller":"Launch the installer after it has downloaded.","tip":"Tip","useEmail":"Use email to create in-game account and save progress","notSupported":"Try now is currently not supported in your region","secretPassage":"Secret Passage","toPlayGames":"To play now.gg games with ad blocker on","searchFor":"Search for “<1>Online games</1>” on Google Search","findBelow":"Find the below result to play with Ad blocker","hint":"Hint","secretPassageTutorial":"Secret Passage Tutorial","exploreTooltipText":"Choose from list of popular games to play","warning":"Warning","recordingStopOnGameSwitch":"Recording can’t continue if you choose to play a different game.","startRecordingSwitch":"Save recording & switch","stopRecordingSwitch":"Stop recording & switch","continueRecording":"Continue recording","recordingStopped":"Recording stopped","queue":"You are in a queue","queueModal.youAreIn":"You are in {{queueType}} queue","queueModal.priority":"a priority","queue.pos":"Your position:","queue.members":"members can","queue.jump":"jump the queue","queue.est":"Estimated waiting time","queue.success":"Membership Verified","queue.njp":"now.jp membership number","queue.invalid":"Invalid membership. Please check your details.","queue.verifying":"Verifying Membership Number","queue.submit":"Submit Membership Number","recordingStoppedGametime":"Your gameplay was stopped due to gametime limit reached, what do you want to do with the last recording?","saveRecording":"Save recording","discardRecordingNoQM":"Discard recording","recordingStoppedDuplicateTab":"Your gameplay was stopped because you switched to another tab, what do you want to do with the last recording?","recordingStoppedInactivity":"Your gameplay was stopped due to inactivity, what do you want to do with the last recording?","recordingStoppedLogin":"Recording needs to be stopped to continue logging in.","endScreenHeading":"Gameplay time is over","endScreenSubHeading":"Due to fair usage policy the gameplay time for every session has been restricted, so that every user gets a chance to play.","restartSession":"Restart Session","restartSessionModalMessage":"Your current session will terminate and a new session will start","youtube":"YouTube","discord":"Discord","apple":"Apple","facebook":"Facebook","tiktok":"TikTok","iap":"In-app purchases","startRecording":"Start Recording","stopRecording":"Stop Recording","processingRecording":"Processing Recording","toggleMic":"Mute/Unmute your mic","showingResults":"Showing results for","resultsFor":"Results for","onlineOnNowgg":"online on now.gg","gamepadWarning":"Gamepad warning","mouseLockKey":"Mouse lock","shiftLockKey":"Shift lock","search":"search","signInGoogle":"Sign in with Google","signInApple":"Sign in with Apple","recorder":"Recorder","learnMore":"Learn more","emailPlaceholder":"Enter your email address","loginEmailPlaceholder":"Enter your email","exisitingloginPasswordPlaceholder":"Enter your password","newloginPasswordPlaceholder":"Create a password","appIcon":"App Icon","copy":"Copy","frameDrop":"dropped out of","frameLost":"lost out of","claimPlayTime":"Sign in to claim your play time","invitationToPlay":"You have an invitation to play ad free on now.gg","removeAds":"Remove Ads","invite&Earn":"Invite & Earn","inviteFriends":"Invite your friends and earn 30 minutes of ad free gameplay for each friend you invite","rewardValue":"1 New Friend = 30 minutes","loginToInvite":"Login to Invite","signinToPlayAdFreeTime":"Please sign in to play ad free on now.gg","copyInviteLink":"Copy Invite Link","copyLink":"Copy Link","inviteLinkCopied":"Invite link copied","earnedAdFreeMinutes":"You earned {{minutes}} ad-free minutes","earnedMinutes":"You earned {{minutes}} minutes","inviteMoreFriends":"Invite more friends","accountAlreadyExists":"Account already exists!","stillWinAdFreeTime":"Do not worry, you can still win ad-free time.","adFreeTimeOver":"Your ad-free time is over","adFreeTimeLeft":"ad-free time left","getMoreTime":"Get more time","inviteAndEarn":"Invite and earn","earnFreePlayTime":"Earn up-to 500 minutes ad free playtime","saveOnNowgg":"Save on now.gg","giveGameplayName":"Give your lit gameplay a name","videoReadyForSharing":"Your video is ready for sharing","shareWithFriends":"Share with your friends","loadMore":"Load More","surpriseMe":"Surprise Me","videos":"Videos","retryNow":"Retry Now","retryUploading":"Retry uploading","retryDescription":"There was a problem saving your video. Please retry.","stopUploadingDesc":"Are you sure you want to stop uploading to Now.gg? A live online link will make it easy for everyone to access.","stopUploading":"Stop uploading","savingVideo":"Saving video","uploading":"Uploading...","findVideos":"Find all your videos here","uploadStopped":"Uploading Stopped","videoReady":"Your video is ready","noVideosYet":"No videos yet","signInToShare":"Sign in to share","findSolitaire":"Play “<1>Solitaire</1>” on now.gg.","getAdFree":"Get ad-free Roblox!","stilConfused":"Still confused?","askForHelp":"Ask for help on our Discord","cheatCode":"Cheat Code?","playInstantly":"Play Roblox Ad-Free Instantly","popularGames":"Popular Games","readMore":"Read more","readLess":"Read less","videoClips":"Video Clips","moreGames":"More Games","anaGreetingText":"Hello! I am Ana, I am here to make your journey more fun!","anaDisclaimer":"Ana can make mistakes. Consider checking important information.","aiApps":"AI Apps","byogClaimBtn":"Claim secret phone","byogPlayonCloud":"Play any game in the cloud","faq":"Frequently asked questions","shortVideosText":"Enjoy some Short videos","topGames":"Top Games","exploreByCategory":"Explore by Categories","showMoreCategories":"Show more categories","casualGames":"Casual Games","games":"Games","home":"Home","playRoblox":"Play Roblox without ads","downloading":"Downloading","loader":"Loader","edit":"Edit","delete":"Delete","addControls":"Add New Control","saveChanges":"Save changes","discardChanges":"Discard changes","downloadConfig":"Download cfg","addControlScheme":"Add Control scheme","copyControlScheme":"Add Copy of current scheme","deleteControlScheme":"Delete current scheme","videoUploading":"Video Upload in progress","minimize":"minimize","saveRecordingLogin":"Save recording & login","stopRecordingLogin":"Stop recording & login","playInstantlyTip":"Play Instantly","submit":"Submit","tryAgain":"Try Again","playOnlineOnNowgg":"Play {{appName}} online on now.gg","sports":"Sports","adventure":"Adventure","puzzle":"Puzzle","simulation":"Simulation","casual":"Casual","card":"Card","board":"Board","casino":"Casino","word":"Word","trivia":"Trivia","startergy":"Strategy","social":"Social","communication":"Communication","rolePlaying":"Role Playing","action":"Action","arcade":"Arcade","educational":"Educational","racing":"Racing","videoPlayers&Editors":"Video Players & Editors","platformer":"Platformer","education":"Education","rpg":"RPG","tools":"Tools","portal":"Portal","shopping":"Shopping","lifestyle":"Lifestyle","shooter":"Shooter","skill":"Skill","music":"Music","idle":"Idle","sandbox":"Sandbox","entertainment":"Entertainment","personalization":"Personalization","onScreenKeyboard":"On-screen Keyboard","externalPopupMessage":"This link will open in a new tab","nowPassText":"Unavailable in your region","nowPassHeading":"We will roll out in your geo soon","choosePlan":"Choose your plan","select":"Select","bestValue":"Best Value","limitedOfferLabel":"Limited Offer","chosenPlan":"Your chosen plan","changePlan":"Change plan","enterEmailAddress":"Enter email address","getNowPass":"Get nowPass","autoRenew":"Auto renew on plan expiry","lockedPrice":"We have locked your price","subscribeNowPassLaunches":"You will be able to subscribe at the above price when nowPass launches.","enablingNowPass":"Enabling nowPass","hourly":"hourly","daily":"daily","monthly":"monthly","weekly":"weekly","continuePlayingOnAnyDevice":"Continue playing on any device","noAds":"No Ads","fullScreenImmersiveGameplay":"Full-screen immersive gameplay","playPremiumGames":"Play premium games","unlimitedPlaytime":"Unlimited playtime","playInFullscreen":"Play in Full Screen","testDrive":"TEST DRIVE","adFree":"Ad-free","robloxNotAvailable":"Roblox is currently not available in your region","talkieNotAvailable":"Talkie: Soulful AI is currently not available in your region","similarGame":"Don’t worry, here is a similar game:","earnedNowbux":"You have earned a nowBux","wonNowbuxMessage":"Hurray! You have won a nowBux","wonNowbuxAfterGameplay":"You win 1 nowBux for every {{minutes}} minutes of gameplay","nowbuxTermsCondition":"All rewards earned will expire if you do not login to your now.gg account for 30 days.","termAndConditions":"Terms and Conditions","dontLoseReward":"Don’t lose your reward","quitNowMessage":"You are {{minutes}} minutes away from winning a nowBux. You will lose your progress if you quit now","loseReward":"Lose my reward","keepPlaying":"Keep Playing","claimReward":"Claim your reward","nowbuxInAccount":"You have a nowBux in your account to be claimed. Login to claim now","wonNowbux":"You have won {{nowbuxCreditsEarned}} nowBux","claimedNowbux":"You have claimed {{nowbuxCreditsEarned}} nowBux","nowbuxRules":"You will get 1 nowBux for every {{rewardFrequencyTimeSecs}} minutes of continueous gameplay on now.gg","clickToRedeem":"Click the button below to redeem","earnMoreToRedeem":"Earn {{creditsDiff}} more to redeem them","loginToClaim":"Login to claim","redeemedCodes":"Redeemed codes","redeemNowbux":"Redeem {{rewardRedemption}}","earnNowbux":"Earn a nowBux for every {{rewardFrequencyTimeSecs}} minutes of gameplay.","playNEarn":"Play and earn nowBux","nowbuxWon":"nowBux won","byPlayingNowgg":"by playing on now.gg","distributedSoFar":"distributed so far","oneNowbuxForGameplay":"Win 1 nowBux for every {{minutes}} minutes of the continuous gameplay on now.gg","redeemingNowbux":"Redeeming {{rewardRedemption}} nowBux","hereIsTheCode":"Here is your {{rewardRedemption}} nowBux code","couponUnavailable":"Coupon not available","redemptionErrorDesc1":"It seems we have run out of coupons right now.","redemptionErrorDesc2":"Please check back after 5 mins to redeem your nowBux.","winNextNowbux":"Win next nowBux in","minutes":"{{minutes}} minutes","min":"min","mins":"mins","tryMyLuck":"Try my luck","jackpot":"Jackpot","jackpotDesc":"Try your luck and you can win upto ","winWithEverySpin":"Win with Every Spin","get":"Get","winANowbuxCard":"Get a chance to win {{nowbux}} nowBux","dailySpinsRemaining":"Daily spins remaining","betterLuck":"Better luck next time","yay":"Yay!","nowbuxCount":"you won {{nowbuxCreditsRewarded}} nowBux!","shareOnDiscord":"Share on discord","earnNowbuxToTry":"Earn atleast 1 nowBux to Try","spinFor":"Spin for","enterEmailForSpin":"Enter your now.gg email to earn a free jackpot spin and win upto {{nowbux}} nowBux","emailId":"Email address","enterHere":"Enter here","emailMismatchError":"Entered email address does not match your login email address","verifyAndGetSpin":"Verify and get free spin","freeSpin":"Free Spin","reportIssue":"Report issue","signInForSpin":"Sign in to get your free spin","guest":"Guest","signInToClaimReward":"Claim nowBux & save progress","gamesPlayed":"Games played","totalPlaytime":"Total playtime","signIn":"Sign in","aboutUs":"About us","advertising":"Advertising","developers":"Developers","nowbuxRewards":"nowBux rewards","winNowbux":"Win 1 nowBux every {{minutes}} mins","minsRemaining":"{{minutes}} remaining","likedGames":"Liked games","likeInfo":"Hit the like button on the games you love playing to unlock this section","dayStreak":"{{days}} Day Streak","streakInfo":"Play everyday to unlock the next streak badge","playtimeHours":"{{hours}} Hours Playtime","uploadImage":"Upload image","supportedResolution":"Max resolution: 500x500","supportedTypes":"Supported format: jpg, png.","yourProfile":"Your Profile","displayPicture":"Display picture","username":"Username","widgets":"Widgets","earnMinutes":"Earn Ad-free Time","loginClaimNowbux":"Login to claim nowBux to your account to prevent losing","claimNowbux":"Hurray, you can redeem nowBux for an actual {{value}} Robux card","getAdFreeMins":"Get {{minutes}} mins ad-free.","inviteFriend":"When your friend joins through your invite","copyInvite":"Copy Invite Link","followUs":"Follow us on","haveNowbux":"Wow! Turn Your nowBux into Robux!","redeemNowbuxUSD":"You can redeem {{nowbux}} for {{value}}$ Robux card","redemption":"Redemption","redeem":"Redeem","badge1Day":"Badge 1","badge7Day":"Badge 7","badge15Day":"Badge 15","badge30Day":"Badge 30","time":"Time","nowbux":"nowBux","recent":"Recent","winNowbuxEveryMinutes":"Win 1 nowBux every {{minutes}} mins","remainingMinutes":"{{minutes}}m remaining","noEnoughNowbux":"You don’t have enough nowBux, earn <bold>{{nowbux}}</bold> nowBux to redeem them.","youCanRedeemNowbux":"Click here to redeem","nowbuxCode":"{{nowbux}} Robux Code","viewAllPreviousCodes":"View all Previous Codes","checkBackWithin":"Check back in {{time}} hours","noAppRecents":"Play a game to unlock this section","loginForUserMetrics":"Login to unlock your gaming stats","footerText":"<img /><strong>{{totalDistributedNowbux}}</strong>distributed so far<a>Terms and Conditions</a>","newUsername":"New username","newAvatar":"New picture","searchAppStore":"Search on App Store","gameLaunchAfterAd":"{{gameName}} will launch after the ad","preparingToLaunch":"Preparing to launch","logoTitle":"Play {{title}} Online","rankings":"Rankings","today":"Today","thisWeek":"This Week","thisMonth":"This Month","leaderboard":"Leaderboard","name":"Name","guestUser":"Guest User","you":"You","winNowbuxTitle":"Win nowBux","taskCompleteMsg":"You have successfully completed {{task}} and won {{reward}} nowBux. Check your Rewards to claim it.","viewRewards":"View Rewards","taskCompleted":"{{task}} completed","nowbuxWonSoFar":"nowBux won so far","quests":"Quests","winNowbuxHead":"Win nowBux","notEnoughNowbuxHead":"Not enough nowBux?","buyInGameItems":"Buy in-game items","buyIngameItemsDescription":"Make in-app purchases using nowBux in games below","earnNowbuxToRedeem":"Earn {{minNowbuxRqd}} nowBux to redeem.","boostNowbuxChances":"Boost your chances of winning robux by doing daily quest","claimNow":"Claim now","claiming":"Claiming...","claimed":"Claimed","daysLeft":"Days left","dayLeft":"Day left","hoursLeft":"Hours left","hourLeft":"Hour left","completed":"Completed","completedNewQuest":"You completed a new quest!","loginToViewRank":"Login to view your rank","lastUpdated":"Last updated:","seconds":"{{seconds}} secs","followTikTok":"Follow <span>@nowgg_games</span> on TikTok","visitTiktok":"Visit TikTok","tiktokAccount":"Tiktok Account","tiktokPlaceholder":"Enter tiktok username here","cloudDevice":"Cloud device","cloudDeviceLocation":"Cloud device location","signingToCloudService":"You are signing in to a cloud device","securePlatform":"You are on a secure platform","editVideo":"Edit Video","stream.start":"You have 1 new viewer request.","stream.startInfo":"Stream your game to your friends and others.","stream.live":"You are live","stream.shareUrl":"Share the stream with your friends and flaunt your gameplay","stream.button.start":"Start Streaming","stream.button.noStart":"Don\'t Stream","stream.stop":"Stop your live stream","stream.stopInfo":"This action is not reversible, are you sure you want to stop the stream?","stream.button.stop":"Stop Streaming","stream.button.noStop":"Continue Streaming","continuePlaying":"Continue Playing","startStreaming":"Start Live Stream","paused":"Paused","stopStream":"Stop stream","resumeStream":"Resume stream","pauseStream":"Pause stream","unmuteMic":"Unmute mic","muteMic":"Mute mic","streaming":"Streaming","streamEndToast":"Live stream stopped! Continue your gameplay","no":"No","stream.stopStart":"You can pause or stop anytime.","noViewer":"It’s just you here!","shareStreamUrl":"Share the stream with your friends and flaunt your gameplay","shuffleStream":"Shuffle Stream","exitStream":"Exit Stream","watchingLive":"Watching live","viewing":"Viewing","waitingStream":"Waiting for stream!","waitingStreamInfo":"Please wait while we connect you to a stream","pausedLive":"Live streaming paused","browseGamesBtnText":"Browse Games","streamPauseText":"It generally happens when the streamer is entering private information like passwords, payments or other credentials","ShufflingStream":"Switching stream","FindingHeading":"Looking for a stream...","NotAvailableHeading":"No stream available right now","streamPaused":"Stream Paused","leaveStreamTitle":"Leave Stream?","leaveStream":"Leave Stream","leaveStreamSubTitle":"This action is not reversible, are you sure you want to stop the stream?","continueWatching":"Continue watching","watchLiveStreams":"Watch Live Streams","videoTagNotSupport":"Your browser does not support the video tag.","showMore":"Show More","controls":"Controls","native":"Native","scheme":"Scheme","nativeControlsInfo":"Native Controls are on","switchOffNative":"Switch off native game controls to see Now.gg game controls for this game.","noGameGuide":"No Game Guide","noGameGuideInfo":"No game guide exists for this game, please use On Screen Controls to see key controls","seeGameControls":"See game controls from here","fortniteLabel":"Fortnite is not a part of Open Gaming Store and is not supported for one-click play","sideloadPlay":"Sideload and Play","signInOrCreate":"Login or Sign up","saveProgressAndEarn":"Save your progress & earn rewards","continue":"Continue","orSignInWith":"Or sign in with","signInToAccount":"Sign in to your account","createFreeAccount":"Create your free account","forgotPassword":"Forgot Password?","sendPwdResetLink":"Send password reset link","resetPwd":"Reset Password","registeredEmail":"Registered Email","resetPwdLinkSent":"Reset password link sent","resetDesc1":"If there’s a now.gg account associated with {{email}} you’ll get a link in your inbox to reset your password.","resetDesc2":"If you don’t get the link, check your spam folder or <span>re-enter your email address</span>.","goBackToSignIn":"Go back to sign in","changePassword":"Change password","account":"Account","currentPwd":"Current Password","newPwd":"New Password","confirmPwd":"Confirm Password","updatePassword":"Update password","enterNewPwd":"Enter new password","incorrectEmailOrPwd":"The password entered was incorrect","chooseAStrongPwd":"Please choose a stronger password. Try a mix of letters and numbers.","pwdMismatch":"The new password does not match","pwdUpdated":"Password Updated","updatingPassword":"Updating Password","google":"Google","noAccountFound":"This Account does not exist!","loginWithEmail":"Login with Email","emailIsIncorrect":"Please enter a valid email","continueToLogin":"Continue to login","createAccount":"Create account","creatingAccount":"Creating account","nowbuxDescription1":"Your {{nowbuxCreditsEarned}} Robux are now same-value nowBux. Play and redeem with no worries!","nowbuxDescription2":"Your earnt Robux are now same-value nowBux. Play and redeem with no worries!","awesomeLetsPlay":"Awesome, let’s play!","appNotAvailableInRegion":"{{appName}} is currently not available in your region","tryTheseGamesInstead":"Try this game instead","similarGames":"Don’t worry, here are few similar games:","adHelpFree":"Ads help keep now.gg Free!","blogs":"Blogs","topPicks":"Top Picks","streamHereToast":"Click here to live stream your game anytime!","googleAccountRequiredHeading":"Google account required","googleAccountRequiredDesc":"This game requires a Google account to play","appUnavailable":"\'{{appName}}\' is not officially available on now.gg","sideloadAndPlay":"Sideload & Play","findingYourGame":"Finding your game","searchingApk":"Searching for APK on the web","poweredBy":"Powered by","bestSource":"Best source","evaluatingResults":"Evaluating Search Results","foundBestSource":"Found the best source","openingAptoideStore":"Opening Aptoide App Store","wait":"Please wait","doNotClose":"Do not close tab","new":"NEW","live":"LIVE","codeCopied":"Code copied","copyCode":"Copy code","doYouWantToCopy":"Did you want to copy that?","yesCopy":"Yes, copy","copyToClipboard":"Copy to clipboard","textYouSelected":"Text you selected","paste":"Paste","forbiddenZone":"Forbidden Zone!","restrictedAreaError":"We\'ve wandered into a restricted area!","unsafeProxy":"Unsafe proxy or VPN detected!","visitOfficialProxy":"For a secure and smooth experience, please connect to our official proxy and turn off any VPN.","setPasswordFirst":"Please create your password through \'Forgot Password\'","robuxEqualsNowbux":"Your Robux are now equal-value nowBux!","emptyQuestsText":"Stay tuned for more adventures!","seeMore":"See More","more":"More","watchLive":"Watch Live","liveStreamsAvailable":"Live streams available for {{appName}}","helloIAmAna":"Ana","iCanHelpFindGames":"I can help you find games","whatsGoingOn":"Hello! I am Ana, I am here to make your journey more fun!","sayHi":"Say \\"Hi\\" or Ask about a game","send":"Send","freshChat":"Fresh Chat","aiChatDisclaimer":"Ana can make mistakes. Consider checking important information.","playAnyGameInCloud":"Play any game in the cloud!","launchSecretPhone":"Launch secret phone","history":"History","credit":"Credit","debit":"Debit","emptyNowbuxHistory":"You haven’t done any transaction yet.","nowbuxDesc":"The official BlueStacks currency for in-app purchases in selected games and more.","help&Support":"Help & Support","preparingLiveStream":"Preparing for live stream","searchWithAna":"Search {{text}} with Ana AI","PoweredByAI":"Powered by AI","forbiddenTitle":"Content Unavailable","forbiddenMsg":"This content is currently not available.","goToHome":"Go to Homepage","aboutNowbux":"About nowBux","chatFlagMsg":"Message flagged. Use of inappropriate language","sendMessage":"Send a message","playOnVpn":"Play on any Proxy or VPN","betterExp":"Better experience","limitedOffer":"Limited Time Offer","pass":"Pass","unofficialProxyDetected":"Unofficial proxy detected!","selectSubPlan":"Please select a subscription plan to continue playing","visitOurProxy":"Here’s an alternate, please visit our official proxy.","getNowPrime":"Get nowPrime","enablingNowPrime":"Enabling nowPrime","won":"Won","cannotAccessGame":"Sorry, you can\'t access this game right now.","errorFailureAnotherSessionActive.heading":"Multiple Sessions Detected!","errorFailureAnotherSessionActive.subHeading":"Looks like you\'re already playing in another window.","errorFailureSessionEnded.heading":"Game Session Over!","errorFailureSessionEnded.subHeading":" Your game session has ended.","errorFailureUnauthorized.heading":"Unauthorized Access!","errorFailureUnauthorized.subHeading":"Oops, you\'re not authorized to access this game.","migratedHeadMondia":"Game Session Over!","refreshMsg":"To restart the game, please refresh this page.","migratedMsgMondia":"Your game session has ended because you initiated a new session on another tab or device.","errorFailureInsufficientPlaytime.heading":"Insufficient Playtime credit","errorFailureInsufficientPlaytime.subHeading":"You\'re unable to play because you don\'t have enough playtime credit.","errorFailureSessionMigrated.heading":"Game Session Over!","errorFailureSessionMigrated.subHeading":"Your game session has ended because you initiated a new session on another tab or device.","selectFile":"Select file","uploadFile":"Upload from your device","subscription":"Subscriptions","manageSubscriptions":"Manage your subscriptions from here","manageSubButtonText":"Manage Subscription","pause":"Ps.","oneAccount":"One account for","commonDisclaimer":"By signing up, you agree to the","unableToFetch":"Unable to fetch data","fetchingData":"Fetching Data","nowPrime":"nowPrime","paymentMethods":"Payment Method","creditDebitCard":"Credit/Debit cards","pay":"Pay","termsAccepted":"I have read and accepted the","paymentPending":"Payment pending","completePayment":"Please complete your payment on the browser in:","checkingStatus":"Checking Status","contact":"Contact","help":"for any help","nowPrimeTime":"nowPrime Ad-free gameplay time left","enabledSuccessfully":"enabled successfully","paymentFailed":"Payment failed","cancelTransaction":"Cancel transaction","paymentIncomplete":"Payment not complete","confirmCancellation":"Are you sure you want to cancel the transaction?","paymentIncompleteDesc":"You didn’t complete the payment on time","paymentFailedDesc":"We were unable to process your payment","confirm":"Confirm","dontCancel":"Don’t cancel","reachOutIfCharged":"If you were charged please reach out to us on","buy":"Buy","dailyPass":"Daily Pass","timeMinPass":"{{min}} Minutes","15Minutes":"15 mins Pass","watchAd":"Watch Ad","watch1AdForPremium":"Watch 1 ad to get free premium","watchAdNow":"Watch Ad now","lookingForAd":"Looking for an Ad","adErrorMsg":"No ads available right now, please try again later.","almostThere":"Almost there!","watch1stAd":"Watch 1st Ad","watc2ndAd":"Watch 2nd Ad","adFreeRewarded":"{{min}} Min AdFree Reward","watch2Ad":"Watch 2nd Ad now","revaluationTooltipText":"{{nowbuxAdded}} nowBux added due to a change in nowBux value","anaSpectatePrompt":"Whoa! This looks cool! Can I watch you play?","anaWatchMsg":"Awesome, I\'ll keep it low-key while I watch!","anaUnmute":"Unmute Ana","anaMute":"Mute Ana for this session","showAnaMessages":"Talk to Ana","anaNoSpectate":"Thanks! I’ll be here quietly cheering you on!","youCanStillPlay":"You can still play","sidebarRewardedInfo":"Expires if you do not login in 30 days.","sidebarPurchasedInfo":"Always stay in your account.","accountRewardedInfo":"nowBux earned through rewards expires after 30 days of inactivity.","accountPurchasedInfo":"Purchased nowBux will never expire from your account.","transactionHistory":"Transaction history","premium":"premium","expiresOn":"Expires on","hotNow":"Hot now","addMoreTime":"Add more time","1ad":"1 Ad","subscriptionNotAutoRenew":"This subscription will not auto-renew","cancelToRefund":"Cancel within 7 days for a full refund.","redirectForPayment":"You will be redirected to a new browser window to complete the purchase.","noAutoRenew":"We will not auto-renew on expiry","letsGo":"Let\'s go","pleaseDontCloseTab":"Please don\'t close this tab","orderNo":"Order number:","playWithoutLimits":"Play without limits,","goAdFree":"Go Ad-free","playAdFree":"Play Ad-free","testdriveThingsSetup":"We\'re setting things up to launch your game.","testdriveEnvironmentSetup":"Loading the test environment may take up to 5 minutes if inactive for over an hour.","testDriveLoading":"Loading the test environment may take up to 5 minutes if inactive for over an hour.","nowPrime.label":"nowPrime Subscription","nowPrime.paymentIssues":"Payment issues","nowPrime.featureIssues":"Feature-Related issues","nowPrime.accountAccess":"Account access","noPaymentPage":"Payment page not showing?","showPaymentScreen":"Complete payment","matureContentWarning":"Mature Content Warning","matureContentDescription":"This game may contain content that is not appropriate for all ages. By proceeding, you affirm that you are at least 18 years old.","min18YearsDisclaimer":"You must be at least 18 years old to access this game","yesIam18":"Yes, I\'m 18+","cloudRecordingEnding":"Cloud recording is going away","downloadCloudRecordings":"Download your saved videos before 15th November","downloadRecordingTooltipMsg":"Download your saved recordings by November 15th. After that, they will no longer be available.","videoDiscarded":"Video Discarded","pickYourPlayStyle":"Pick your play style","vipMiniPass":"VIP Mini Pass","timeMinsAdFree":"{{min}} mins, Ad-free","noPaymentRequired":"No payment required","playWithoutLimits2":"Play without Limits","startsAt":"Starts at","freeAccess":"Free access","limitedExperience":"Limited experience","notAvailableForThisGame":"Not available for this game","buyNow":"Buy Now","adBlockerMessage":"Didn’t see an Ad? Disable Ad-blocker and reload!","allProblemResolved":"All your problems solved.","reachToEmailHelp":"Reach out to {{email}} for more help.","termPrivacy":"Terms and Privacy","copyrightPolicy":"Copyright Dispute Policy","euPrivacy":"EU Privacy","amazon":"Amazon","dmmGames":"DMM Games","upcomingStores":"Upcoming stores","partnerGames":"Partner games","cancelMembership":"Cancel Membership","membership":"membership","youNowjpmember":"You are a {{brandName}} member","membershipConfirmed":"Membership confirmed","successReceivedRequest":"We’ve successfully received your request.","nowjpMemberId":"now.jp Member ID:","connectPaypal":"Connect your PayPal email","emailId1":"Email ID","connect":"Connect","connectPaypalInfo":"Email ID cannot be changed after submission.","confirmPaypalConfirmation":"Are you sure you want to connect?","connecting":"Connecting","playUnlimited":"Play unlimited","percentOff":"% off","maxLimitExceedMsg":"You\'ve reached today\'s limit for earning nowBux through ads","earn1NowBuxWatchAd":"Earn 1 nowBux by watching an ad!","1Nowbux":"1 nowbux","successfullyAddedToBalance":"successfully added to your balance!","watchAnotherAd":"Watch Another Ad","skipForNow":"Skip for now","off":"off","okayGotIt":"Okay, got it","limitReachMsg":"You\'ve reached today\'s limit for earning nowBux through ads.","1NowbuxEarned":"1 nowbux earned","claimItByLogin":"Claim it by logging in to your account","discardNowBux":"Discard nowBux","yourNowBuxWillBeLost":"Your nowBux will be lost!","nowBuxConfirmationModalDescription":"This action is irreversible. Your earned nowBux will be permanently lost","confirmDiscard":"Confirm discard","keepMyNowBux":"Keep my nowBux","earnedNowbuxDiscarded":"Earned nowbux discarded","robloxMoved":"Roblox has moved","migrateToLinkFinder":"To find playable Roblox links, goto <strong>wsup.ai</strong> via the below link, and talk to the character \\"Roblox link finder\\"","launchLinkFinder":"Launch Roblox Link Finder","atleast8Chars":"At least 8 chars,","number":"1 number.","specialChar":"Optional symbols: !@#$%^&*","togglePwd":"Toggle password","yourBenefits":"Your benefits","expiryDate":"Expiry Date","id":"ID","logoMembershipPerks":"{{brandName}} membership perks","premiumStores":"Premium Stores","runGameStoreChoice":"Run games from the store of your choice","AiPoweredGPUs":"AI-Powered GPUs","nextGenAIGpu":"Next-gen AI GPUs for seamless gaming","priorityAccess":"Priority Access","neverRunoutOfSpace":"Never run out of space with endless storage","getPriorityAccessPremiumGame":"Never run out of space with endless storage","perMonth":"per month","claimEarlyBirdOffer":"Claim Early Bird Offer","cancel7DayRefund":"Cancel within 7 days for a full refund","additionalBenefits":"Additional benefits","sorryToLetGo":"We’re sorry to see you go!","membershipCancelSubscriptionNotice":"Your membership is active until {{expiryDate}}. If you cancel now, you’ll still have access to exclusive perks till the end of your subscription period.","keepMembership":"Keep Membership","leaveNowPrime":"Leave nowPrime","getOwnCloudPhone":"Get your own cloud phone","getPriorityExperience":"Get priority experience","availableAcrossMultipleGame":"Available across mutiple games","robuxAlertMsg":"Last chance! Robux gift card redemption is closing on 25th December","youAreInQueue":"You are in the queue","estimatedWaitTime":"Estimated wait time","tiredOfWaiting":"Tired of waiting? Get priority access now!","hurrayPriorityQueue":"Hurray! You are in priority queue","whatIsNowPrimeQuestion":"What is nowPrime?","whatIsNowPrimeAnswer":"As a nowPrime member, you get access to premium games, exclusive in-game discounts, a personal cloud phone, and AI-powered GPU support—all working together to provide a smooth and superior gaming experience.","canPlayMultipleDevicesQuestion":"Can I play on multiple devices?","canPlayMultipleDevicesAnswer":"Absolutely. Your personal cloud phone and game library are accessible across various compatible devices so that you can enjoy gaming anywhere, anytime.","aiGpuDifferenceQuestion":"Do AI-powered GPUs make a difference?","aiGpuDifferenceAnswer":"Yes. AI-powered GPUs deliver enhanced performance, reduce lag, and create a smoother gaming environment. You’ll notice faster load times and more responsive gameplay.","howDataProtectedQuestion":"How is my personal data protected?","howDataProtectedAnswer":"We are committed to maintaining the highest level of privacy and security for your personal data. Rigorous measures are in place to ensure your information remains fully protected and confidential.","priorityAccessQuestion":"Do I get priority access to premium games?","priorityAccessAnswer":"Yes. nowPrime members enjoy priority access, allowing you to jump right into new releases and exclusive titles without waiting in line.","specialDiscountsQuestion":"Are there special discounts on in-game items?","specialDiscountsAnswer":"Yes. nowPrime members receive exclusive in-game discounts, helping you save on your favorite titles and enjoy extra value.","tryNowPrimeQuestion":"Can I try nowPrime?","tryNowPrimeAnswer":"Yes. We offer a 7-day free trial, allowing you to experience our features, performance, and game library risk-free before deciding.","cancelAnytimeQuestion":"Can I cancel my membership anytime?","cancelAnytimeAnswer":"Yes. You’re free to cancel anytime. If you cancel within the first 7 days, you’ll receive a full refund—no questions asked.","specialDiscountInGame":"Special Discounts on in-game items","immersiveFullScreenExperience":"Immersive full-screen experience","fullhdGameExperience":"Full HD gaming experience","creditcard/debitcard":"Credit Card / Debit Card","creditcard":"Credit Card","balance":"Balance","cashableBalance":"Cashable Balance","cashout":"Cashout","offerProgress":"Offer Progress","offerProgress.completed":"Completed","offerProgress.cashedOut":"Cashed out","offerProgress.expired":"Expired","offerProgress.timeLeft.hours":"hours left","offerProgress.timeLeft.hour":"hour left","offerProgress.timeLeft.minutes":"minutes left","offerProgress.timeLeft.minute":"minute left","offerProgress.gameInstalled":"Game Installed","offerProgress.installationVerified":"Installation Verified","offerProgress.installationVerifiedTooltip":"We verified your Installation","offerProgress.playTheGame":"Play the game for {{minutes}} minutes","offerProgress.purchaseItems":"Purchase items at least worth {{purchase_amount}} in {{purchase_in_days}} days","offerProgress.purchaseItems.remainingAmount":"({{amount}} remaining)","loyaltyProgram.title":"Game Hunt","loyaltyProgram.description":"Discover games you”ll love and earn rewards for playing","loyaltyProgram.discover":"Discover the program","bluestacks":"BlueStacks","details":"Details","progress":"Progress","complete":"Complete","errorMsg":"There was an error, please try again.","requestSubmitted":"Request submitted","requestSubmittedMsg":"Your withdrawal request <strong>{{transaction_id}}</strong> is received. Funds will transfer in {{days}} business days, and you\'ll get an email notification.","requestSubmittedSupport":"Reach out to us on <a>{{email}}</a> for any queries.","noRedeemableFunds":"No redeemable funds","noRedeemableFundsMsg":"You can withdraw only after you  complete all steps in an offer.","withdrawlNote":"Your reward will be sent to this email address. Make sure this email is linked to your PayPal account.","withdrawlConfirmation.1":"I confirm this PayPal email can receive payments","withdrawlConfirmation.2":"I understand my order is non-refundable","withdraw":"Withdraw","currency":"Currency","eligibleGames":"Eligible Games","paypalAccount":"PayPal account","withdrawalFees":"Withdrawal Fees","amount":"Amount","willRecieve":"You will receive","nowbuxGotABoost":"just got a boost, use <strong>nowbux</strong> to <strong>make payments</strong> throughout now.gg","really?How?":"Really? How?","useNowbuxForEverything":"Use <span>nowbux</span> for <span>everything</span>","buySubs":"Buy Subscriptions","buyInGame":"Buy in-game items","mulNowbux":"Multiply nowBux","gameUpgrades":"Game Upgrades","boosts":"Boosts","enjoyGameplay":"<strong>Enjoy uninterrupted gameplay</strong> with no ads or distractions.","startingAt":"Starting at just","redeemAnytime":"Redeem anytime from here","gotIt":"Got it","nowbuxPayments":"For <strong>payments</strong> & lot more on now.gg","expired":"Expired","expiredModalDescription":"Renew to continue playing without Ads with immersive gameplay","renewNow":"Renew now","continueWithAds":"Continue with Ads","nowBuxAddedSuccessfully":"nowBux added Successfully!","ThankYouForYourPayment":"Thank you for your payment","orderNumber":"Order number:","playPremiumGames2":"Play Premium Games","playOnAnyProxyOrVPN":"Play on any Proxy or VPN","continuePlaying2":"Continue playing","FullScreenGameplay":"Full screen gameplay","insufficientBalance":"Insufficient balance","addMoreNowbuxToBuyThisItem":"Add more nowbux to buy this item","itemPrice":"Item Price","nowBuxBalance":"nowBux balance","nowBuxNeeded":"nowBux needed","buySubscription":"Buy Subscription","codeValidForSingleUse":"Code is valid for single use only","couponCode":"Coupon Code","watch2minAd":"Watch 2 min ad to generate free coupon that can be used to unlock rewards","disableAdBlockerGenerateCoupon":"Disable ad-blocker to continue","generateCoupon":"Generate Coupon","generatingCodeIn":"Generating coupon code in","noMoreCoupon":"No more coupons <br/> available at the moment.","checkBackLater":"Please check back later!","adFreeModeActivate":"Ad-free mode activated!","enjoyTimeUniterruptedMin":"Enjoy {{timeInMin}} uninterrupted minutes of gaming!","letsGo!":"Let’s Go!"}')
     }
 }, function(e) {
     var t = function(t) {
@@ -24091,4 +24225,4 @@
     _N_E = e.O()
 }
 ]);
-//# sourceMappingURL=_app-cce89afc6797b7a0.js.map
+//# sourceMappingURL=_app-2fb471b00ee725a6.js.map
