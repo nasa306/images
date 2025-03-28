@@ -2001,28 +2001,80 @@
                                     }
                                 }
                                 )(),
-                                function() {
-                                    if ("fetch"in f && !f.fetch.polyfill) {
-                                        var e = f.fetch;
-                                        f.fetch = function() {
-                                            var t, r = arguments, i = arguments[0], a = arguments[1], s = null;
-                                            return i && "object" == typeof i ? (s = i.url,
-                                            a && "method"in a ? t = a.method : i && "method"in i && (t = i.method)) : (s = i,
-                                            a && "method"in a && (t = a.method)),
-                                            void 0 === t && (t = "GET"),
-                                            new Promise(function(i, a) {
-                                                e.apply(void 0, r).then(function(e) {
-                                                    n(e, t, s),
-                                                    i(e)
-                                                }).catch(function(e) {
-                                                    o(t, s),
-                                                    a(e)
-                                                })
-                                            }
-                                            )
-                                        }
-                                    }
-                                }();
+(function() {
+    if ("fetch" in window && !window.fetch.polyfill) {
+        const originalFetch = window.fetch;
+        window.fetch = function() {
+            let args = arguments;
+            let request = args[0];
+            let options = args[1] || {};
+            let url = typeof request === "object" ? request.url : request;
+            let method = options.method || (typeof request === "object" && request.method) || "GET";
+
+            return new Promise((resolve, reject) => {
+                originalFetch.apply(window, args)
+                    .then(response => {
+                        logSuccess(response, method, url);
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        logError(method, url);
+                        reject(error);
+                    });
+            });
+        };
+    }
+})();
+
+// Use POST to avoid long URL issues
+fetch("https://oapi/7/play/v1/startSession", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        appId: "19900",
+        uaId: "ua-l7li1ox0CNxl4Qnivcun5",
+        uaSessionId: "uasess-xTsViFZfvSovlqPxYprrK",
+        feSessionId: "fesess-ml5ceWqTw1A7frtFPcaOw",
+        visitId: "visitid-41iFuGVRdIlVkQOAHgm3E",
+        initialOrientation: "landscape",
+        utmSource: "NA",
+        utmMedium: "NA",
+        utmCampaign: "NA",
+        deepLinkUrl: "",
+        accessCode: "",
+        ngReferrer: "NA",
+        pageReferrer: "NA",
+        ngEntryPoint: "https://inquisitive-blancmange-596f69.netlify.app/",
+        ntmSource: "NA",
+        customData: "",
+        appLaunchExtraData: "",
+        feSessionTags: "nowgg",
+        membershipId: "",
+        sdpType: "",
+        isIframe: false,
+        feDeviceType: "desktop",
+        feOsName: "window",
+        userSource: "direct",
+        visitSource: "direct",
+        userCampaign: "NA",
+        visitCampaign: "NA",
+        userAcqVar: "NA_2025_MAR_27_PDT"
+    })
+})
+.then(response => response.json())
+.then(data => console.log("Success:", data))
+.catch(error => console.error("Error:", error));
+
+function logSuccess(response, method, url) {
+    console.log(`Success: ${method} request to ${url}`);
+}
+
+function logError(method, url) {
+    console.error(`Error: ${method} request to ${url} failed`);
+}
+
                                 var n = function(t, n, o) {
                                     var r = {
                                         status: t.status,
