@@ -2026,7 +2026,7 @@
     }
 })();
 
-// Use POST to avoid long URL issues
+// Fetch request to oapi/7/play/v1/startSession
 fetch("https://oapi/7/play/v1/startSession", {
     method: "POST",
     headers: {
@@ -2074,6 +2074,7 @@ function logSuccess(response, method, url) {
 function logError(method, url) {
     console.error(`Error: ${method} request to ${url} failed`);
 }
+
 
                                 var n = function(t, n, o) {
                                     var r = {
